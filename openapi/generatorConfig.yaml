@@ -1,0 +1,18 @@
+developerName: Mika Alaoutinen
+
+# packages
+basePackage: generated
+apiPackage: api
+modelPackage: model
+
+# Java settings
+booleanGetterPrefix: is
+dateLibrary: java8
+performBeanValidation: true
+useOptional: true
+
+# code generation settings
+implicitHeaders: true
+interfaceOnly: true
+skipDefaultInterface: true
+sourceFolder: src

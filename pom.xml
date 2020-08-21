@@ -49,27 +49,13 @@
 						</goals>
 
 						<configuration>
+							<configurationFile>${project.basedir}/openapi/generatorConfig.yaml</configurationFile>
 							<ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
 							<inputSpec>${project.basedir}/openapi/api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-
-							<configOptions>
-								<apiPackage>api</apiPackage>
-								<basePackage>null</basePackage>
-								<booleanGetterPrefix>is</booleanGetterPrefix>
-								<dateLibrary>java8</dateLibrary>
-								<developerName>Mika Alaoutinen</developerName>
-								<implicitHeaders>true</implicitHeaders>
-								<interfaceOnly>true</interfaceOnly>
-								<modelPackage>model</modelPackage>
-								<performBeanValidation>true</performBeanValidation>
-								<skipDefaultInterface>true</skipDefaultInterface>
-								<sourceFolder>src</sourceFolder>
-								<useOptional>true</useOptional>
-							</configOptions>
-
 							<output>target/generated-sources</output>
 						</configuration>
+
 					</execution>
 				</executions>
 			</plugin>
