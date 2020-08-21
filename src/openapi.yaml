@@ -1,0 +1,62 @@
+openapi: 3.0.3
+ 
+info:
+  title: Kiskotaan OpenAPI document
+  version: 0.0.1
+  description: api test
+ 
+servers:
+  - url: http://localhost:8080/api/
+ 
+components:
+  schemas:
+    course:
+      type: object
+      properties:
+        name:
+          type: string
+        par:
+          type: number
+
+  # schemas:
+  #   $ref: "./schemas.yaml#/schemas"
+  # parameters:
+  #   $ref: "./parameters.yaml"
+  # responses:
+  #   $ref: "./responses.yaml"
+# paths:
+  # $ref: "./paths.yaml"
+
+paths:
+  /courses:
+    get:
+      summary: All courses.
+      description: Returns a list of all courses.
+      operationId: getCourses
+      responses:
+        "200":
+          description: A JSON array of courses.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+
+    post:
+      summary: Add new course.
+      description: Add a new course.
+      operationId: postCourse
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/course"
+      responses:
+        "201":
+          description: The new course
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/course"

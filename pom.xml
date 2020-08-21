@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project
+		xmlns="http://maven.apache.org/POM/4.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.2.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>com.mika</groupId>
+	<artifactId>kiskotaan-openapi</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>kiskotaan-openapi</name>
+	<description>OpenAPI document for kiskotaan backend</description>
+
+	<properties>
+		<java.version>14</java.version>
+		<openapi-generator-version>5.0.0-beta</openapi-generator-version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>openapi-generator-maven-plugin</artifactId>
+			<version>${openapi-generator-version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>${openapi-generator-version}</version>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+
+						<configuration>
+							<ignoreFileOverride>${project.basedir}/src/.openapi-generator-ignore</ignoreFileOverride>
+							<inputSpec>${project.basedir}/src/openapi.yaml</inputSpec>
+							<generatorName>spring</generatorName>
+
+							<configOptions>
+								<apiPackage>api</apiPackage>
+								<basePackage>null</basePackage>
+								<booleanGetterPrefix>is</booleanGetterPrefix>
+								<dateLibrary>java8</dateLibrary>
+								<developerName>Mika Alaoutinen</developerName>
+								<implicitHeaders>true</implicitHeaders>
+								<interfaceOnly>true</interfaceOnly>
+								<modelPackage>model</modelPackage>
+								<performBeanValidation>true</performBeanValidation>
+								<skipDefaultInterface>true</skipDefaultInterface>
+								<sourceFolder>src</sourceFolder>
+								<useOptional>true</useOptional>
+							</configOptions>
+
+							<output>target/generated-sources</output>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
