@@ -49,8 +49,8 @@
 						</goals>
 
 						<configuration>
-							<ignoreFileOverride>${project.basedir}/src/.openapi-generator-ignore</ignoreFileOverride>
-							<inputSpec>${project.basedir}/src/openapi.yaml</inputSpec>
+							<ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
+							<inputSpec>${project.basedir}/openapi/api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 
 							<configOptions>
