@@ -13,9 +13,20 @@
 
 	<groupId>com.mika</groupId>
 	<artifactId>kiskotaan-openapi</artifactId>
-	<version>0.0.9-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<version>0.0.10-SNAPSHOT</version>
 	<name>kiskotaan-openapi</name>
 	<description>OpenAPI document for Kiskotaan backend</description>
+
+	<properties>
+		<github.url>https://github.com/mika-alaoutinen/kiskotaan-openapi</github.url>
+		<java.version>14</java.version>
+
+		<maven-compiler.version>3.8.1</maven-compiler.version>
+		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+		<openapi-generator-version>5.0.0-beta</openapi-generator-version>
+		<swagger-annotations-version>1.6.2</swagger-annotations-version>
+	</properties>
 
 	<scm>
 		<connection>scm:git:${github.url}.git</connection>
@@ -33,15 +44,20 @@
 		</repository>
 	</distributionManagement>
 
-	<properties>
-		<github.url>https://github.com/mika-alaoutinen/kiskotaan-openapi</github.url>
-		<java.version>14</java.version>
-		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-		<openapi-generator-version>5.0.0-beta</openapi-generator-version>
-	</properties>
-
 	<build>
 		<plugins>
+
+			<!-- Maven compiler to compile the generated code as jar -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler.version}</version>
+				<configuration>
+					<source>1.14</source>
+					<target>1.14</target>
+					<proc>none</proc>
+				</configuration>
+			</plugin>
 
 			<!-- Maven releases -->
 			<plugin>
@@ -78,5 +94,29 @@
 
 		</plugins>
 	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger-annotations-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+	</dependencies>
 
 </project>
