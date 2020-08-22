@@ -22,6 +22,8 @@
 		<github.url>https://github.com/mika-alaoutinen/kiskotaan-openapi</github.url>
 		<java.version>14</java.version>
 
+		<jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
+		<hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
 		<maven-compiler.version>3.8.1</maven-compiler.version>
 		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
 		<openapi-generator-version>5.0.0-beta</openapi-generator-version>
@@ -45,16 +47,16 @@
 	</distributionManagement>
 
 	<build>
+		<sourceDirectory>build</sourceDirectory>
 		<plugins>
-
 			<!-- Maven compiler to compile the generated code as jar -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler.version}</version>
 				<configuration>
-					<source>1.14</source>
-					<target>1.14</target>
+					<source>14</source>
+					<target>14</target>
 					<proc>none</proc>
 				</configuration>
 			</plugin>
@@ -85,8 +87,7 @@
 							<ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
 							<inputSpec>${project.basedir}/openapi/api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<!-- Put generated code in target/classes so that Maven automagically finds it when creating jar -->
-							<output>target/classes</output>
+							<output>build</output>
 						</configuration>
 					</execution>
 				</executions>
@@ -95,15 +96,11 @@
 		</plugins>
 	</build>
 
+	<!-- The dependencies for the generated code -->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
 		</dependency>
 
 		<dependency>
@@ -113,9 +110,20 @@
 		</dependency>
 
 		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate-validator.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.openapitools</groupId>
 			<artifactId>jackson-databind-nullable</artifactId>
-			<version>0.1.0</version>
+			<version>${jackson-databind-nullable.version}</version>
 		</dependency>
 	</dependencies>
 
