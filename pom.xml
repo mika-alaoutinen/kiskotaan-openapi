@@ -53,8 +53,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler.version}</version>
 				<configuration>
-					<source>1.14</source>
-					<target>1.14</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<proc>none</proc>
 				</configuration>
 			</plugin>
@@ -85,8 +85,7 @@
 							<ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
 							<inputSpec>${project.basedir}/openapi/api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<!-- Put generated code in target/classes so that Maven automagically finds it when creating jar -->
-							<output>target/classes</output>
+							<output>src/main/java</output>
 						</configuration>
 					</execution>
 				</executions>
@@ -102,14 +101,20 @@
 		</dependency>
 
 		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger-annotations-version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>io.swagger</groupId>
-			<artifactId>swagger-annotations</artifactId>
-			<version>${swagger-annotations-version}</version>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>6.1.5.Final</version>
 		</dependency>
 
 		<dependency>
