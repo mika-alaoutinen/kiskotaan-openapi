@@ -21,44 +21,55 @@
 	<name>kiskotaan-openapi</name>
 	<description>OpenAPI document for kiskotaan backend</description>
 
+	<scm>
+    <connection>scm:git:https://github.com/mika-alaoutinen/kiskotaan-openapi.git</connection>
+    <url>http://github.com/mika-alaoutinen/kiskotaan-openapi</url>
+    <developerConnection>scm:git:https://github.com/mika-alaoutinen/kiskotaan-openapi.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
 	<properties>
 		<java.version>14</java.version>
+		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
 		<openapi-generator-version>5.0.0-beta</openapi-generator-version>
 	</properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.openapitools</groupId>
-			<artifactId>openapi-generator-maven-plugin</artifactId>
-			<version>${openapi-generator-version}</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
-
 	<build>
 		<plugins>
+
+			<!-- Maven releases -->
+			<plugin>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>${maven-release-plugin.version}</version>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <tagNameFormat>@{project.version}</tagNameFormat>
+          <releaseProfiles>release</releaseProfiles>
+        </configuration>
+      </plugin>
+		
+			<!-- OpenAPI code generation -->
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
 				<version>${openapi-generator-version}</version>
-
 				<executions>
 					<execution>
 						<goals>
 							<goal>generate</goal>
 						</goals>
-
 						<configuration>
 							<configurationFile>${project.basedir}/openapi/generatorConfig.yaml</configurationFile>
 							<ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
 							<inputSpec>${project.basedir}/openapi/api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<output>target/generated-sources</output>
+							<!-- Put generated code in target/classes so that Maven automagically finds it when creating jar -->
+							<output>target/classes</output>
 						</configuration>
-
 					</execution>
 				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 
