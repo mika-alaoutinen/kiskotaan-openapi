@@ -18,7 +18,7 @@
 	<description>OpenAPI document for Kiskotaan backend</description>
 
 	<scm>
-    <connection>scm:git:https://github.com/mika-alaoutinen/kiskotaan-openapi.git</connection> -->
+    <connection>scm:git:https://github.com/mika-alaoutinen/kiskotaan-openapi.git</connection>
 		<developerConnection>scm:git:https://github.com/mika-alaoutinen/kiskotaan-openapi.git</developerConnection>
     <url>http://github.com/mika-alaoutinen/kiskotaan-openapi</url>
 		<!-- <connection>scm:git:${github.url}.git</connection>
