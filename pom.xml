@@ -17,15 +17,17 @@
 
 	<groupId>com.mika</groupId>
 	<artifactId>kiskotaan-openapi</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>kiskotaan-openapi</name>
 	<description>OpenAPI document for Kiskotaan backend</description>
 
 	<scm>
-    <connection>scm:git:https://github.com/mika-alaoutinen/kiskotaan-openapi.git</connection>
-    <!-- <connection>scm:git:${github.url}.git</connection> -->
+    <connection>scm:git:https://github.com/mika-alaoutinen/kiskotaan-openapi.git</connection> -->
 		<developerConnection>scm:git:https://github.com/mika-alaoutinen/kiskotaan-openapi.git</developerConnection>
     <url>http://github.com/mika-alaoutinen/kiskotaan-openapi</url>
+		<!-- <connection>scm:git:${github.url}.git</connection>
+		<developerConnection>scm:git:${github.url}.git</developerConnection>
+    <url>${github.url}</url> -->
     <tag>HEAD</tag>
   </scm>
 
