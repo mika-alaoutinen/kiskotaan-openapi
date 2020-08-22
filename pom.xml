@@ -19,16 +19,27 @@
 	<artifactId>kiskotaan-openapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>kiskotaan-openapi</name>
-	<description>OpenAPI document for kiskotaan backend</description>
+	<description>OpenAPI document for Kiskotaan backend</description>
 
 	<scm>
     <connection>scm:git:https://github.com/mika-alaoutinen/kiskotaan-openapi.git</connection>
+    <!-- <connection>scm:git:${github.url}.git</connection> -->
+		<developerConnection>scm:git:https://github.com/mika-alaoutinen/kiskotaan-openapi.git</developerConnection>
     <url>http://github.com/mika-alaoutinen/kiskotaan-openapi</url>
-    <developerConnection>scm:git:https://github.com/mika-alaoutinen/kiskotaan-openapi.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
+	<!-- Jar packages are published on GitHub Packages -->
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>Kiskotaan backend OpenAPI document</name>
+			<url>https://maven.pkg.github.com/mika-alaoutinen/kiskotaan-openapi</url> 
+		</repository>
+	</distributionManagement>
+
 	<properties>
+		<github.url>https://github.com/mika-alaoutinen/kiskotaan-openapi</github.url>
 		<java.version>14</java.version>
 		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
 		<openapi-generator-version>5.0.0-beta</openapi-generator-version>
