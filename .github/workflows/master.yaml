@@ -1,9 +1,5 @@
 # Workflow for master branch.
-#
-# Executes the following jobs:
-#   1) Package the code as jar.
-#   2) Create new Maven release.
-#   3) Push jar to GitHub Packages.
+# Packages the code as jar and pushes the package to GitHub Packages.
 
 name: Master branch workflow
 
@@ -30,7 +26,6 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - build
-      - release
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 14
