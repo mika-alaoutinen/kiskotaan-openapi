@@ -42,7 +42,7 @@ jobs:
           release-branch-name: master
           git-release-bot-name: release-bot
           git-release-bot-email: release-bot@example.com
-          access-token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+          access-token: ${{ secrets.ACCESS_TOKEN }}
 
   # publish:
   #   name: Publish jar package on GitHub Packages
