@@ -13,7 +13,7 @@
 
 	<groupId>com.mika</groupId>
 	<artifactId>kiskotaan-openapi</artifactId>
-	<version>0.0.8-SNAPSHOT</version>
+	<version>0.0.9-SNAPSHOT</version>
 	<name>kiskotaan-openapi</name>
 	<description>OpenAPI document for Kiskotaan backend</description>
 
