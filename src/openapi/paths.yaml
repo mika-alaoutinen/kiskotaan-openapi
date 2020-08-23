@@ -49,6 +49,8 @@ Player:
     summary: Get player by ID.
     description: Get a single player by player ID, given as path parameter.
     operationId: getPlayer
+    parameters:
+      $ref: "./parameters.yaml#/PlayerId"
     tags: [ Players ]
     responses:
       200:

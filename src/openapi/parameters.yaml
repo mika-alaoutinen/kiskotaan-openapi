@@ -1,0 +1,10 @@
+# Path parameters
+PlayerId:
+  - in: path
+    name: id
+    description: Player's ID.
+    required: true
+    schema:
+      type: string
+
+# Query parameters
