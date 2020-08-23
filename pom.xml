@@ -14,7 +14,7 @@
 	<groupId>com.mika</groupId>
 	<artifactId>kiskotaan-openapi</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.10-SNAPSHOT</version>
+	<version>0.0.11-SNAPSHOT</version>
 	<name>kiskotaan-openapi</name>
 	<description>OpenAPI document for Kiskotaan backend</description>
 
@@ -41,7 +41,7 @@
 	<distributionManagement>
 		<repository>
 			<id>github</id>
-			<name>Kiskotaan backend OpenAPI document</name>
+			<name>Kiskotaan backend OpenAPI document and generated code library</name>
 			<url>https://maven.pkg.github.com/mika-alaoutinen/kiskotaan-openapi</url> 
 		</repository>
 	</distributionManagement>
@@ -49,6 +49,7 @@
 	<build>
 		<sourceDirectory>build</sourceDirectory>
 		<plugins>
+
 			<!-- Maven compiler to compile the generated code as jar -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

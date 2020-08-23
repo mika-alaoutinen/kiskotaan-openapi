@@ -1,9 +1,8 @@
 developerName: Mika Alaoutinen
 
 # packages
-basePackage: generated
-apiPackage: api
-modelPackage: model
+apiPackage: kiskotaan.openapi.api
+modelPackage: kiskotaan.openapi.model
 
 # Java settings
 booleanGetterPrefix: is
