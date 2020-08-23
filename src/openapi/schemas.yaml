@@ -15,6 +15,20 @@ NewCourse:
     par:
       type: number
 
+NewGame:
+  type: object
+  description: A new game that is about to be started.
+  required: [ hasScoreChanged, hole, isOver, scoreCardId ]
+  properties:
+    hasScoreChanged:
+      type: boolean
+    hole:
+      type: number
+    isOver:
+      type: boolean
+    scoreCardId:
+      type: string
+
 NewPlayer:
   type: object
   description: A new player without ID.
@@ -22,6 +36,18 @@ NewPlayer:
   properties:
     name:
       type: string
+
+NewScoreCard:
+  type: object
+  description: A new  score card with selected course and players.
+  required: [ course, players ]
+  properties:
+    course:
+      $ref: "#/Course"
+    players:
+      type: array
+      items:
+        $ref: "#/Player"
 
 # Schemas returned by server (with IDs):
 Course:
