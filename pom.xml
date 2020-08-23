@@ -47,7 +47,7 @@
 	</distributionManagement>
 
 	<build>
-		<!-- <sourceDirectory>build</sourceDirectory> -->
+		<sourceDirectory>build</sourceDirectory>
 		<plugins>
 
 			<!-- Maven compiler to compile the generated code as jar -->
@@ -88,8 +88,7 @@
 							<ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
 							<inputSpec>${project.basedir}/openapi/api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<!-- <output>build</output> -->
-							<output>src/main/java</output>
+							<output>build</output>
 						</configuration>
 					</execution>
 				</executions>
