@@ -2,6 +2,8 @@
 NewCourse:
   type: object
   description: A new disc golf course without ID.
+  discriminator:
+    propertyName: id
   properties:
     name:
       type: string
@@ -11,6 +13,8 @@ NewCourse:
 NewPlayer:
   type: object
   description: A new player without ID.
+  discriminator:
+    propertyName: id
   properties:
     name:
       type: string
