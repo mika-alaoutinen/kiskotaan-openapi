@@ -50,6 +50,22 @@ Error:
     message:
       type: string
 
+Game:
+  type: object
+  description: On object for persisting the state of a game; that is, a round of disc golf.
+  required: [ id, hasScoreChanged, hole, isOver, scoreCardId ]
+  properties:
+    id:
+      type: string
+    hasScoreChanged:
+      type: boolean
+    hole:
+      type: number
+    isOver:
+      type: boolean
+    scoreCardId:
+      type: string
+
 Hole:
   type: object
   description: A hole in a disc golf course.
