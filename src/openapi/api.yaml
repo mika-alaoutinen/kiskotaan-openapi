@@ -21,11 +21,10 @@ components:
     Player:
       $ref: "./schemas.yaml#/Player"
 
-  # parameters:
-  #   $ref: "./parameters.yaml"
-
 paths:
   /courses:
     $ref: "./paths.yaml#/Courses"
   /players:
     $ref: "./paths.yaml#/Players"
+  /players/{id}:
+    $ref: "./paths.yaml#/Player"

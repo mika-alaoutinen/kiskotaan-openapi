@@ -20,7 +20,6 @@ Courses:
         $ref: "./responses.yaml#/201NewCourse"
       400:
         $ref: "./responses.yaml#/400BadRequest"
-      
 
 Players:
   get:
@@ -44,3 +43,15 @@ Players:
         $ref: "./responses.yaml#/201NewPlayer"
       400:
         $ref: "./responses.yaml#/400BadRequest"
+
+Player:
+  get:
+    summary: Get player by ID.
+    description: Get a single player by player ID, given as path parameter.
+    operationId: getPlayer
+    tags: [ Players ]
+    responses:
+      200:
+        $ref: "./responses.yaml#/200Player"
+      404:
+        $ref: "./responses.yaml#/404NotFound"

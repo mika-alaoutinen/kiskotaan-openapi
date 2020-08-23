@@ -1,11 +1,3 @@
-# Error responses:
-400BadRequest:
-  description: Bad request.
-  content:
-    application/json:
-      schema:
-        $ref: "./schemas.yaml#/Error"
-
 # 200 OK responses:
 200AllCourses:
   description: A JSON array containing all courses.
@@ -25,6 +17,13 @@
         items:
           $ref: "./schemas.yaml#/Player"
 
+200Player:
+  description: A single player resource.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Player"
+
 # 201 Created responses
 201NewCourse:
   description: Newly added course.
@@ -39,3 +38,18 @@
     application/json:
       schema:
         $ref: "./schemas.yaml#/Player"
+
+# Error responses:
+400BadRequest:
+  description: Bad request.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Error"
+
+404NotFound:
+  description: Resource not found.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Error"
