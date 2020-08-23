@@ -16,10 +16,30 @@ servers:
  
 components:
   schemas:
+    NewCourse:
+      $ref: "./schemas.yaml#/NewCourse"
+    NewGame:
+      $ref: "./schemas.yaml#/NewGame"
+    NewPlayer:
+      $ref: "./schemas.yaml#/NewPlayer"
+    NewScoreCard:
+      $ref: "./schemas.yaml#/NewScoreCard"
     Course:
       $ref: "./schemas.yaml#/Course"
+    Error:
+      $ref: "./schemas.yaml#/Error"
+    Game:
+      $ref: "./schemas.yaml#/Game"
+    Hole:
+      $ref: "./schemas.yaml#/Hole"
     Player:
       $ref: "./schemas.yaml#/Player"
+    ScoreCard:
+      $ref: "./schemas.yaml#/ScoreCard"
+    ScoreRow:
+      $ref: "./schemas.yaml#/ScoreRow"
+    Score:
+      $ref: "./schemas.yaml#/Score"
 
 paths:
   /courses:
