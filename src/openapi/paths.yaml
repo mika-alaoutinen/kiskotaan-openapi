@@ -1,0 +1,47 @@
+Courses:
+  get:
+    summary: Get courses.
+    description: Returns a list of all courses.
+    operationId: getCourses
+    responses:
+      "200":
+        description: A JSON array of courses.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas.yaml#/Course"
+
+  post:
+    summary: Add new course.
+    description: Add a new course.
+    operationId: postCourse
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/Course"
+    responses:
+      "201":
+        description: The new course
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Course"
+
+Players:
+  get:
+    summary: Get players.
+    description: Returns a list of all players.
+    operationId: getPlayers
+    responses:
+      "200":
+        description: A JSON array of players.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas.yaml#/Player"
