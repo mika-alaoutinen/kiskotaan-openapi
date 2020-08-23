@@ -3,6 +3,8 @@ Courses:
     summary: Get courses.
     description: Returns a list of all courses.
     operationId: getCourses
+    tags:
+    - Courses
     responses:
       "200":
         description: A JSON array of courses.
@@ -17,6 +19,8 @@ Courses:
     summary: Add new course.
     description: Add a new course.
     operationId: postCourse
+    tags:
+    - Courses
     requestBody:
       required: true
       content:
@@ -36,6 +40,8 @@ Players:
     summary: Get players.
     description: Returns a list of all players.
     operationId: getPlayers
+    tags:
+    - Players
     responses:
       "200":
         description: A JSON array of players.

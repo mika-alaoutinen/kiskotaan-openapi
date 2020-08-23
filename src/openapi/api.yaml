@@ -4,7 +4,13 @@ info:
   title: Kiskotaan OpenAPI document
   version: 0.0.1
   description: API definition for Kiskotaan disc golf score card application.
- 
+
+tags:
+  - name: Courses
+    description: Courses registered in the application
+  - name: Players
+    description: Players Courses registered in the application.
+
 servers:
   - url: http://localhost:8080/api/
  
@@ -23,5 +29,6 @@ components:
 paths:
   /courses:
     $ref: "./paths.yaml#/Courses"
+    
   /players:
     $ref: "./paths.yaml#/Players"
