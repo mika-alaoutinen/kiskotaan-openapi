@@ -10,13 +10,7 @@ servers:
  
 components:
   schemas:
-    course:
-      type: object
-      properties:
-        name:
-          type: string
-        par:
-          type: number
+    $ref: "./schemas.yaml#/schemas"
 
   # schemas:
   #   $ref: "./schemas.yaml#/schemas"
@@ -52,11 +46,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/course"
+              $ref: "#/components/schemas/Course"
       responses:
         "201":
           description: The new course
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/course"
+                $ref: "#/components/schemas/Course"
