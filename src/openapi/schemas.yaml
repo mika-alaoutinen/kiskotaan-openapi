@@ -71,3 +71,43 @@ Player:
       type: string
     name:
       type: string
+
+ScoreCard:
+  type: object
+  description: A scorecard for tracking scores for a group of players.
+  required: [ id, course, players, rows ]
+  properties:
+    id:
+      type: string
+    course:
+      $ref: "#/Course"
+    players:
+      type: array
+      items:
+        $ref: "#/Player"
+    rows:
+      type: array
+      items:
+        $ref: "#/ScoreRow"
+
+ScoreRow:
+  type: object
+  description: The scores for a single hole.
+  required: [ hole, scores ]
+  properties:
+    hole:
+      type: number
+    scores:
+      type: array
+      items:
+        $ref: "#/Score"
+
+Score:
+  type: object
+  description: A score for a player
+  required: [ playerId, score ]
+  properties:
+    playerId:
+      type: string
+    score:
+      type: number
