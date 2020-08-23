@@ -33,17 +33,34 @@ Course:
       type: string
     name:
       type: string
+    holes:
+      type: array
+      items:
+        $ref: "#/Hole"
     par:
       type: number
 
 Error:
   type: object
+  description: An error resource with a HTTP error code and a message.
+  required: [ code, message ]
   properties:
     code:
       type: string
     message:
       type: string
-  required: [ code, message ]
+
+Hole:
+  type: object
+  description: A hole in a disc golf course.
+  required: [ number, par ]
+  properties:
+    number:
+      type: number
+    par:
+      type: number
+    distance:
+      type: number
 
 Player:
   type: object
