@@ -1,9 +1,14 @@
-# Schemas for new objects given as request bodies:
+# The OpenAPI specification has support for inheritance, however using inheritance with code generation is
+# a massive PITA. To help preserve my own sanity, I've chosen to simply copy paste the models here.
+#
+# See https://github.com/OpenAPITools/openapi-generator/issues/3100 for an example of the joys that await those who
+# want to get fancy with their code generation tools.
+
+# New objects received from client (without IDs):
 NewCourse:
   type: object
   description: A new disc golf course without ID.
-  discriminator:
-    propertyName: id
+  required: [ name, par ]
   properties:
     name:
       type: string
@@ -13,27 +18,30 @@ NewCourse:
 NewPlayer:
   type: object
   description: A new player without ID.
-  discriminator:
-    propertyName: id
+  required: [ name ]
   properties:
     name:
       type: string
 
-# Normal schemas
+# Schemas returned by server (with IDs):
 Course:
-  allOf:
-    - $ref: "#/NewCourse"
   type: object
   description: A disc golf course.
+  required: [ id, name, par ]
   properties:
     id:
+      type: string
+    name:
+      type: string
+    par:
       type: number
 
 Player:
-  allOf:
-    - $ref: "#/NewPlayer"
   type: object
   description: A player returned from backend, who has an ID.
+  required: [ id, name ]
   properties:
     id:
-      type: number
+      type: string
+    name:
+      type: string
