@@ -10,10 +10,11 @@ servers:
  
 components:
   schemas:
-    $ref: "./schemas.yaml#/schemas"
+    Course:
+      $ref: "./schemas.yaml#/Course"
+    Player:
+      $ref: "./schemas.yaml#/Player"
 
-  # schemas:
-  #   $ref: "./schemas.yaml#/schemas"
   # parameters:
   #   $ref: "./parameters.yaml"
   # responses:

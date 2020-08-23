@@ -1,22 +1,20 @@
-schemas:
+Course:
+  type: object
+  description: A disc golf course.
+  properties:
+    id:
+      type: number
+    name:
+      type: string
+    par:
+      type: number
 
-  Course:
-    type: object
-    description: A disc golf course.
-    properties:
-      id:
-        type: number
-      name:
-        type: string
-      par:
-        type: number
-
-  Player:
-    type: object
-    description: A player.
-    properties:
-      id:
-        type: number
-      name:
-        type: string
-      
+Player:
+  type: object
+  description: A player.
+  properties:
+    id:
+      type: number
+    name:
+      type: string
+    
