@@ -1,20 +1,35 @@
-Course:
+# Schemas for new objects given as request bodies:
+NewCourse:
   type: object
-  description: A disc golf course.
+  description: A new disc golf course without ID.
   properties:
-    id:
-      type: number
     name:
       type: string
     par:
       type: number
 
-Player:
+NewPlayer:
   type: object
-  description: A player.
+  description: A new player without ID.
+  properties:
+    name:
+      type: string
+
+# Normal schemas
+Course:
+  allOf:
+    - $ref: "#/NewCourse"
+  type: object
+  description: A disc golf course.
   properties:
     id:
       type: number
-    name:
-      type: string
-    
+
+Player:
+  allOf:
+    - $ref: "#/NewPlayer"
+  type: object
+  description: A player returned from backend, who has an ID.
+  properties:
+    id:
+      type: number

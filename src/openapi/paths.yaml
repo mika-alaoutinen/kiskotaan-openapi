@@ -3,8 +3,7 @@ Courses:
     summary: Get courses.
     description: Returns a list of all courses.
     operationId: getCourses
-    tags:
-    - Courses
+    tags: [ Courses ]
     responses:
       "200":
         description: A JSON array of courses.
@@ -19,10 +18,9 @@ Courses:
     summary: Add new course.
     description: Add a new course.
     operationId: postCourse
-    tags:
-    - Courses
+    tags: [ Courses ]
     requestBody:
-      $ref: "./requestBodies.yaml#/Course"
+      $ref: "./requestBodies.yaml#/NewCourse"
     responses:
       "201":
         description: The new course
@@ -36,8 +34,7 @@ Players:
     summary: Get players.
     description: Returns a list of all players.
     operationId: getPlayers
-    tags:
-    - Players
+    tags: [ Players ]
     responses:
       "200":
         description: A JSON array of players.
@@ -52,10 +49,9 @@ Players:
     summary: Add new player.
     description: Add a new player.
     operationId: postPlayer
-    tags:
-    - Players
+    tags: [ Players ]
     requestBody:
-      $ref: "./requestBodies.yaml#/Player"
+      $ref: "./requestBodies.yaml#/NewPlayer"
     responses:
       "201":
         description: The new player

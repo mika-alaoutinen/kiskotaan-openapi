@@ -1,13 +1,13 @@
-Course:
+NewCourse:
   required: true
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/Course"
+        $ref: "./schemas.yaml#/NewCourse"
 
-Player:
+NewPlayer:
   required: true
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/Player"
+        $ref: "./schemas.yaml#/NewPlayer"

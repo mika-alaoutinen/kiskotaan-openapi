@@ -29,6 +29,5 @@ components:
 paths:
   /courses:
     $ref: "./paths.yaml#/Courses"
-    
   /players:
     $ref: "./paths.yaml#/Players"
