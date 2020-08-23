@@ -5,14 +5,8 @@ Courses:
     operationId: getCourses
     tags: [ Courses ]
     responses:
-      "200":
-        description: A JSON array of courses.
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: "./schemas.yaml#/Course"
+      200:
+        $ref: "./responses.yaml#/200AllCourses"
 
   post:
     summary: Add new course.
@@ -22,12 +16,11 @@ Courses:
     requestBody:
       $ref: "./requestBodies.yaml#/NewCourse"
     responses:
-      "201":
-        description: The new course
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/Course"
+      201:
+        $ref: "./responses.yaml#/201NewCourse"
+      400:
+        $ref: "./responses.yaml#/400BadRequest"
+      
 
 Players:
   get:
@@ -36,14 +29,8 @@ Players:
     operationId: getPlayers
     tags: [ Players ]
     responses:
-      "200":
-        description: A JSON array of players.
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: "./schemas.yaml#/Player"
+      200:
+        $ref: "./responses.yaml#/200AllPlayers"
 
   post:
     summary: Add new player.
@@ -53,9 +40,7 @@ Players:
     requestBody:
       $ref: "./requestBodies.yaml#/NewPlayer"
     responses:
-      "201":
-        description: The new player
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/Player"
+      201:
+        $ref: "./responses.yaml#/201NewPlayer"
+      400:
+        $ref: "./responses.yaml#/400BadRequest"

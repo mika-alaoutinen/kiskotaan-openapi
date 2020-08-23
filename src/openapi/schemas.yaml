@@ -36,6 +36,15 @@ Course:
     par:
       type: number
 
+Error:
+  type: object
+  properties:
+    code:
+      type: string
+    message:
+      type: string
+  required: [ code, message ]
+
 Player:
   type: object
   description: A player returned from backend, who has an ID.

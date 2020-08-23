@@ -1,0 +1,41 @@
+# Error responses:
+400BadRequest:
+  description: Bad request.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Error"
+
+# 200 OK responses:
+200AllCourses:
+  description: A JSON array containing all courses.
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: "./schemas.yaml#/Course"
+
+200AllPlayers:
+  description: A JSON array containing all players.
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: "./schemas.yaml#/Player"
+
+# 201 Created responses
+201NewCourse:
+  description: Newly added course.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Course"
+
+201NewPlayer:
+  description: Newly added player.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Player"

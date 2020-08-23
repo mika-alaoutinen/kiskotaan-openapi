@@ -23,8 +23,6 @@ components:
 
   # parameters:
   #   $ref: "./parameters.yaml"
-  # responses:
-  #   $ref: "./responses.yaml"
 
 paths:
   /courses:
