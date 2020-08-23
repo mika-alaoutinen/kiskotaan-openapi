@@ -47,7 +47,7 @@
 	</distributionManagement>
 
 	<build>
-		<sourceDirectory>build</sourceDirectory>
+		<sourceDirectory>build/src/kiskotaan/openapi</sourceDirectory>
 		<plugins>
 
 			<!-- Maven compiler to compile the generated code as jar -->
