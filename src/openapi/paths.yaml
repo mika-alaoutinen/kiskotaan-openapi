@@ -22,11 +22,7 @@ Courses:
     tags:
     - Courses
     requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "./schemas.yaml#/Course"
+      $ref: "./requestBodies.yaml#/Course"
     responses:
       "201":
         description: The new course
@@ -51,3 +47,19 @@ Players:
               type: array
               items:
                 $ref: "./schemas.yaml#/Player"
+
+  post:
+    summary: Add new player.
+    description: Add a new player.
+    operationId: postPlayer
+    tags:
+    - Players
+    requestBody:
+      $ref: "./requestBodies.yaml#/Player"
+    responses:
+      "201":
+        description: The new player
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Player"

@@ -1,0 +1,13 @@
+Course:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Course"
+
+Player:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Player"
