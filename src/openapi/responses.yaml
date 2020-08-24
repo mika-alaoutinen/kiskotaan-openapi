@@ -24,6 +24,13 @@
       schema:
         $ref: "./schemas.yaml#/Player"
 
+200ScoreCard:
+  description: A single score card resource.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/ScoreCard"
+
 # 201 Created responses
 201NewCourse:
   description: Newly added course.

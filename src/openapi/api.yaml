@@ -63,4 +63,5 @@ paths:
   
   /scoreCards:
     $ref: "./paths.yaml#/ScoreCards"
-  # /scoreCards/{id}:
+  /scoreCards/{id}:
+    $ref: "./paths.yaml#/ScoreCard"

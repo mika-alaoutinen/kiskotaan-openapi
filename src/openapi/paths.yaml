@@ -109,3 +109,40 @@ ScoreCards:
         $ref: "./responses.yaml#/201NewScoreCard"
       400:
         $ref: "./responses.yaml#/400BadRequest"
+
+ScoreCard:
+  get:
+    summary: Get score card.
+    description: Get a single score card by ID.
+    operationId: getScoreCard
+    tags: [ ScoreCards ]
+    parameters:
+      - in: path
+        name: id
+        description: Score card ID.
+        required: true
+        schema:
+          type: string
+    responses:
+      200:
+        $ref: "./responses.yaml#/200ScoreCard"
+      404:
+        $ref: "./responses.yaml#/404NotFound"
+
+  delete:
+    summary: Delete score card.
+    description: Delete a score card by ID.
+    operationId: deleteScoreCard
+    tags: [ ScoreCards ]
+    parameters:
+      - in: path
+        name: id
+        description: Score card ID.
+        required: true
+        schema:
+          type: string
+    responses:
+      204:
+        description: No content. The score card was deleted successfully.
+      404:
+        $ref: "./responses.yaml#/404NotFound"

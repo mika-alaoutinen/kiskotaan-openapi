@@ -103,7 +103,7 @@ Player:
 
 ScoreCard:
   allOf:
-    - $ref: "#/NewScoreCard"    
+    - $ref: "#/NewScoreCard"
   description: A score card for tracking scores for a group of players.
   required: [ id ]
   properties:
