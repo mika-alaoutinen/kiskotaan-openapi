@@ -2,6 +2,8 @@
 NewCourse:
   type: object
   description: A new disc golf course without ID.
+  discriminator:
+    propertyName: id
   required: [ name, par ]
   properties:
     name:
@@ -12,6 +14,8 @@ NewCourse:
 NewGame:
   type: object
   description: A new game that is about to be started.
+  discriminator:
+    propertyName: id
   required: [ hasScoreChanged, hole, isOver, scoreCardId ]
   properties:
     hasScoreChanged:
@@ -26,6 +30,8 @@ NewGame:
 NewPlayer:
   type: object
   description: A new player without ID.
+  discriminator:
+    propertyName: id
   required: [ name ]
   properties:
     name:
@@ -34,6 +40,8 @@ NewPlayer:
 NewScoreCard:
   type: object
   description: A new  score card with selected course and players.
+  discriminator:
+    propertyName: id
   required: [ course, players ]
   properties:
     course:
