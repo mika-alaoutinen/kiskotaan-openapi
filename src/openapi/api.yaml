@@ -1,0 +1,69 @@
+openapi: 3.0.3
+ 
+info:
+  title: Kiskotaan OpenAPI document
+  version: 0.0.1
+  description: API definition for Kiskotaan disc golf score card application.
+
+tags:
+  - name: Courses
+    description: CRUD operations for handling the courses registered in the application.
+  - name: Players
+    description: CRUD operations for handling the players registered in the application.
+  - name: Game
+    description: Operations for starting and ending a game.
+  - name: ScoreCards
+    description: Operations for adding, updating and deleting score cards.
+
+servers:
+  - url: http://localhost:8080/api/
+ 
+components:
+  schemas:
+    NewCourse:
+      $ref: "./schemas.yaml#/NewCourse"
+    NewGame:
+      $ref: "./schemas.yaml#/NewGame"
+    NewPlayer:
+      $ref: "./schemas.yaml#/NewPlayer"
+    NewScoreCard:
+      $ref: "./schemas.yaml#/NewScoreCard"
+    Course:
+      $ref: "./schemas.yaml#/Course"
+    Error:
+      $ref: "./schemas.yaml#/Error"
+    Game:
+      $ref: "./schemas.yaml#/Game"
+    Hole:
+      $ref: "./schemas.yaml#/Hole"
+    Player:
+      $ref: "./schemas.yaml#/Player"
+    ScoreCard:
+      $ref: "./schemas.yaml#/ScoreCard"
+    ScoreCardId:
+      $ref: "./schemas.yaml#/ScoreCardId"
+    ScoreRow:
+      $ref: "./schemas.yaml#/ScoreRow"
+    Score:
+      $ref: "./schemas.yaml#/Score"
+
+paths:
+  /courses:
+    $ref: "./paths.yaml#/Courses"
+
+  /players:
+    $ref: "./paths.yaml#/Players"
+  /players/{id}:
+    $ref: "./paths.yaml#/Player"
+
+  /games:
+    $ref: "./paths.yaml#/Games"
+  /games/{id}:
+    $ref: "./paths.yaml#/Game"
+  
+  /scoreCards:
+    $ref: "./paths.yaml#/ScoreCards"
+  /scoreCards/{id}:
+    $ref: "./paths.yaml#/ScoreCard"
+  /scoreCards/{id}/scores:
+    $ref: "./paths.yaml#/Scores"

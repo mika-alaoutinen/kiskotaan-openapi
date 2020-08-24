@@ -1,0 +1,34 @@
+NewCourse:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/NewCourse"
+
+NewPlayer:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/NewPlayer"
+
+NewScoreCard:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/NewScoreCard"
+
+ScoreCardId:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/ScoreCardId"
+
+Scores:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/ScoreRow"

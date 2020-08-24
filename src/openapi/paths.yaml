@@ -1,0 +1,181 @@
+Courses:
+  get:
+    summary: Get courses.
+    description: Returns a list of all courses.
+    operationId: getCourses
+    tags: [ Courses ]
+    responses:
+      200:
+        $ref: "./responses.yaml#/200AllCourses"
+
+  post:
+    summary: Add new course.
+    description: Add a new course.
+    operationId: addCourse
+    tags: [ Courses ]
+    requestBody:
+      $ref: "./requestBodies.yaml#/NewCourse"
+    responses:
+      201:
+        $ref: "./responses.yaml#/201NewCourse"
+      400:
+        $ref: "./responses.yaml#/400BadRequest"
+
+Games:
+  post:
+    summary: Start new game.
+    description: Start a new game. Give score card ID as a request body.
+    operationId: startGame
+    tags: [ Game ]
+    requestBody:
+      $ref: "./requestBodies.yaml#/ScoreCardId"
+    responses:
+      201:
+        $ref: "./responses.yaml#/201StartGame"
+      400:
+        $ref: "./responses.yaml#/400BadRequest"
+
+Game:
+  put:
+    summary: End game.
+    description: End an ongoing game. Give game ID as a path parameter. No request body is needed.
+    operationId: endGame
+    tags: [ Game ]
+    parameters:
+      - in: path
+        name: id
+        description: Game ID.
+        required: true
+        schema:
+          type: string
+    responses:
+      201:
+        $ref: "./responses.yaml#/201EndGame"
+      404:
+        $ref: "./responses.yaml#/404NotFound"
+
+Players:
+  get:
+    summary: Get players.
+    description: Returns a list of all players.
+    operationId: getPlayers
+    tags: [ Players ]
+    responses:
+      200:
+        $ref: "./responses.yaml#/200AllPlayers"
+
+  post:
+    summary: Add new player.
+    description: Add a new player.
+    operationId: addPlayer
+    tags: [ Players ]
+    requestBody:
+      $ref: "./requestBodies.yaml#/NewPlayer"
+    responses:
+      201:
+        $ref: "./responses.yaml#/201NewPlayer"
+      400:
+        $ref: "./responses.yaml#/400BadRequest"
+
+Player:
+  get:
+    summary: Get player by ID.
+    description: Get a single player by player ID, given as path parameter.
+    operationId: getPlayer
+    parameters:
+      - in: path
+        name: id
+        description: Player's ID.
+        required: true
+        schema:
+          type: string
+    tags: [ Players ]
+    responses:
+      200:
+        $ref: "./responses.yaml#/200Player"
+      404:
+        $ref: "./responses.yaml#/404NotFound"
+  delete:
+    summary: Delete player.
+    description: Delete a player by player ID, given in as path parameter.
+    operationId: deletePlayer
+    parameters:
+      - in: path
+        name: id
+        description: Player's ID.
+        required: true
+        schema:
+          type: string
+    tags: [ Players ]
+    responses:
+      204:
+        description: No Content. The player was deleted successfully.
+      404:
+        $ref: "./responses.yaml#/404NotFound"
+
+ScoreCards:
+  post:
+    summary: Add new score card.
+    description: Add a new score card. Give course and players as request body, wrapped in a NewScoreCard resource.
+    operationId: addScoreCard
+    tags: [ ScoreCards ]
+    requestBody:
+      $ref: "./requestBodies.yaml#/NewScoreCard"
+    responses:
+      201:
+        $ref: "./responses.yaml#/201NewScoreCard"
+      400:
+        $ref: "./responses.yaml#/400BadRequest"
+
+ScoreCard:
+  get:
+    summary: Get score card.
+    description: Get a single score card by ID.
+    operationId: getScoreCard
+    tags: [ ScoreCards ]
+    parameters:
+      - in: path
+        name: id
+        description: Score card ID.
+        required: true
+        schema:
+          type: string
+    responses:
+      200:
+        $ref: "./responses.yaml#/200ScoreCard"
+      404:
+        $ref: "./responses.yaml#/404NotFound"
+
+  delete:
+    summary: Delete score card.
+    description: Delete a score card by ID.
+    operationId: deleteScoreCard
+    tags: [ ScoreCards ]
+    parameters:
+      - in: path
+        name: id
+        description: Score card ID.
+        required: true
+        schema:
+          type: string
+    responses:
+      204:
+        description: No content. The score card was deleted successfully.
+      404:
+        $ref: "./responses.yaml#/404NotFound"
+
+Scores:
+  put:
+    summary: Update scores on a score card.
+    description: Update a single score row on a score card.
+    operationId: updateScores
+    tags: [ ScoreCards ]
+    requestBody:
+      $ref: "./requestBodies.yaml#/Scores"
+    responses:
+      200:
+        $ref: "./responses.yaml#/200Scores"
+      400:
+        $ref: "./responses.yaml#/400BadRequest"
+      404:
+        $ref: "./responses.yaml#/404NotFound"

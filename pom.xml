@@ -14,7 +14,7 @@
 	<groupId>com.mika</groupId>
 	<artifactId>kiskotaan-openapi</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.20-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<name>kiskotaan-openapi</name>
 	<description>OpenAPI document for Kiskotaan backend</description>
 
@@ -84,9 +84,9 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<configurationFile>${project.basedir}/openapi/generatorConfig.yaml</configurationFile>
+							<configurationFile>${project.basedir}/src/generatorConfig.yaml</configurationFile>
 							<ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
-							<inputSpec>${project.basedir}/openapi/api.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/openapi/api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<output>build</output>
 						</configuration>

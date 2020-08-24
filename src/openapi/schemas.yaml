@@ -1,0 +1,145 @@
+# New objects received from client (without IDs):
+NewCourse:
+  type: object
+  description: A new disc golf course without ID.
+  discriminator:
+    propertyName: id
+  required: [ name, par ]
+  properties:
+    name:
+      type: string
+    par:
+      type: number
+
+NewGame:
+  type: object
+  description: A new game that is about to be started.
+  discriminator:
+    propertyName: id
+  required: [ hasScoreChanged, hole, isOver, scoreCardId ]
+  properties:
+    hasScoreChanged:
+      type: boolean
+    hole:
+      type: number
+    isOver:
+      type: boolean
+    scoreCardId:
+      type: string
+
+NewPlayer:
+  type: object
+  description: A new player without ID.
+  discriminator:
+    propertyName: id
+  required: [ name ]
+  properties:
+    name:
+      type: string
+
+NewScoreCard:
+  type: object
+  description: A new  score card with selected course and players.
+  discriminator:
+    propertyName: id
+  required: [ course, players ]
+  properties:
+    course:
+      $ref: "#/Course"
+    players:
+      type: array
+      items:
+        $ref: "#/Player"
+
+# Schemas returned by server:
+Course:
+  allOf:
+    - $ref: "#/NewCourse"
+  description: A disc golf course.
+  required: [ id ]
+  properties:
+    id:
+      type: string
+
+Error:
+  type: object
+  description: An error resource with a HTTP error code and a message.
+  required: [ code, message ]
+  properties:
+    code:
+      type: string
+    message:
+      type: string
+
+Game:
+  allOf:
+    - $ref: "#/NewGame"
+  description: On object for persisting the state of a game; that is, a round of disc golf.
+  required: [ id ]
+  properties:
+    id:
+      type: string
+    
+Hole:
+  type: object
+  description: A hole in a disc golf course.
+  required: [ number, par ]
+  properties:
+    number:
+      type: number
+    par:
+      type: number
+    distance:
+      type: number
+
+Player:
+  allOf:
+    - $ref: "#/NewPlayer"
+  description: A player returned from backend, who has an ID.
+  required: [ id ]
+  properties:
+    id:
+      type: string
+
+ScoreCard:
+  allOf:
+    - $ref: "#/NewScoreCard"
+  description: A score card for tracking scores for a group of players.
+  required: [ id ]
+  properties:
+    id:
+      type: string
+    rows:
+      type: array
+      items:
+        $ref: "#/ScoreRow"
+
+ScoreCardId:
+  type: object
+  description: An ID for a scorecard.
+  required: [ scoreCardId ]
+  properties:
+    scoreCardId:
+      type: string
+    
+ScoreRow:
+  type: object
+  description: The scores for a single hole.
+  required: [ hole, scores ]
+  properties:
+    hole:
+      type: number
+    scores:
+      type: array
+      items:
+        $ref: "#/Score"
+
+Score:
+  type: object
+  description: A score for a player
+  required: [ playerId, score ]
+  properties:
+    playerId:
+      type: string
+    score:
+      type: number
