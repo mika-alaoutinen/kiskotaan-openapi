@@ -39,6 +39,20 @@
       schema:
         $ref: "./schemas.yaml#/Player"
 
+201StartGame:
+  description: A new Game resource.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Game"
+
+201EndGame:
+  description: Return the Game resource in a finished state.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Game"
+
 # Error responses:
 400BadRequest:
   description: Bad request.

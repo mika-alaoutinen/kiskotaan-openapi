@@ -109,6 +109,14 @@ ScoreCard:
   properties:
     id:
       type: string
+
+ScoreCardId:
+  type: object
+  description: An ID for a scorecard.
+  required: [ scoreCardId ]
+  properties:
+    scoreCardId:
+      type: string
     
 ScoreRow:
   type: object

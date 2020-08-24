@@ -11,7 +11,7 @@ Courses:
   post:
     summary: Add new course.
     description: Add a new course.
-    operationId: postCourse
+    operationId: addCourse
     tags: [ Courses ]
     requestBody:
       $ref: "./requestBodies.yaml#/NewCourse"
@@ -20,6 +20,39 @@ Courses:
         $ref: "./responses.yaml#/201NewCourse"
       400:
         $ref: "./responses.yaml#/400BadRequest"
+
+Games:
+  post:
+    summary: Start new game.
+    description: Start a new game. Give score card ID as a request body.
+    operationId: startGame
+    tags: [ Game ]
+    requestBody:
+      $ref: "./requestBodies.yaml#/ScoreCardId"
+    responses:
+      201:
+        $ref: "./responses.yaml#/201StartGame"
+      400:
+        $ref: "./responses.yaml#/400BadRequest"
+
+Game:
+  put:
+    summary: End game.
+    description: End an ongoing game. Give game ID as a path parameter. No request body is needed.
+    operationId: endGame
+    tags: [ Game ]
+    parameters:
+      - in: path
+        name: id
+        description: Game ID.
+        required: true
+        schema:
+          type: string
+    responses:
+      201:
+        $ref: "./responses.yaml#/201EndGame"
+      404:
+        $ref: "./responses.yaml#/404NotFound"
 
 Players:
   get:
@@ -34,7 +67,7 @@ Players:
   post:
     summary: Add new player.
     description: Add a new player.
-    operationId: postPlayer
+    operationId: addPlayer
     tags: [ Players ]
     requestBody:
       $ref: "./requestBodies.yaml#/NewPlayer"

@@ -9,7 +9,9 @@ tags:
   - name: Courses
     description: Courses registered in the application
   - name: Players
-    description: Players Courses registered in the application.
+    description: Players registered in the application.
+  - name: Game
+    description: Operations for starting and ending a game.
 
 servers:
   - url: http://localhost:8080/api/
@@ -48,3 +50,7 @@ paths:
     $ref: "./paths.yaml#/Players"
   /players/{id}:
     $ref: "./paths.yaml#/Player"
+  /games:
+    $ref: "./paths.yaml#/Games"
+  /games/{id}:
+    $ref: "./paths.yaml#/Game"

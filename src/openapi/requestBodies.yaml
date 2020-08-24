@@ -11,3 +11,10 @@ NewPlayer:
     application/json:
       schema:
         $ref: "./schemas.yaml#/NewPlayer"
+
+ScoreCardId:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/ScoreCardId"
