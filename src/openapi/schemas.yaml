@@ -1,9 +1,3 @@
-# The OpenAPI specification has support for inheritance, however using inheritance with code generation is
-# a massive PITA. To help preserve my own sanity, I've chosen to simply copy paste the models here.
-#
-# See https://github.com/OpenAPITools/openapi-generator/issues/3100 for an example of the joys that await those who
-# want to get fancy with their code generation tools.
-
 # New objects received from client (without IDs):
 NewCourse:
   type: object
@@ -49,22 +43,15 @@ NewScoreCard:
       items:
         $ref: "#/Player"
 
-# Schemas returned by server (with IDs):
+# Schemas returned by server:
 Course:
-  type: object
+  allOf:
+    - $ref: "#/NewCourse"
   description: A disc golf course.
-  required: [ id, name, par ]
+  required: [ id ]
   properties:
     id:
       type: string
-    name:
-      type: string
-    holes:
-      type: array
-      items:
-        $ref: "#/Hole"
-    par:
-      type: number
 
 Error:
   type: object
@@ -77,21 +64,14 @@ Error:
       type: string
 
 Game:
-  type: object
+  allOf:
+    - $ref: "#/NewGame"
   description: On object for persisting the state of a game; that is, a round of disc golf.
-  required: [ id, hasScoreChanged, hole, isOver, scoreCardId ]
+  required: [ id ]
   properties:
     id:
       type: string
-    hasScoreChanged:
-      type: boolean
-    hole:
-      type: number
-    isOver:
-      type: boolean
-    scoreCardId:
-      type: string
-
+    
 Hole:
   type: object
   description: A hole in a disc golf course.
@@ -105,33 +85,23 @@ Hole:
       type: number
 
 Player:
-  type: object
+  allOf:
+    - $ref: "#/NewPlayer"
   description: A player returned from backend, who has an ID.
-  required: [ id, name ]
+  required: [ id ]
   properties:
     id:
-      type: string
-    name:
       type: string
 
 ScoreCard:
-  type: object
+  allOf:
+    - $ref: "#/NewScoreCard"    
   description: A scorecard for tracking scores for a group of players.
-  required: [ id, course, players, rows ]
+  required: [ id ]
   properties:
     id:
       type: string
-    course:
-      $ref: "#/Course"
-    players:
-      type: array
-      items:
-        $ref: "#/Player"
-    rows:
-      type: array
-      items:
-        $ref: "#/ScoreRow"
-
+    
 ScoreRow:
   type: object
   description: The scores for a single hole.
