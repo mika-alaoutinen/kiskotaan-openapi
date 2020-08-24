@@ -104,11 +104,15 @@ Player:
 ScoreCard:
   allOf:
     - $ref: "#/NewScoreCard"    
-  description: A scorecard for tracking scores for a group of players.
+  description: A score card for tracking scores for a group of players.
   required: [ id ]
   properties:
     id:
       type: string
+    rows:
+      type: array
+      items:
+        $ref: "#/ScoreRow"
 
 ScoreCardId:
   type: object

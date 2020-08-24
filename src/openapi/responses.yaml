@@ -40,7 +40,7 @@
         $ref: "./schemas.yaml#/Player"
 
 201NewScoreCard:
-  description: A scorecard resource created from a new score card.
+  description: A score card resource created from a new score card.
   content:
     application/json:
       schema:

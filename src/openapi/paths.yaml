@@ -98,8 +98,8 @@ Player:
 
 ScoreCards:
   post:
-    summary: Add new scorecard.
-    description: Add a new scorecard. Give course and players as request body, wrapped in a NewScoreCard resource.
+    summary: Add new score card.
+    description: Add a new score card. Give course and players as request body, wrapped in a NewScoreCard resource.
     operationId: addScoreCard
     tags: [ ScoreCards ]
     requestBody:
