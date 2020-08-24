@@ -95,3 +95,17 @@ Player:
         $ref: "./responses.yaml#/200Player"
       404:
         $ref: "./responses.yaml#/404NotFound"
+
+ScoreCards:
+  post:
+    summary: Add new scorecard.
+    description: Add a new scorecard. Give course and players as request body, wrapped in a NewScoreCard resource.
+    operationId: addScoreCard
+    tags: [ ScoreCards ]
+    requestBody:
+      $ref: "./requestBodies.yaml#/NewScoreCard"
+    responses:
+      201:
+        $ref: "./responses.yaml#/201NewScoreCard"
+      400:
+        $ref: "./responses.yaml#/400BadRequest"

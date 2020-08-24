@@ -7,11 +7,13 @@ info:
 
 tags:
   - name: Courses
-    description: Courses registered in the application
+    description: CRUD operations for handling the courses registered in the application.
   - name: Players
-    description: Players registered in the application.
+    description: CRUD operations for handling the players registered in the application.
   - name: Game
     description: Operations for starting and ending a game.
+  - name: ScoreCards
+    description: Operations for adding, updating and deleting scorecards.
 
 servers:
   - url: http://localhost:8080/api/
@@ -46,11 +48,17 @@ components:
 paths:
   /courses:
     $ref: "./paths.yaml#/Courses"
+
   /players:
     $ref: "./paths.yaml#/Players"
   /players/{id}:
     $ref: "./paths.yaml#/Player"
+
   /games:
     $ref: "./paths.yaml#/Games"
   /games/{id}:
     $ref: "./paths.yaml#/Game"
+  
+  /scoreCards:
+    $ref: "./paths.yaml#/ScoreCards"
+  # /scoreCards/{id}:
