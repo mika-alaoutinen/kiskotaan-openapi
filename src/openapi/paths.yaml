@@ -95,6 +95,23 @@ Player:
         $ref: "./responses.yaml#/200Player"
       404:
         $ref: "./responses.yaml#/404NotFound"
+  delete:
+    summary: Delete player.
+    description: Delete a player by player ID, given in as path parameter.
+    operationId: deletePlayer
+    parameters:
+      - in: path
+        name: id
+        description: Player's ID.
+        required: true
+        schema:
+          type: string
+    tags: [ Players ]
+    responses:
+      204:
+        description: No Content. The player was deleted successfully.
+      404:
+        $ref: "./responses.yaml#/404NotFound"
 
 ScoreCards:
   post:
