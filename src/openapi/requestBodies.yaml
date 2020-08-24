@@ -25,3 +25,10 @@ ScoreCardId:
     application/json:
       schema:
         $ref: "./schemas.yaml#/ScoreCardId"
+
+Scores:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/ScoreRow"

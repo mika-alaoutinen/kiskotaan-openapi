@@ -31,6 +31,13 @@
       schema:
         $ref: "./schemas.yaml#/ScoreCard"
 
+200Scores:
+  description: A score row, containing players scores for a single hole.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/ScoreRow"
+
 # 201 Created responses
 201NewCourse:
   description: Newly added course.

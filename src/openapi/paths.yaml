@@ -146,3 +146,19 @@ ScoreCard:
         description: No content. The score card was deleted successfully.
       404:
         $ref: "./responses.yaml#/404NotFound"
+
+Scores:
+  put:
+    summary: Update scores on a score card.
+    description: Update a single score row on a score card.
+    operationId: updateScores
+    tags: [ ScoreCards ]
+    requestBody:
+      $ref: "./requestBodies.yaml#/Scores"
+    responses:
+      200:
+        $ref: "./responses.yaml#/200Scores"
+      400:
+        $ref: "./responses.yaml#/400BadRequest"
+      404:
+        $ref: "./responses.yaml#/404NotFound"
