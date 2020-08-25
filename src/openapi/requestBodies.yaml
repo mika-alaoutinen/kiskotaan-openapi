@@ -3,32 +3,32 @@ NewCourse:
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/NewCourse"
+        $ref: "./schemas.yaml#/NewCourseResource"
 
 NewPlayer:
   required: true
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/NewPlayer"
+        $ref: "./schemas.yaml#/NewPlayerResource"
 
 NewScoreCard:
   required: true
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/NewScoreCard"
+        $ref: "./schemas.yaml#/NewScoreCardResource"
 
 ScoreCardId:
   required: true
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/ScoreCardId"
+        $ref: "./schemas.yaml#/ScoreCardIdResource"
 
 Scores:
   required: true
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/ScoreRow"
+        $ref: "./schemas.yaml#/ScoreRowResource"
