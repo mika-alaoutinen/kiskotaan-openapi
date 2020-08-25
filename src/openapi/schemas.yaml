@@ -11,22 +11,6 @@ NewCourseResource:
     par:
       type: number
 
-NewGameResource:
-  type: object
-  description: A new game that is about to be started.
-  discriminator:
-    propertyName: id
-  required: [ hasScoreChanged, hole, isOver, scoreCardId ]
-  properties:
-    hasScoreChanged:
-      type: boolean
-    hole:
-      type: number
-    isOver:
-      type: boolean
-    scoreCardId:
-      type: string
-
 NewPlayerResource:
   type: object
   description: A new player without ID.
@@ -72,12 +56,19 @@ ErrorResource:
       type: string
 
 GameResource:
-  allOf:
-    - $ref: "#/NewGameResource"
-  description: On object for persisting the state of a game; that is, a round of disc golf.
-  required: [ id ]
+  type: object
+  description: Object for persisting the state of a game; that is, a round of disc golf.
+  required: [ id, hasScoreChanged, hole, isOver, scoreCardId ]
   properties:
     id:
+      type: string
+    hasScoreChanged:
+      type: boolean
+    hole:
+      type: number
+    isOver:
+      type: boolean
+    scoreCardId:
       type: string
     
 HoleResource:
