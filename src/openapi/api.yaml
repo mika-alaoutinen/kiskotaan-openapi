@@ -1,8 +1,8 @@
 openapi: 3.0.3
  
 info:
-  title: Kiskotaan OpenAPI document
-  version: 0.0.1
+  title: Kiskotaan OpenAPI
+  version: 0.1.0
   description: API definition for Kiskotaan disc golf score card application.
 
 tags:
