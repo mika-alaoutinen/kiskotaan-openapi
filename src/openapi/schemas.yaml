@@ -1,5 +1,5 @@
 # New objects received from client (without IDs):
-NewCourse:
+NewCourseResource:
   type: object
   description: A new disc golf course without ID.
   discriminator:
@@ -8,26 +8,14 @@ NewCourse:
   properties:
     name:
       type: string
+      minLength: 3
+      maxLength: 40
     par:
-      type: number
+      type: integer
+      minimum: 1
+      maximum: 6
 
-NewGame:
-  type: object
-  description: A new game that is about to be started.
-  discriminator:
-    propertyName: id
-  required: [ hasScoreChanged, hole, isOver, scoreCardId ]
-  properties:
-    hasScoreChanged:
-      type: boolean
-    hole:
-      type: number
-    isOver:
-      type: boolean
-    scoreCardId:
-      type: string
-
-NewPlayer:
+NewPlayerResource:
   type: object
   description: A new player without ID.
   discriminator:
@@ -36,8 +24,10 @@ NewPlayer:
   properties:
     name:
       type: string
+      minLength: 3
+      maxLength: 40
 
-NewScoreCard:
+NewScoreCardResource:
   type: object
   description: A new  score card with selected course and players.
   discriminator:
@@ -45,23 +35,26 @@ NewScoreCard:
   required: [ course, players ]
   properties:
     course:
-      $ref: "#/Course"
+      $ref: "#/CourseResource"
     players:
       type: array
       items:
-        $ref: "#/Player"
+        $ref: "#/PlayerResource"
+      minItems: 1
+      maxItems: 5
+      uniqueItems: true
 
 # Schemas returned by server:
-Course:
+CourseResource:
   allOf:
-    - $ref: "#/NewCourse"
+    - $ref: "#/NewCourseResource"
   description: A disc golf course.
   required: [ id ]
   properties:
     id:
       type: string
 
-Error:
+ErrorResource:
   type: object
   description: An error resource with a HTTP error code and a message.
   required: [ code, message ]
@@ -71,39 +64,53 @@ Error:
     message:
       type: string
 
-Game:
-  allOf:
-    - $ref: "#/NewGame"
-  description: On object for persisting the state of a game; that is, a round of disc golf.
-  required: [ id ]
+GameResource:
+  type: object
+  description: Object for persisting the state of a game; that is, a round of disc golf.
+  required: [ id, hasScoreChanged, hole, isOver, scoreCardId ]
   properties:
     id:
       type: string
+    hasScoreChanged:
+      type: boolean
+    hole:
+      type: integer
+      minimum: 1
+      maximum: 30
+    isOver:
+      type: boolean
+    scoreCardId:
+      type: string
     
-Hole:
+HoleResource:
   type: object
   description: A hole in a disc golf course.
   required: [ number, par ]
   properties:
     number:
-      type: number
+      type: integer
+      minimum: 1
+      maximum: 30
     par:
-      type: number
+      type: integer
+      minimum: 1
+      maximum: 6
     distance:
-      type: number
+      type: integer
+      minimum: 1
 
-Player:
+PlayerResource:
   allOf:
-    - $ref: "#/NewPlayer"
+    - $ref: "#/NewPlayerResource"
   description: A player returned from backend, who has an ID.
   required: [ id ]
   properties:
     id:
       type: string
 
-ScoreCard:
+ScoreCardResource:
   allOf:
-    - $ref: "#/NewScoreCard"
+    - $ref: "#/NewScoreCardResource"
   description: A score card for tracking scores for a group of players.
   required: [ id ]
   properties:
@@ -112,9 +119,11 @@ ScoreCard:
     rows:
       type: array
       items:
-        $ref: "#/ScoreRow"
+        $ref: "#/ScoreRowResource"
+      minItems: 1
+      maxItems: 30
 
-ScoreCardId:
+ScoreCardIdResource:
   type: object
   description: An ID for a scorecard.
   required: [ scoreCardId ]
@@ -122,19 +131,23 @@ ScoreCardId:
     scoreCardId:
       type: string
     
-ScoreRow:
+ScoreRowResource:
   type: object
   description: The scores for a single hole.
   required: [ hole, scores ]
   properties:
     hole:
-      type: number
+      type: integer
+      minimum: 1
+      maximum: 30
     scores:
       type: array
       items:
-        $ref: "#/Score"
+        $ref: "#/ScoreResource"
+      minItems: 1
+      maxItems: 5
 
-Score:
+ScoreResource:
   type: object
   description: A score for a player
   required: [ playerId, score ]
@@ -142,4 +155,6 @@ Score:
     playerId:
       type: string
     score:
-      type: number
+      type: integer
+      minimum: 1
+      maximum: 99

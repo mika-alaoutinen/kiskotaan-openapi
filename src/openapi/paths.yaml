@@ -78,17 +78,18 @@ Players:
         $ref: "./responses.yaml#/400BadRequest"
 
 Player:
+  parameters:
+    - in: path
+      name: id
+      description: Player's ID.
+      required: true
+      schema:
+        type: string
+        minLength: 1
   get:
     summary: Get player by ID.
     description: Get a single player by player ID, given as path parameter.
     operationId: getPlayer
-    parameters:
-      - in: path
-        name: id
-        description: Player's ID.
-        required: true
-        schema:
-          type: string
     tags: [ Players ]
     responses:
       200:
@@ -99,13 +100,6 @@ Player:
     summary: Delete player.
     description: Delete a player by player ID, given in as path parameter.
     operationId: deletePlayer
-    parameters:
-      - in: path
-        name: id
-        description: Player's ID.
-        required: true
-        schema:
-          type: string
     tags: [ Players ]
     responses:
       204:
@@ -128,18 +122,19 @@ ScoreCards:
         $ref: "./responses.yaml#/400BadRequest"
 
 ScoreCard:
+  parameters:
+    - in: path
+      name: id
+      description: Score card ID.
+      required: true
+      schema:
+        type: string
+        minLength: 1
   get:
     summary: Get score card.
     description: Get a single score card by ID.
     operationId: getScoreCard
     tags: [ ScoreCards ]
-    parameters:
-      - in: path
-        name: id
-        description: Score card ID.
-        required: true
-        schema:
-          type: string
     responses:
       200:
         $ref: "./responses.yaml#/200ScoreCard"
@@ -151,13 +146,6 @@ ScoreCard:
     description: Delete a score card by ID.
     operationId: deleteScoreCard
     tags: [ ScoreCards ]
-    parameters:
-      - in: path
-        name: id
-        description: Score card ID.
-        required: true
-        schema:
-          type: string
     responses:
       204:
         description: No content. The score card was deleted successfully.
