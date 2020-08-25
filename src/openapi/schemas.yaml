@@ -8,8 +8,12 @@ NewCourseResource:
   properties:
     name:
       type: string
+      minLength: 3
+      maxLength: 40
     par:
-      type: number
+      type: integer
+      minimum: 1
+      maximum: 6
 
 NewPlayerResource:
   type: object
@@ -20,6 +24,8 @@ NewPlayerResource:
   properties:
     name:
       type: string
+      minLength: 3
+      maxLength: 40
 
 NewScoreCardResource:
   type: object
@@ -34,6 +40,9 @@ NewScoreCardResource:
       type: array
       items:
         $ref: "#/PlayerResource"
+      minItems: 1
+      maxItems: 5
+      uniqueItems: true
 
 # Schemas returned by server:
 CourseResource:
@@ -65,7 +74,9 @@ GameResource:
     hasScoreChanged:
       type: boolean
     hole:
-      type: number
+      type: integer
+      minimum: 1
+      maximum: 30
     isOver:
       type: boolean
     scoreCardId:
@@ -77,11 +88,16 @@ HoleResource:
   required: [ number, par ]
   properties:
     number:
-      type: number
+      type: integer
+      minimum: 1
+      maximum: 30
     par:
-      type: number
+      type: integer
+      minimum: 1
+      maximum: 6
     distance:
-      type: number
+      type: integer
+      minimum: 1
 
 PlayerResource:
   allOf:
@@ -104,6 +120,8 @@ ScoreCardResource:
       type: array
       items:
         $ref: "#/ScoreRowResource"
+      minItems: 1
+      maxItems: 30
 
 ScoreCardIdResource:
   type: object
@@ -119,11 +137,15 @@ ScoreRowResource:
   required: [ hole, scores ]
   properties:
     hole:
-      type: number
+      type: integer
+      minimum: 1
+      maximum: 30
     scores:
       type: array
       items:
         $ref: "#/ScoreResource"
+      minItems: 1
+      maxItems: 5
 
 ScoreResource:
   type: object
@@ -133,4 +155,6 @@ ScoreResource:
     playerId:
       type: string
     score:
-      type: number
+      type: integer
+      minimum: 1
+      maximum: 99
