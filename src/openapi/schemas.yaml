@@ -51,8 +51,8 @@ CourseResource:
       maxLength: 40
     par:
       type: integer
-      minimum: 1
-      maximum: 6
+      minimum: 18
+      maximum: 150
 
 ErrorResource:
   type: object
