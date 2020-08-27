@@ -2,16 +2,19 @@
 NewCourseResource:
   type: object
   description: A new disc golf course without ID.
-  required: [ name, par ]
+  required: [ name, holes, par ]
   properties:
     name:
       type: string
       minLength: 3
       maxLength: 40
-    par:
-      type: integer
-      minimum: 18
-      maximum: 150
+    holes:
+      type: array
+      items:
+        $ref: "#/HoleResource"
+      minItems: 1
+      maxItems: 30
+      uniqueItems: true
 
 NewPlayerResource:
   type: object
@@ -41,7 +44,7 @@ NewScoreCardResource:
 # Schemas returned by server:
 CourseResource:
   description: A disc golf course.
-  required: [ id, name, par ]
+  required: [ id, name, holes, par ]
   properties:
     id:
       type: string
@@ -49,9 +52,16 @@ CourseResource:
       type: string
       minLength: 3
       maxLength: 40
+    holes:
+      type: array
+      items:
+        $ref: "#/HoleResource"
+      minItems: 1
+      maxItems: 30
+      uniqueItems: true
     par:
       type: integer
-      minimum: 18
+      minimum: 1
       maximum: 150
 
 ErrorResource:
