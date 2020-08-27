@@ -54,7 +54,12 @@ jobs:
     needs:
       - release
     steps:
+      - name: Use Node.js 12.x
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Clean old artifacts
       - uses: actions/delete-package-versions@v1
         with:
-          package-name: 'kiskotaan-openapi'
+          package-name: kiskotaan-openapi
           num-old-versions-to-delete: 3
