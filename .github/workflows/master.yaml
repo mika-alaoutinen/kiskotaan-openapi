@@ -54,7 +54,6 @@ jobs:
     needs:
       - release
     steps:
-      - name: Delete three oldest packages
       - uses: actions/delete-package-versions@v1
         with:
           package-name: 'kiskotaan-openapi'
