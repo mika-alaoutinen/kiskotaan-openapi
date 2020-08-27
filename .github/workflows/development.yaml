@@ -31,6 +31,6 @@ jobs:
       - name: Clean old artifacts
         uses: actions/delete-package-versions@v1
         with:
-          package-name: kiskotaan-openapi
+          package-name: com.mika.kiskotaan-openapi
           num-old-versions-to-delete: 3
           token: ${{ secrets.GITHUB_TOKEN }}
