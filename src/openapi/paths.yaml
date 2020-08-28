@@ -47,7 +47,7 @@ Game:
         description: Game ID.
         required: true
         schema:
-          type: string
+          type: number
     responses:
       201:
         $ref: "./responses.yaml#/201EndGame"
@@ -84,7 +84,7 @@ Player:
       description: Player's ID.
       required: true
       schema:
-        type: string
+        type: number
         minLength: 1
   get:
     summary: Get player by ID.
@@ -128,7 +128,7 @@ ScoreCard:
       description: Score card ID.
       required: true
       schema:
-        type: string
+        type: number
         minLength: 1
   get:
     summary: Get score card.
