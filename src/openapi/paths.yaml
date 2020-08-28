@@ -104,8 +104,6 @@ Player:
     responses:
       204:
         description: No Content. The player was deleted successfully.
-      404:
-        $ref: "./responses.yaml#/404NotFound"
 
 ScoreCards:
   post:
@@ -149,8 +147,6 @@ ScoreCard:
     responses:
       204:
         description: No content. The score card was deleted successfully.
-      404:
-        $ref: "./responses.yaml#/404NotFound"
 
 Scores:
   put:
