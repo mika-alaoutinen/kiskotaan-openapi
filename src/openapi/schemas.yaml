@@ -47,7 +47,7 @@ CourseResource:
   required: [ id, name, holes, par ]
   properties:
     id:
-      type: string
+      type: number
     name:
       type: string
       minLength: 3
@@ -80,7 +80,7 @@ GameResource:
   required: [ id, hasScoreChanged, hole, isOver, scoreCardId ]
   properties:
     id:
-      type: string
+      type: number
     hasScoreChanged:
       type: boolean
     hole:
@@ -90,7 +90,7 @@ GameResource:
     isOver:
       type: boolean
     scoreCardId:
-      type: string
+      type: number
     
 HoleResource:
   type: object
@@ -114,7 +114,7 @@ PlayerResource:
   required: [ id, name ]
   properties:
     id:
-      type: string
+      type: number
     name:
       type: string
       minLength: 3
@@ -125,7 +125,7 @@ ScoreCardResource:
   required: [ id, course, players, rows ]
   properties:
     id:
-      type: string
+      type: number
     course:
       $ref: "#/CourseResource"
     players:
@@ -148,7 +148,7 @@ ScoreCardIdResource:
   required: [ scoreCardId ]
   properties:
     scoreCardId:
-      type: string
+      type: number
     
 ScoreRowResource:
   type: object
@@ -172,7 +172,7 @@ ScoreResource:
   required: [ playerId, score ]
   properties:
     playerId:
-      type: string
+      type: number
     score:
       type: integer
       minimum: 1
