@@ -150,6 +150,14 @@ ScoreCard:
         description: No content. The score card was deleted successfully.
 
 Scores:
+  parameters:
+    - in: path
+      name: id
+      description: Score card ID.
+      required: true
+      schema:
+        type: number
+
   put:
     summary: Update scores on a score card.
     description: Update a single score row on a score card.
