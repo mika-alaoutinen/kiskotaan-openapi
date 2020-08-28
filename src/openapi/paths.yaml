@@ -48,6 +48,7 @@ Game:
         required: true
         schema:
           type: number
+
     responses:
       201:
         $ref: "./responses.yaml#/201EndGame"
@@ -85,7 +86,7 @@ Player:
       required: true
       schema:
         type: number
-        minLength: 1
+
   get:
     summary: Get player by ID.
     description: Get a single player by player ID, given as path parameter.
@@ -104,8 +105,6 @@ Player:
     responses:
       204:
         description: No Content. The player was deleted successfully.
-      404:
-        $ref: "./responses.yaml#/404NotFound"
 
 ScoreCards:
   post:
@@ -129,7 +128,7 @@ ScoreCard:
       required: true
       schema:
         type: number
-        minLength: 1
+
   get:
     summary: Get score card.
     description: Get a single score card by ID.
@@ -149,10 +148,16 @@ ScoreCard:
     responses:
       204:
         description: No content. The score card was deleted successfully.
-      404:
-        $ref: "./responses.yaml#/404NotFound"
 
 Scores:
+  parameters:
+    - in: path
+      name: id
+      description: Score card ID.
+      required: true
+      schema:
+        type: number
+
   put:
     summary: Update scores on a score card.
     description: Update a single score row on a score card.
