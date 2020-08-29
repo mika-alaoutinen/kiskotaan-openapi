@@ -59,10 +59,6 @@ CourseResource:
       minItems: 1
       maxItems: 30
       uniqueItems: true
-    par:
-      type: integer
-      minimum: 1
-      maximum: 150
 
 ErrorResource:
   type: object
