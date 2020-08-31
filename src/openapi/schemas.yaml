@@ -14,7 +14,6 @@ NewCourseResource:
         $ref: "#/HoleResource"
       minItems: 1
       maxItems: 30
-      uniqueItems: true
 
 NewPlayerResource:
   type: object
@@ -39,7 +38,6 @@ NewScoreCardResource:
         $ref: "#/PlayerResource"
       minItems: 1
       maxItems: 5
-      uniqueItems: true
 
 # Schemas returned by server:
 CourseResource:
@@ -58,7 +56,6 @@ CourseResource:
         $ref: "#/HoleResource"
       minItems: 1
       maxItems: 30
-      uniqueItems: true
 
 ErrorResource:
   type: object
@@ -130,7 +127,6 @@ ScoreCardResource:
         $ref: "#/PlayerResource"
       minItems: 1
       maxItems: 5
-      uniqueItems: true
     rows:
       type: array
       items:
