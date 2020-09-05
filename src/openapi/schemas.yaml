@@ -27,15 +27,15 @@ NewPlayerResource:
 
 NewScoreCardResource:
   type: object
-  description: A new  score card with selected course and players.
+  description: A new  score card with selected course and players. Course and players are specified by IDs.
   required: [ course, players ]
   properties:
-    course:
-      $ref: "#/CourseResource"
-    players:
+    courseId:
+      type: string
+    playersIds:
       type: array
       items:
-        $ref: "#/PlayerResource"
+        type: string
       minItems: 1
       maxItems: 5
 
