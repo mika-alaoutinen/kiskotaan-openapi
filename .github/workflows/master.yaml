@@ -50,14 +50,14 @@ jobs:
           maven-repo-server-password: ${{ secrets.ACCESS_TOKEN }}
           release-branch-name: master
 
-  clean_packages:
-    name: Clean old packages stored in GitHub
-    runs-on: ubuntu-latest
-    needs:
-      - release
-    steps:
-      - name: Clean old artifacts
-        uses: actions/delete-package-versions@v1
-        with:
-          package-name: com.mika.kiskotaan-openapi
-          token: ${{ secrets.GITHUB_TOKEN }}
+  # clean_packages:
+  #   name: Clean old packages stored in GitHub
+  #   runs-on: ubuntu-latest
+  #   needs:
+  #     - release
+  #   steps:
+  #     - name: Clean old artifacts
+  #       uses: actions/delete-package-versions@v1
+  #       with:
+  #         package-name: com.mika.kiskotaan-openapi
+  #         token: ${{ secrets.GITHUB_TOKEN }}

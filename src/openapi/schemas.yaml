@@ -31,11 +31,11 @@ NewScoreCardResource:
   required: [ course, players ]
   properties:
     courseId:
-      type: string
+      type: number
     playersIds:
       type: array
       items:
-        type: string
+        type: number
       minItems: 1
       maxItems: 5
 
