@@ -38,6 +38,7 @@ NewScoreCardResource:
         type: number
       minItems: 1
       maxItems: 5
+      uniqueItems: true
 
 # Schemas returned by server:
 CourseResource:
