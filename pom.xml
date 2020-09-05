@@ -14,7 +14,7 @@
 	<groupId>com.mika</groupId>
 	<artifactId>kiskotaan-openapi</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1.12-SNAPSHOT</version>
+	<version>0.1.12</version>
 	<name>kiskotaan-openapi</name>
 	<description>OpenAPI document for Kiskotaan backend</description>
 
@@ -34,7 +34,7 @@
 		<connection>scm:git:${github.url}.git</connection>
 		<developerConnection>scm:git:${github.url}.git</developerConnection>
     <url>${github.url}</url>
-    <tag>HEAD</tag>
+    <tag>0.1.12</tag>
   </scm>
 
 	<!-- Jar packages are published on GitHub Packages -->
