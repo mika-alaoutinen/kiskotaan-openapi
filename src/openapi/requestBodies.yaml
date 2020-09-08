@@ -19,12 +19,12 @@ NewScoreCard:
       schema:
         $ref: "./schemas.yaml#/NewScoreCardResource"
 
-ScoreCardId:
+NewGame:
   required: true
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/ScoreCardIdResource"
+        $ref: "./schemas.yaml#/NewGameResource"
 
 Scores:
   required: true
