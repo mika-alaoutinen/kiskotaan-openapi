@@ -83,13 +83,13 @@ GameResource:
   properties:
     id:
       type: number
-    hasScoreChanged:
+    scoreChanged:
       type: boolean
     hole:
       type: integer
       minimum: 1
       maximum: 30
-    isOver:
+    gameOver:
       type: boolean
     scoreCardId:
       type: number
