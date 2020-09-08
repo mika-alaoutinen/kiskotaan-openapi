@@ -15,6 +15,14 @@ NewCourseResource:
       minItems: 1
       maxItems: 30
 
+NewGameResource:
+  type: object
+  description: Contains ID for the scorecard that is related to the new game.
+  required: [ scoreCardId ]
+  properties:
+    scoreCardId:
+      type: number
+
 NewPlayerResource:
   type: object
   description: A new player without ID.
@@ -75,13 +83,13 @@ GameResource:
   properties:
     id:
       type: number
-    hasScoreChanged:
+    scoreChanged:
       type: boolean
     hole:
       type: integer
       minimum: 1
       maximum: 30
-    isOver:
+    gameOver:
       type: boolean
     scoreCardId:
       type: number
@@ -134,14 +142,6 @@ ScoreCardResource:
         $ref: "#/ScoreRowResource"
       minItems: 1
       maxItems: 30
-
-ScoreCardIdResource:
-  type: object
-  description: An ID for a scorecard.
-  required: [ scoreCardId ]
-  properties:
-    scoreCardId:
-      type: number
     
 ScoreRowResource:
   type: object

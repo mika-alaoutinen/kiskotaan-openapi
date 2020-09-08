@@ -22,6 +22,8 @@ components:
   schemas:
     NewCourseResource:
       $ref: "./schemas.yaml#/NewCourseResource"
+    NewGameResource:
+      $ref: "./schemas.yaml#/NewGameResource"
     NewPlayerResource:
       $ref: "./schemas.yaml#/NewPlayerResource"
     NewScoreCardResource:
@@ -38,8 +40,6 @@ components:
       $ref: "./schemas.yaml#/PlayerResource"
     ScoreCardResource:
       $ref: "./schemas.yaml#/ScoreCardResource"
-    ScoreCardIdResource:
-      $ref: "./schemas.yaml#/ScoreCardIdResource"
     ScoreRowResource:
       $ref: "./schemas.yaml#/ScoreRowResource"
     ScoreResource:

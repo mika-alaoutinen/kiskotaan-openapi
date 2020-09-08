@@ -28,7 +28,7 @@ Games:
     operationId: startGame
     tags: [ Game ]
     requestBody:
-      $ref: "./requestBodies.yaml#/ScoreCardId"
+      $ref: "./requestBodies.yaml#/NewGame"
     responses:
       201:
         $ref: "./responses.yaml#/201StartGame"
