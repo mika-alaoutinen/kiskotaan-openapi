@@ -61,10 +61,8 @@ Game:
     operationId: endGame
     tags: [ Game ]
     responses:
-      200:
-        $ref: "./responses.yaml#/200EndGame"
-      404:
-        $ref: "./responses.yaml#/404NotFound"
+      204:
+        description: No Content. The game was ended and deleted successfully.
 
 Players:
   get:

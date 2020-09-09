@@ -17,13 +17,6 @@
         items:
           $ref: "./schemas.yaml#/PlayerResource"
 
-200EndGame:
-  description: Return the Game resource in a finished state.
-  content:
-    application/json:
-      schema:
-        $ref: "./schemas.yaml#/GameResource"
-
 200GetGame:
   description: A single game resource.
   content:
