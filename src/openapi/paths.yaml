@@ -50,8 +50,8 @@ Game:
           type: number
 
     responses:
-      201:
-        $ref: "./responses.yaml#/201EndGame"
+      200:
+        $ref: "./responses.yaml#/200EndGame"
       404:
         $ref: "./responses.yaml#/404NotFound"
 
