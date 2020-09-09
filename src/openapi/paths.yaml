@@ -36,24 +36,33 @@ Games:
         $ref: "./responses.yaml#/400BadRequest"
 
 Game:
-  put:
+  parameters:
+    - in: path
+      name: id
+      description: Game ID.
+      required: true
+      schema:
+        type: number
+
+  get:
+    summary: Get game.
+    description: Get an ongoing game by ID.
+    operationId: getGame
+    tags: [ Game ]
+    responses:
+      200:
+        $ref: "./responses.yaml#/200GetGame"
+      404:
+        $ref: "./responses.yaml#/404NotFound"    
+  
+  delete:
     summary: End game.
-    description: End an ongoing game. Give game ID as a path parameter. No request body is needed.
+    description: End an ongoing game. Give game ID as a path parameter.
     operationId: endGame
     tags: [ Game ]
-    parameters:
-      - in: path
-        name: id
-        description: Game ID.
-        required: true
-        schema:
-          type: number
-
     responses:
-      201:
-        $ref: "./responses.yaml#/201EndGame"
-      404:
-        $ref: "./responses.yaml#/404NotFound"
+      204:
+        description: No Content. The game was ended and deleted successfully.
 
 Players:
   get:
