@@ -24,6 +24,13 @@
       schema:
         $ref: "./schemas.yaml#/GameResource"
 
+200GetGame:
+  description: A single game resource.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/GameResource"
+
 200Player:
   description: A single player resource.
   content:
