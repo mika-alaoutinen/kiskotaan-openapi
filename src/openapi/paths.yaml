@@ -55,9 +55,9 @@ Game:
       404:
         $ref: "./responses.yaml#/404NotFound"    
   
-  put:
+  delete:
     summary: End game.
-    description: End an ongoing game. Give game ID as a path parameter. No request body is needed.
+    description: End an ongoing game. Give game ID as a path parameter.
     operationId: endGame
     tags: [ Game ]
     responses:
