@@ -18,36 +18,9 @@ tags:
 servers:
   - url: http://localhost:8080/api/
  
-components:
-  schemas:
-    NewCourse:
-      $ref: "./schemas.yaml#/NewCourse"
-    NewGame:
-      $ref: "./schemas.yaml#/NewGame"
-    NewPlayer:
-      $ref: "./schemas.yaml#/NewPlayer"
-    NewScoreCard:
-      $ref: "./schemas.yaml#/NewScoreCard"
-    Course:
-      $ref: "./schemas.yaml#/Course"
-    ErrorBody:
-      $ref: "./schemas.yaml#/ErrorBody"
-    Game:
-      $ref: "./schemas.yaml#/Game"
-    Hole:
-      $ref: "./schemas.yaml#/Hole"
-    Player:
-      $ref: "./schemas.yaml#/Player"
-    ScoreCard:
-      $ref: "./schemas.yaml#/ScoreCard"
-    ScoreRow:
-      $ref: "./schemas.yaml#/ScoreRow"
-    Score:
-      $ref: "./schemas.yaml#/Score"
-
 paths:
   /courses:
-    $ref: "./paths.yaml#/Courses"
+    $ref: "./courses/paths.yaml#/Courses"
 
   /players:
     $ref: "./paths.yaml#/Players"
@@ -65,3 +38,30 @@ paths:
     $ref: "./paths.yaml#/ScoreCard"
   /scoreCards/{id}/scores:
     $ref: "./paths.yaml#/Scores"
+
+components:
+  schemas:
+    NewCourse:
+      $ref: "./courses/schemas.yaml#/NewCourse"
+    NewGame:
+      $ref: "./schemas.yaml#/NewGame"
+    NewPlayer:
+      $ref: "./schemas.yaml#/NewPlayer"
+    NewScoreCard:
+      $ref: "./schemas.yaml#/NewScoreCard"
+    Course:
+      $ref: "./courses/schemas.yaml#/Course"
+    ErrorBody:
+      $ref: "./schemas.yaml#/ErrorBody"
+    Game:
+      $ref: "./schemas.yaml#/Game"
+    Hole:
+      $ref: "./courses/schemas.yaml#/Hole"
+    Player:
+      $ref: "./schemas.yaml#/Player"
+    ScoreCard:
+      $ref: "./schemas.yaml#/ScoreCard"
+    ScoreRow:
+      $ref: "./schemas.yaml#/ScoreRow"
+    Score:
+      $ref: "./schemas.yaml#/Score"

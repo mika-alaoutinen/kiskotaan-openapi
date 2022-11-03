@@ -1,23 +1,4 @@
 # New objects received from client (without IDs):
-NewCourse:
-  type: object
-  description: A new disc golf course without ID.
-  required:
-    - name
-    - holes
-    - par
-  properties:
-    name:
-      type: string
-      minLength: 3
-      maxLength: 40
-    holes:
-      type: array
-      items:
-        $ref: "#/Hole"
-      minItems: 1
-      maxItems: 30
-
 NewGame:
   type: object
   description: Contains ID for the scorecard that is related to the new game.
@@ -56,27 +37,6 @@ NewScoreCard:
       uniqueItems: true
 
 # Schemas returned by server:
-Course:
-  description: A disc golf course.
-  required:
-    - id
-    - name
-    - holes
-    - par
-  properties:
-    id:
-      type: number
-    name:
-      type: string
-      minLength: 3
-      maxLength: 40
-    holes:
-      type: array
-      items:
-        $ref: "#/Hole"
-      minItems: 1
-      maxItems: 30
-
 ErrorBody:
   type: object
   description: An error resource with an error code, a message and a HTTP status.
@@ -115,25 +75,6 @@ Game:
     scoreCardId:
       type: number
     
-Hole:
-  type: object
-  description: A hole in a disc golf course.
-  required:
-    - number
-    - par
-  properties:
-    number:
-      type: integer
-      minimum: 1
-      maximum: 30
-    par:
-      type: integer
-      minimum: 1
-      maximum: 6
-    distance:
-      type: integer
-      minimum: 1
-
 Player:
   description: A player returned from backend, who has an ID.
   required:
@@ -158,7 +99,7 @@ ScoreCard:
     id:
       type: number
     course:
-      $ref: "#/Course"
+      $ref: "./courses/schemas.yaml#/Course"
     players:
       type: array
       items:
