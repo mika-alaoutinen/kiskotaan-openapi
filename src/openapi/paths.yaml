@@ -89,16 +89,33 @@ Game:
       500:
         $ref: "./responses.yaml#/500ServerError"
 
-  # Ending a game should probably be a PATCH or PUT operation.
   delete:
+    summary: Delete game.
+    description: Delete game by ID.
+    operationId: deleteGame
+    tags:
+      - Game
+    responses:
+      204:
+        description: The game was deleted successfully.
+      500:
+        $ref: "./responses.yaml#/500ServerError"
+
+  patch:
     summary: End game.
     description: End an ongoing game. Give game ID as a path parameter.
     operationId: endGame
     tags:
       - Game
     responses:
-      204:
-        description: The game was ended and deleted successfully.
+      200:
+        description: The game was ended successfully.
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Game"
+      400:
+        $ref: "./responses.yaml#/400BadRequest"
       500:
         $ref: "./responses.yaml#/500ServerError"
 
