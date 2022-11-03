@@ -1,0 +1,73 @@
+NewScoreCard:
+  type: object
+  description: A new  score card with selected course and players. Course and players are specified by IDs.
+  required:
+    - course
+    - players
+  properties:
+    courseId:
+      type: number
+    playersIds:
+      type: array
+      items:
+        type: number
+      minItems: 1
+      maxItems: 5
+      uniqueItems: true
+
+ScoreCard:
+  description: A score card for tracking scores for a group of players.
+  required:
+    - id
+    - course
+    - players
+    - rows
+  properties:
+    id:
+      type: number
+    course:
+      $ref: "../courses/schemas.yaml#/Course"
+    players:
+      type: array
+      items:
+        $ref: "../players/schemas.yaml#/Player"
+      minItems: 1
+      maxItems: 5
+    rows:
+      type: array
+      items:
+        $ref: "#/ScoreRow"
+      minItems: 1
+      maxItems: 30
+    
+ScoreRow:
+  type: object
+  description: The scores for a single hole.
+  required:
+    - hole
+    - scores
+  properties:
+    hole:
+      type: integer
+      minimum: 1
+      maximum: 30
+    scores:
+      type: array
+      items:
+        $ref: "#/Score"
+      minItems: 1
+      maxItems: 5
+
+Score:
+  type: object
+  description: A score for a player
+  required:
+    - playerId
+    - score
+  properties:
+    playerId:
+      type: number
+    score:
+      type: integer
+      minimum: 1
+      maximum: 99

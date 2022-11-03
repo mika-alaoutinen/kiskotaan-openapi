@@ -1,0 +1,95 @@
+ScoreCards:
+  post:
+    summary: Add new score card.
+    description: Add a new score card. Give course and players as request body, wrapped in a NewScoreCard resource.
+    operationId: addScoreCard
+    tags:
+      - ScoreCards
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/NewScoreCard"
+    responses:
+      201:
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/ScoreCard"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+ScoreCard:
+  parameters:
+    - in: path
+      name: id
+      description: Score card ID.
+      required: true
+      schema:
+        type: number
+
+  get:
+    summary: Get score card.
+    description: Get a single score card by ID.
+    operationId: getScoreCard
+    tags:
+      - ScoreCards
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/ScoreCard"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+  delete:
+    summary: Delete score card.
+    description: Delete a score card by ID.
+    operationId: deleteScoreCard
+    tags:
+      - ScoreCards
+    responses:
+      204:
+        description: The score card was deleted successfully.
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+Scores:
+  parameters:
+    - in: path
+      name: id
+      description: Score card ID.
+      required: true
+      schema:
+        type: number
+
+  put:
+    summary: Update scores on a score card.
+    description: Update a single score row on a score card.
+    operationId: updateScores
+    tags:
+      - ScoreCards
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/ScoreRow"
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/ScoreRow"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"

@@ -1,0 +1,79 @@
+Games:
+  post:
+    summary: Start new game.
+    description: Start a new game. Give score card ID as a request body.
+    operationId: startGame
+    tags:
+      - Game
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/NewGame"
+    responses:
+      201:
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Game"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+Game:
+  parameters:
+    - in: path
+      name: id
+      description: Game ID.
+      required: true
+      schema:
+        type: number
+
+  get:
+    summary: Get game.
+    description: Get an ongoing game by ID.
+    operationId: getGame
+    tags:
+      - Game
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Game"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+  delete:
+    summary: Delete game.
+    description: Delete game by ID.
+    operationId: deleteGame
+    tags:
+      - Game
+    responses:
+      204:
+        description: The game was deleted successfully.
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+  patch:
+    summary: End game.
+    description: End an ongoing game. Give game ID as a path parameter.
+    operationId: endGame
+    tags:
+      - Game
+    responses:
+      200:
+        description: The game was ended successfully.
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Game"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
