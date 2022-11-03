@@ -80,11 +80,11 @@
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/Error"
+        $ref: "./schemas.yaml#/ErrorBody"
 
 404NotFound:
   description: Resource not found.
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/Error"
+        $ref: "./schemas.yaml#/ErrorBody"

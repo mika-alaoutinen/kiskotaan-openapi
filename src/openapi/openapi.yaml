@@ -30,8 +30,8 @@ components:
       $ref: "./schemas.yaml#/NewScoreCard"
     Course:
       $ref: "./schemas.yaml#/Course"
-    Error:
-      $ref: "./schemas.yaml#/Error"
+    ErrorBody:
+      $ref: "./schemas.yaml#/ErrorBody"
     Game:
       $ref: "./schemas.yaml#/Game"
     Hole:
