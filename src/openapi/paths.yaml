@@ -13,6 +13,8 @@ Courses:
               type: array
               items:
                 $ref: "./schemas.yaml#/Course"
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
   post:
     summary: Add new course.
@@ -34,6 +36,8 @@ Courses:
               $ref: "./schemas.yaml#/Course"
       400:
         $ref: "./responses.yaml#/400BadRequest"
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
 Games:
   post:
@@ -56,6 +60,8 @@ Games:
               $ref: "./schemas.yaml#/Game"
       400:
         $ref: "./responses.yaml#/400BadRequest"
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
 Game:
   parameters:
@@ -80,6 +86,8 @@ Game:
               $ref: "./schemas.yaml#/Game"
       404:
         $ref: "./responses.yaml#/404NotFound"    
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
   # Ending a game should probably be a PATCH or PUT operation.
   delete:
@@ -91,6 +99,8 @@ Game:
     responses:
       204:
         description: The game was ended and deleted successfully.
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
 Players:
   get:
@@ -107,6 +117,8 @@ Players:
               type: array
               items:
                 $ref: "./schemas.yaml#/Player"
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
   post:
     summary: Add new player.
@@ -128,6 +140,8 @@ Players:
               $ref: "./schemas.yaml#/Player"
       400:
         $ref: "./responses.yaml#/400BadRequest"
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
 Player:
   parameters:
@@ -152,6 +166,8 @@ Player:
               $ref: "./schemas.yaml#/Player"
       404:
         $ref: "./responses.yaml#/404NotFound"
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
   delete:
     summary: Delete a player.
@@ -162,6 +178,8 @@ Player:
     responses:
       204:
         description: The player was deleted successfully.
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
 ScoreCards:
   post:
@@ -184,6 +202,8 @@ ScoreCards:
               $ref: "./schemas.yaml#/ScoreCard"
       400:
         $ref: "./responses.yaml#/400BadRequest"
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
 ScoreCard:
   parameters:
@@ -208,6 +228,8 @@ ScoreCard:
               $ref: "./schemas.yaml#/ScoreCard"
       404:
         $ref: "./responses.yaml#/404NotFound"
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
   delete:
     summary: Delete score card.
@@ -218,6 +240,8 @@ ScoreCard:
     responses:
       204:
         description: The score card was deleted successfully.
+      500:
+        $ref: "./responses.yaml#/500ServerError"
 
 Scores:
   parameters:
@@ -250,3 +274,5 @@ Scores:
         $ref: "./responses.yaml#/400BadRequest"
       404:
         $ref: "./responses.yaml#/404NotFound"
+      500:
+        $ref: "./responses.yaml#/500ServerError"
