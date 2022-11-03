@@ -33,11 +33,11 @@ paths:
     $ref: "./paths.yaml#/Game"
   
   /scoreCards:
-    $ref: "./paths.yaml#/ScoreCards"
+    $ref: "./scoreCards/paths.yaml#/ScoreCards"
   /scoreCards/{id}:
-    $ref: "./paths.yaml#/ScoreCard"
+    $ref: "./scoreCards/paths.yaml#/ScoreCard"
   /scoreCards/{id}/scores:
-    $ref: "./paths.yaml#/Scores"
+    $ref: "./scoreCards/paths.yaml#/Scores"
 
 components:
   schemas:
@@ -48,7 +48,7 @@ components:
     NewPlayer:
       $ref: "./players/schemas.yaml#/NewPlayer"
     NewScoreCard:
-      $ref: "./schemas.yaml#/NewScoreCard"
+      $ref: "./scoreCards/schemas.yaml#/NewScoreCard"
     Course:
       $ref: "./courses/schemas.yaml#/Course"
     ErrorBody:
@@ -60,8 +60,8 @@ components:
     Player:
       $ref: "./players/schemas.yaml#/Player"
     ScoreCard:
-      $ref: "./schemas.yaml#/ScoreCard"
+      $ref: "./scoreCards/schemas.yaml#/ScoreCard"
     ScoreRow:
-      $ref: "./schemas.yaml#/ScoreRow"
+      $ref: "./scoreCards/schemas.yaml#/ScoreRow"
     Score:
-      $ref: "./schemas.yaml#/Score"
+      $ref: "./scoreCards/schemas.yaml#/Score"
