@@ -2,7 +2,7 @@ openapi: 3.0.3
  
 info:
   title: Kiskotaan OpenAPI
-  version: 0.1.0
+  version: 0.2.0
   description: API definition for Kiskotaan disc golf score card application.
 
 tags:
@@ -43,25 +43,29 @@ components:
   schemas:
     NewCourse:
       $ref: "./courses/schemas.yaml#/NewCourse"
-    NewGame:
-      $ref: "./games/schemas.yaml#/NewGame"
-    NewPlayer:
-      $ref: "./players/schemas.yaml#/NewPlayer"
-    NewScoreCard:
-      $ref: "./scoreCards/schemas.yaml#/NewScoreCard"
     Course:
       $ref: "./courses/schemas.yaml#/Course"
-    Game:
-      $ref: "./games/schemas.yaml#/Game"
     Hole:
       $ref: "./courses/schemas.yaml#/Hole"
+
+    NewPlayer:
+      $ref: "./players/schemas.yaml#/NewPlayer"
     Player:
       $ref: "./players/schemas.yaml#/Player"
+
+    Game:
+      $ref: "./games/schemas.yaml#/Game"
+    NewGame:
+      $ref: "./games/schemas.yaml#/NewGame"
+
+    NewScoreCard:
+      $ref: "./scoreCards/schemas.yaml#/NewScoreCard"
     ScoreCard:
       $ref: "./scoreCards/schemas.yaml#/ScoreCard"
     ScoreRow:
       $ref: "./scoreCards/schemas.yaml#/ScoreRow"
     Score:
       $ref: "./scoreCards/schemas.yaml#/Score"
+
     ErrorBody:
       $ref: "./errors/schemas.yaml#/ErrorBody"
