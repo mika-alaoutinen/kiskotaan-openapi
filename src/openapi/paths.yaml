@@ -14,7 +14,11 @@ Courses:
     operationId: addCourse
     tags: [ Courses ]
     requestBody:
-      $ref: "./requestBodies.yaml#/NewCourse"
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/NewCourse"
     responses:
       201:
         $ref: "./responses.yaml#/201NewCourse"
@@ -28,7 +32,11 @@ Games:
     operationId: startGame
     tags: [ Game ]
     requestBody:
-      $ref: "./requestBodies.yaml#/NewGame"
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/NewGame"
     responses:
       201:
         $ref: "./responses.yaml#/201StartGame"
@@ -80,7 +88,11 @@ Players:
     operationId: addPlayer
     tags: [ Players ]
     requestBody:
-      $ref: "./requestBodies.yaml#/NewPlayer"
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/NewPlayer"
     responses:
       201:
         $ref: "./responses.yaml#/201NewPlayer"
@@ -122,7 +134,11 @@ ScoreCards:
     operationId: addScoreCard
     tags: [ ScoreCards ]
     requestBody:
-      $ref: "./requestBodies.yaml#/NewScoreCard"
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/NewScoreCard"
     responses:
       201:
         $ref: "./responses.yaml#/201NewScoreCard"
@@ -173,7 +189,11 @@ Scores:
     operationId: updateScores
     tags: [ ScoreCards ]
     requestBody:
-      $ref: "./requestBodies.yaml#/Scores"
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/ScoreRow"
     responses:
       200:
         $ref: "./responses.yaml#/200Scores"
