@@ -8,17 +8,6 @@ NewGame:
     scoreCardId:
       type: number
 
-NewPlayer:
-  type: object
-  description: A new player without ID.
-  required:
-    - name
-  properties:
-    name:
-      type: string
-      minLength: 3
-      maxLength: 40
-
 NewScoreCard:
   type: object
   description: A new  score card with selected course and players. Course and players are specified by IDs.
@@ -75,19 +64,6 @@ Game:
     scoreCardId:
       type: number
     
-Player:
-  description: A player returned from backend, who has an ID.
-  required:
-    - id
-    - name
-  properties:
-    id:
-      type: number
-    name:
-      type: string
-      minLength: 3
-      maxLength: 40
-
 ScoreCard:
   description: A score card for tracking scores for a group of players.
   required:
@@ -103,7 +79,7 @@ ScoreCard:
     players:
       type: array
       items:
-        $ref: "#/Player"
+        $ref: "./players/schemas.yaml#/Player"
       minItems: 1
       maxItems: 5
     rows:

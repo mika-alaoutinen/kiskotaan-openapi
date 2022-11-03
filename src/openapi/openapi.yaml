@@ -23,9 +23,9 @@ paths:
     $ref: "./courses/paths.yaml#/Courses"
 
   /players:
-    $ref: "./paths.yaml#/Players"
+    $ref: "./players/paths.yaml#/Players"
   /players/{id}:
-    $ref: "./paths.yaml#/Player"
+    $ref: "./players/paths.yaml#/Player"
 
   /games:
     $ref: "./paths.yaml#/Games"
@@ -46,7 +46,7 @@ components:
     NewGame:
       $ref: "./schemas.yaml#/NewGame"
     NewPlayer:
-      $ref: "./schemas.yaml#/NewPlayer"
+      $ref: "./players/schemas.yaml#/NewPlayer"
     NewScoreCard:
       $ref: "./schemas.yaml#/NewScoreCard"
     Course:
@@ -58,7 +58,7 @@ components:
     Hole:
       $ref: "./courses/schemas.yaml#/Hole"
     Player:
-      $ref: "./schemas.yaml#/Player"
+      $ref: "./players/schemas.yaml#/Player"
     ScoreCard:
       $ref: "./schemas.yaml#/ScoreCard"
     ScoreRow:
