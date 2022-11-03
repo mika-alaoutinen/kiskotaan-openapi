@@ -6,7 +6,7 @@
       schema:
         type: array
         items:
-          $ref: "./schemas.yaml#/CourseResource"
+          $ref: "./schemas.yaml#/Course"
 
 200AllPlayers:
   description: A JSON array containing all players.
@@ -15,35 +15,35 @@
       schema:
         type: array
         items:
-          $ref: "./schemas.yaml#/PlayerResource"
+          $ref: "./schemas.yaml#/Player"
 
 200GetGame:
   description: A single game resource.
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/GameResource"
+        $ref: "./schemas.yaml#/Game"
 
 200Player:
   description: A single player resource.
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/PlayerResource"
+        $ref: "./schemas.yaml#/Player"
 
 200ScoreCard:
   description: A single score card resource.
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/ScoreCardResource"
+        $ref: "./schemas.yaml#/ScoreCard"
 
 200Scores:
   description: A score row, containing players scores for a single hole.
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/ScoreRowResource"
+        $ref: "./schemas.yaml#/ScoreRow"
 
 # 201 Created responses
 201NewCourse:
@@ -51,28 +51,28 @@
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/CourseResource"
+        $ref: "./schemas.yaml#/Course"
 
 201NewPlayer:
   description: Newly added player.
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/PlayerResource"
+        $ref: "./schemas.yaml#/Player"
 
 201NewScoreCard:
   description: A score card resource created from a new score card.
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/ScoreCardResource"
+        $ref: "./schemas.yaml#/ScoreCard"
 
 201StartGame:
   description: A new Game resource.
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/GameResource"
+        $ref: "./schemas.yaml#/Game"
 
 # Error responses:
 400BadRequest:
@@ -80,11 +80,11 @@
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/ErrorResource"
+        $ref: "./schemas.yaml#/Error"
 
 404NotFound:
   description: Resource not found.
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/ErrorResource"
+        $ref: "./schemas.yaml#/Error"

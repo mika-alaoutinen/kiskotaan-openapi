@@ -20,30 +20,30 @@ servers:
  
 components:
   schemas:
-    NewCourseResource:
-      $ref: "./schemas.yaml#/NewCourseResource"
-    NewGameResource:
-      $ref: "./schemas.yaml#/NewGameResource"
-    NewPlayerResource:
-      $ref: "./schemas.yaml#/NewPlayerResource"
-    NewScoreCardResource:
-      $ref: "./schemas.yaml#/NewScoreCardResource"
-    CourseResource:
-      $ref: "./schemas.yaml#/CourseResource"
-    ErrorResource:
-      $ref: "./schemas.yaml#/ErrorResource"
-    GameResource:
-      $ref: "./schemas.yaml#/GameResource"
-    HoleResource:
-      $ref: "./schemas.yaml#/HoleResource"
-    PlayerResource:
-      $ref: "./schemas.yaml#/PlayerResource"
-    ScoreCardResource:
-      $ref: "./schemas.yaml#/ScoreCardResource"
-    ScoreRowResource:
-      $ref: "./schemas.yaml#/ScoreRowResource"
-    ScoreResource:
-      $ref: "./schemas.yaml#/ScoreResource"
+    NewCourse:
+      $ref: "./schemas.yaml#/NewCourse"
+    NewGame:
+      $ref: "./schemas.yaml#/NewGame"
+    NewPlayer:
+      $ref: "./schemas.yaml#/NewPlayer"
+    NewScoreCard:
+      $ref: "./schemas.yaml#/NewScoreCard"
+    Course:
+      $ref: "./schemas.yaml#/Course"
+    Error:
+      $ref: "./schemas.yaml#/Error"
+    Game:
+      $ref: "./schemas.yaml#/Game"
+    Hole:
+      $ref: "./schemas.yaml#/Hole"
+    Player:
+      $ref: "./schemas.yaml#/Player"
+    ScoreCard:
+      $ref: "./schemas.yaml#/ScoreCard"
+    ScoreRow:
+      $ref: "./schemas.yaml#/ScoreRow"
+    Score:
+      $ref: "./schemas.yaml#/Score"
 
 paths:
   /courses:

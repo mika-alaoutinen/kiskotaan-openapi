@@ -1,8 +1,11 @@
 # New objects received from client (without IDs):
-NewCourseResource:
+NewCourse:
   type: object
   description: A new disc golf course without ID.
-  required: [ name, holes, par ]
+  required:
+    - name
+    - holes
+    - par
   properties:
     name:
       type: string
@@ -11,32 +14,36 @@ NewCourseResource:
     holes:
       type: array
       items:
-        $ref: "#/HoleResource"
+        $ref: "#/Hole"
       minItems: 1
       maxItems: 30
 
-NewGameResource:
+NewGame:
   type: object
   description: Contains ID for the scorecard that is related to the new game.
-  required: [ scoreCardId ]
+  required:
+    - scoreCardId
   properties:
     scoreCardId:
       type: number
 
-NewPlayerResource:
+NewPlayer:
   type: object
   description: A new player without ID.
-  required: [ name ]
+  required:
+    - name
   properties:
     name:
       type: string
       minLength: 3
       maxLength: 40
 
-NewScoreCardResource:
+NewScoreCard:
   type: object
   description: A new  score card with selected course and players. Course and players are specified by IDs.
-  required: [ course, players ]
+  required:
+    - course
+    - players
   properties:
     courseId:
       type: number
@@ -49,9 +56,13 @@ NewScoreCardResource:
       uniqueItems: true
 
 # Schemas returned by server:
-CourseResource:
+Course:
   description: A disc golf course.
-  required: [ id, name, holes, par ]
+  required:
+    - id
+    - name
+    - holes
+    - par
   properties:
     id:
       type: number
@@ -62,24 +73,31 @@ CourseResource:
     holes:
       type: array
       items:
-        $ref: "#/HoleResource"
+        $ref: "#/Hole"
       minItems: 1
       maxItems: 30
 
-ErrorResource:
+Error:
   type: object
   description: An error resource with a HTTP error code and a message.
-  required: [ code, message ]
+  required:
+    - code
+    - message
   properties:
     code:
       type: string
     message:
       type: string
 
-GameResource:
+Game:
   type: object
   description: Object for persisting the state of a game; that is, a round of disc golf.
-  required: [ id, hasScoreChanged, hole, isOver, scoreCardId ]
+  required:
+    - id
+    - scoreChanged
+    - hole
+    - isOver
+    - scoreCardId
   properties:
     id:
       type: number
@@ -94,10 +112,12 @@ GameResource:
     scoreCardId:
       type: number
     
-HoleResource:
+Hole:
   type: object
   description: A hole in a disc golf course.
-  required: [ number, par ]
+  required:
+    - number
+    - par
   properties:
     number:
       type: integer
@@ -111,9 +131,11 @@ HoleResource:
       type: integer
       minimum: 1
 
-PlayerResource:
+Player:
   description: A player returned from backend, who has an ID.
-  required: [ id, name ]
+  required:
+    - id
+    - name
   properties:
     id:
       type: number
@@ -122,31 +144,37 @@ PlayerResource:
       minLength: 3
       maxLength: 40
 
-ScoreCardResource:
+ScoreCard:
   description: A score card for tracking scores for a group of players.
-  required: [ id, course, players, rows ]
+  required:
+    - id
+    - course
+    - players
+    - rows
   properties:
     id:
       type: number
     course:
-      $ref: "#/CourseResource"
+      $ref: "#/Course"
     players:
       type: array
       items:
-        $ref: "#/PlayerResource"
+        $ref: "#/Player"
       minItems: 1
       maxItems: 5
     rows:
       type: array
       items:
-        $ref: "#/ScoreRowResource"
+        $ref: "#/ScoreRow"
       minItems: 1
       maxItems: 30
     
-ScoreRowResource:
+ScoreRow:
   type: object
   description: The scores for a single hole.
-  required: [ hole, scores ]
+  required:
+    - hole
+    - scores
   properties:
     hole:
       type: integer
@@ -155,14 +183,16 @@ ScoreRowResource:
     scores:
       type: array
       items:
-        $ref: "#/ScoreResource"
+        $ref: "#/Score"
       minItems: 1
       maxItems: 5
 
-ScoreResource:
+Score:
   type: object
   description: A score for a player
-  required: [ playerId, score ]
+  required:
+    - playerId
+    - score
   properties:
     playerId:
       type: number
