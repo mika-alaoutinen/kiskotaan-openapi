@@ -86,7 +86,7 @@
 						<configuration>
 							<configurationFile>${project.basedir}/src/generatorConfig.yaml</configurationFile>
 							<ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
-							<inputSpec>${project.basedir}/src/openapi/api.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/openapi/openapi.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<output>build</output>
 						</configuration>
