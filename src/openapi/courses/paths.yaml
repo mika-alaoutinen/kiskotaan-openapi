@@ -14,7 +14,7 @@ Courses:
               items:
                 $ref: "./schemas.yaml#/Course"
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"
 
   post:
     summary: Add new course.
@@ -35,6 +35,6 @@ Courses:
             schema:
               $ref: "./schemas.yaml#/Course"
       400:
-        $ref: "../responses.yaml#/400BadRequest"
+        $ref: "../errors/responses.yaml#/400BadRequest"
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"

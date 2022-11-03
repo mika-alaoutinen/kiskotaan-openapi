@@ -18,9 +18,9 @@ ScoreCards:
             schema:
               $ref: "./schemas.yaml#/ScoreCard"
       400:
-        $ref: "../responses.yaml#/400BadRequest"
+        $ref: "../errors/responses.yaml#/400BadRequest"
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"
 
 ScoreCard:
   parameters:
@@ -44,9 +44,9 @@ ScoreCard:
             schema:
               $ref: "./schemas.yaml#/ScoreCard"
       404:
-        $ref: "../responses.yaml#/404NotFound"
+        $ref: "../errors/responses.yaml#/404NotFound"
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"
 
   delete:
     summary: Delete score card.
@@ -58,7 +58,7 @@ ScoreCard:
       204:
         description: The score card was deleted successfully.
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"
 
 Scores:
   parameters:
@@ -88,8 +88,8 @@ Scores:
             schema:
               $ref: "./schemas.yaml#/ScoreRow"
       400:
-        $ref: "../responses.yaml#/400BadRequest"
+        $ref: "../errors/responses.yaml#/400BadRequest"
       404:
-        $ref: "../responses.yaml#/404NotFound"
+        $ref: "../errors/responses.yaml#/404NotFound"
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"

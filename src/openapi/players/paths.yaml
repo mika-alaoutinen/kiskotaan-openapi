@@ -14,7 +14,7 @@ Players:
               items:
                 $ref: "./schemas.yaml#/Player"
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"
 
   post:
     summary: Add new player.
@@ -35,9 +35,9 @@ Players:
             schema:
               $ref: "./schemas.yaml#/Player"
       400:
-        $ref: "../responses.yaml#/400BadRequest"
+        $ref: "../errors/responses.yaml#/400BadRequest"
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"
 
 Player:
   parameters:
@@ -61,9 +61,9 @@ Player:
             schema:
               $ref: "./schemas.yaml#/Player"
       404:
-        $ref: "../responses.yaml#/404NotFound"
+        $ref: "../errors/responses.yaml#/404NotFound"
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"
 
   delete:
     summary: Delete a player.
@@ -75,4 +75,4 @@ Player:
       204:
         description: The player was deleted successfully.
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"

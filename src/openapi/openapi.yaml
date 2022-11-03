@@ -51,8 +51,6 @@ components:
       $ref: "./scoreCards/schemas.yaml#/NewScoreCard"
     Course:
       $ref: "./courses/schemas.yaml#/Course"
-    ErrorBody:
-      $ref: "./schemas.yaml#/ErrorBody"
     Game:
       $ref: "./games/schemas.yaml#/Game"
     Hole:
@@ -65,3 +63,5 @@ components:
       $ref: "./scoreCards/schemas.yaml#/ScoreRow"
     Score:
       $ref: "./scoreCards/schemas.yaml#/Score"
+    ErrorBody:
+      $ref: "./errors/schemas.yaml#/ErrorBody"

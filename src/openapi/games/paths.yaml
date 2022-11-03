@@ -18,9 +18,9 @@ Games:
             schema:
               $ref: "./schemas.yaml#/Game"
       400:
-        $ref: "../responses.yaml#/400BadRequest"
+        $ref: "../errors/responses.yaml#/400BadRequest"
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"
 
 Game:
   parameters:
@@ -44,9 +44,9 @@ Game:
             schema:
               $ref: "./schemas.yaml#/Game"
       404:
-        $ref: "../responses.yaml#/404NotFound"    
+        $ref: "../errors/responses.yaml#/404NotFound"
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"
 
   delete:
     summary: Delete game.
@@ -58,7 +58,7 @@ Game:
       204:
         description: The game was deleted successfully.
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"
 
   patch:
     summary: End game.
@@ -74,6 +74,6 @@ Game:
             schema:
               $ref: "./schemas.yaml#/Game"
       400:
-        $ref: "../responses.yaml#/400BadRequest"
+        $ref: "../errors/responses.yaml#/400BadRequest"
       500:
-        $ref: "../responses.yaml#/500ServerError"
+        $ref: "../errors/responses.yaml#/500ServerError"

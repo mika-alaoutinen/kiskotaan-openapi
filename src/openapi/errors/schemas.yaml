@@ -1,4 +1,3 @@
-# Schemas returned by server:
 ErrorBody:
   type: object
   description: An error resource with an error code, a message and a HTTP status.
