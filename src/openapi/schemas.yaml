@@ -1,13 +1,3 @@
-# New objects received from client (without IDs):
-NewGame:
-  type: object
-  description: Contains ID for the scorecard that is related to the new game.
-  required:
-    - scoreCardId
-  properties:
-    scoreCardId:
-      type: number
-
 # Schemas returned by server:
 ErrorBody:
   type: object
@@ -22,27 +12,4 @@ ErrorBody:
     message:
       type: string
     status:
-      type: number
-
-Game:
-  type: object
-  description: Object for persisting the state of a game; that is, a round of disc golf.
-  required:
-    - id
-    - scoreChanged
-    - hole
-    - isOver
-    - scoreCardId
-  properties:
-    id:
-      type: number
-    scoreChanged:
-      type: boolean
-    hole:
-      type: integer
-      minimum: 1
-      maximum: 30
-    gameOver:
-      type: boolean
-    scoreCardId:
       type: number
