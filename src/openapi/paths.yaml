@@ -3,16 +3,23 @@ Courses:
     summary: Get courses.
     description: Returns a list of all courses.
     operationId: getCourses
-    tags: [ Courses ]
+    tags:
+      - Courses
     responses:
       200:
-        $ref: "./responses.yaml#/200AllCourses"
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas.yaml#/Course"
 
   post:
     summary: Add new course.
     description: Add a new course.
     operationId: addCourse
-    tags: [ Courses ]
+    tags:
+      - Courses
     requestBody:
       required: true
       content:
@@ -21,7 +28,10 @@ Courses:
             $ref: "./schemas.yaml#/NewCourse"
     responses:
       201:
-        $ref: "./responses.yaml#/201NewCourse"
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Course"
       400:
         $ref: "./responses.yaml#/400BadRequest"
 
@@ -30,7 +40,8 @@ Games:
     summary: Start new game.
     description: Start a new game. Give score card ID as a request body.
     operationId: startGame
-    tags: [ Game ]
+    tags:
+      - Game
     requestBody:
       required: true
       content:
@@ -39,7 +50,10 @@ Games:
             $ref: "./schemas.yaml#/NewGame"
     responses:
       201:
-        $ref: "./responses.yaml#/201StartGame"
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Game"
       400:
         $ref: "./responses.yaml#/400BadRequest"
 
@@ -56,37 +70,50 @@ Game:
     summary: Get game.
     description: Get an ongoing game by ID.
     operationId: getGame
-    tags: [ Game ]
+    tags:
+      - Game
     responses:
       200:
-        $ref: "./responses.yaml#/200GetGame"
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Game"
       404:
         $ref: "./responses.yaml#/404NotFound"    
-  
+
+  # Ending a game should probably be a PATCH or PUT operation.
   delete:
     summary: End game.
     description: End an ongoing game. Give game ID as a path parameter.
     operationId: endGame
-    tags: [ Game ]
+    tags:
+      - Game
     responses:
       204:
-        description: No Content. The game was ended and deleted successfully.
+        description: The game was ended and deleted successfully.
 
 Players:
   get:
     summary: Get players.
     description: Returns a list of all players.
     operationId: getPlayers
-    tags: [ Players ]
+    tags:
+      - Players
     responses:
       200:
-        $ref: "./responses.yaml#/200AllPlayers"
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas.yaml#/Player"
 
   post:
     summary: Add new player.
     description: Add a new player.
     operationId: addPlayer
-    tags: [ Players ]
+    tags:
+      - Players
     requestBody:
       required: true
       content:
@@ -95,7 +122,10 @@ Players:
             $ref: "./schemas.yaml#/NewPlayer"
     responses:
       201:
-        $ref: "./responses.yaml#/201NewPlayer"
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Player"
       400:
         $ref: "./responses.yaml#/400BadRequest"
 
@@ -112,27 +142,34 @@ Player:
     summary: Get player by ID.
     description: Get a single player by player ID, given as path parameter.
     operationId: getPlayer
-    tags: [ Players ]
+    tags:
+      - Players
     responses:
       200:
-        $ref: "./responses.yaml#/200Player"
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Player"
       404:
         $ref: "./responses.yaml#/404NotFound"
+
   delete:
-    summary: Delete player.
+    summary: Delete a player.
     description: Delete a player by player ID, given in as path parameter.
     operationId: deletePlayer
-    tags: [ Players ]
+    tags:
+      - Players
     responses:
       204:
-        description: No Content. The player was deleted successfully.
+        description: The player was deleted successfully.
 
 ScoreCards:
   post:
     summary: Add new score card.
     description: Add a new score card. Give course and players as request body, wrapped in a NewScoreCard resource.
     operationId: addScoreCard
-    tags: [ ScoreCards ]
+    tags:
+      - ScoreCards
     requestBody:
       required: true
       content:
@@ -141,7 +178,10 @@ ScoreCards:
             $ref: "./schemas.yaml#/NewScoreCard"
     responses:
       201:
-        $ref: "./responses.yaml#/201NewScoreCard"
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/ScoreCard"
       400:
         $ref: "./responses.yaml#/400BadRequest"
 
@@ -158,10 +198,14 @@ ScoreCard:
     summary: Get score card.
     description: Get a single score card by ID.
     operationId: getScoreCard
-    tags: [ ScoreCards ]
+    tags:
+      - ScoreCards
     responses:
       200:
-        $ref: "./responses.yaml#/200ScoreCard"
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/ScoreCard"
       404:
         $ref: "./responses.yaml#/404NotFound"
 
@@ -169,10 +213,11 @@ ScoreCard:
     summary: Delete score card.
     description: Delete a score card by ID.
     operationId: deleteScoreCard
-    tags: [ ScoreCards ]
+    tags:
+      - ScoreCards
     responses:
       204:
-        description: No content. The score card was deleted successfully.
+        description: The score card was deleted successfully.
 
 Scores:
   parameters:
@@ -187,7 +232,8 @@ Scores:
     summary: Update scores on a score card.
     description: Update a single score row on a score card.
     operationId: updateScores
-    tags: [ ScoreCards ]
+    tags:
+      - ScoreCards
     requestBody:
       required: true
       content:
@@ -196,7 +242,10 @@ Scores:
             $ref: "./schemas.yaml#/ScoreRow"
     responses:
       200:
-        $ref: "./responses.yaml#/200Scores"
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/ScoreRow"
       400:
         $ref: "./responses.yaml#/400BadRequest"
       404:
