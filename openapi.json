@@ -101,6 +101,194 @@
         "tags" : [ "Courses" ]
       }
     },
+    "/courses/{id}" : {
+      "delete" : {
+        "description" : "Delete course by ID.",
+        "operationId" : "deleteCourse",
+        "responses" : {
+          "204" : {
+            "description" : "The course was deleted successfully."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Delete course.",
+        "tags" : [ "Courses" ]
+      },
+      "get" : {
+        "description" : "Find a single course by ID.",
+        "operationId" : "getCourse",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Find course by ID.",
+        "tags" : [ "Courses" ]
+      },
+      "parameters" : [ {
+        "description" : "Course id.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "number"
+        }
+      } ]
+    },
+    "/courses/{id}/name" : {
+      "put" : {
+        "description" : "Update the given course's name.",
+        "operationId" : "updateCourseName",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "description" : "New course name.",
+                "type" : "string"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Bad request."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Update course name.",
+        "tags" : [ "Courses" ]
+      }
+    },
+    "/courses/{id}/hole/{holeId}" : {
+      "put" : {
+        "description" : "Update a hole identified by course ID and hole ID.",
+        "operationId" : "updateHole",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Hole"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Bad request."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Update a single hole of a given course.",
+        "tags" : [ "Courses" ]
+      }
+    },
     "/players" : {
       "get" : {
         "description" : "Returns a list of all players.",
@@ -604,6 +792,15 @@
         },
         "description" : "Unknown server error."
       },
+      "CourseResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Course"
+            }
+          }
+        }
+      },
       "400BadRequest" : {
         "content" : {
           "application/json" : {
@@ -678,7 +875,7 @@
           },
           "par" : {
             "maximum" : 6,
-            "minimum" : 1,
+            "minimum" : 2,
             "type" : "integer"
           },
           "distance" : {
