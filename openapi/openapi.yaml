@@ -1,5 +1,5 @@
 openapi: 3.0.3
- 
+
 info:
   title: Kiskotaan OpenAPI
   version: 0.2.0
@@ -17,10 +17,16 @@ tags:
 
 servers:
   - url: http://localhost:8080/api/
- 
+
 paths:
   /courses:
     $ref: "./courses/paths.yaml#/Courses"
+  /courses/{id}:
+    $ref: "./courses/paths.yaml#/Course"
+  /courses/{id}/name:
+    $ref: "./courses/paths.yaml#/UpdateCourseName"
+  /courses/{id}/hole/{holeId}:
+    $ref: "./courses/paths.yaml#/UpdateHole"
 
   /players:
     $ref: "./players/paths.yaml#/Players"
@@ -31,7 +37,7 @@ paths:
     $ref: "./games/paths.yaml#/Games"
   /games/{id}:
     $ref: "./games/paths.yaml#/Game"
-  
+
   /scoreCards:
     $ref: "./scoreCards/paths.yaml#/ScoreCards"
   /scoreCards/{id}:

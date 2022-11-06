@@ -30,11 +30,96 @@ Courses:
             $ref: "./schemas.yaml#/NewCourse"
     responses:
       201:
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/Course"
+        $ref: "#/CourseResponse"
       400:
         $ref: "../errors/responses.yaml#/400BadRequest"
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
+
+Course:
+  parameters:
+    - in: path
+      name: id
+      description: Course id.
+      required: true
+      schema:
+        type: number
+
+  delete:
+    summary: Delete course.
+    description: Delete course by ID.
+    operationId: deleteCourse
+    tags:
+      - Courses
+    responses:
+      204:
+        description: The course was deleted successfully.
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+  get:
+    summary: Find course by ID.
+    description: Find a single course by ID.
+    operationId: getCourse
+    tags:
+      - Courses
+    responses:
+      200:
+        $ref: "#/CourseResponse"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+UpdateCourseName:
+  put:
+    summary: Update course name.
+    description: Update the given course's name.
+    operationId: updateCourseName
+    tags:
+      - Courses
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            description: New course name.
+            type: string
+    responses:
+      200:
+        $ref: "#/CourseResponse"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+UpdateHole:
+  put:
+    summary: Update a single hole of a given course.
+    description: Update a hole identified by course ID and hole ID.
+    operationId: updateHole
+    tags:
+      - Courses
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/Hole"
+    responses:
+      200:
+        $ref: "#/CourseResponse"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+CourseResponse:
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Course"
