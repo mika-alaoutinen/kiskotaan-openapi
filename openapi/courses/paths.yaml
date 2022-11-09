@@ -1,6 +1,6 @@
 Courses:
   get:
-    summary: Get courses.
+    summary: Get all courses.
     description: Returns a list of all courses.
     operationId: getCourses
     tags:
