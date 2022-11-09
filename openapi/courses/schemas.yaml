@@ -4,7 +4,6 @@ NewCourse:
   required:
     - name
     - holes
-    - par
   properties:
     name:
       type: string
@@ -13,7 +12,7 @@ NewCourse:
     holes:
       type: array
       items:
-        $ref: "#/Hole"
+        $ref: "#/NewHole"
       minItems: 1
       maxItems: 30
 
@@ -24,8 +23,16 @@ Course:
   properties:
     id:
       type: number
-  allOf:
-    - $ref: "#/NewCourse"
+    name:
+      type: string
+      minLength: 3
+      maxLength: 40
+    holes:
+      type: array
+      items:
+        $ref: "#/Hole"
+      minItems: 1
+      maxItems: 30
 
 NewHole:
   description: A new course hole without ID.
