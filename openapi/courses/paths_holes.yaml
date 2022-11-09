@@ -34,11 +34,7 @@ Holes:
     tags:
       - Holes
     requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "./schemas.yaml#/NewHole"
+      $ref: "#/HoleRequest"
     responses:
       200:
         $ref: "#/HoleResponse"
@@ -79,11 +75,7 @@ Hole:
     tags:
       - Holes
     requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "./schemas.yaml#/NewHole"
+      $ref: "#/HoleRequest"
     responses:
       200:
         $ref: "#/HoleResponse"
@@ -105,6 +97,13 @@ Hole:
         description: The hole was deleted successfully.
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
+
+HoleRequest:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/NewHole"
 
 HoleResponse:
   content:
