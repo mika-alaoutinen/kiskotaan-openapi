@@ -29,7 +29,7 @@ paths:
     $ref: "./courses/paths.yaml#/UpdateCourseName"
 
   /courses/{id}/hole/{holeId}:
-    $ref: "./courses/paths_holes.yaml#/UpdateHole"
+    $ref: "./courses/paths_holes.yaml#/Hole"
 
   /players:
     $ref: "./players/paths.yaml#/Players"

@@ -1,4 +1,18 @@
-UpdateHole:
+Hole:
+  parameters:
+    - in: path
+      name: id
+      description: Course id.
+      required: true
+      schema:
+        type: number
+    - in: path
+      name: holeId
+      description: Hole id.
+      required: true
+      schema:
+        type: number
+
   put:
     summary: Update a single hole of a given course.
     description: Update a hole identified by course ID and hole ID.
@@ -10,7 +24,7 @@ UpdateHole:
       content:
         application/json:
           schema:
-            $ref: "./schemas.yaml#/Hole"
+            $ref: "./schemas.yaml#/NewHole"
     responses:
       200:
         $ref: "#/HoleResponse"
