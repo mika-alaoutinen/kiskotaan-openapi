@@ -7,13 +7,15 @@ info:
 
 tags:
   - name: Courses
-    description: CRUD operations for handling the courses registered in the application.
+    description: CRUD operations for handling courses.
+  - name: Holes
+    description: CRUD operations for handling a course's holes.
   - name: Players
-    description: CRUD operations for handling the players registered in the application.
+    description: CRUD operations for handling players.
   - name: Game
     description: Operations for starting and ending a game.
   - name: ScoreCards
-    description: Operations for adding, updating and deleting score cards.
+    description: CRUD operations for handling score cards.
 
 servers:
   - url: http://localhost:8080/api/
@@ -25,8 +27,9 @@ paths:
     $ref: "./courses/paths.yaml#/Course"
   /courses/{id}/name:
     $ref: "./courses/paths.yaml#/UpdateCourseName"
+
   /courses/{id}/hole/{holeId}:
-    $ref: "./courses/paths.yaml#/UpdateHole"
+    $ref: "./courses/paths_holes.yaml#/UpdateHole"
 
   /players:
     $ref: "./players/paths.yaml#/Players"
@@ -51,6 +54,9 @@ components:
       $ref: "./courses/schemas.yaml#/NewCourse"
     Course:
       $ref: "./courses/schemas.yaml#/Course"
+
+    NewHole:
+      $ref: "./courses/schemas.yaml#/NewHole"
     Hole:
       $ref: "./courses/schemas.yaml#/Hole"
 

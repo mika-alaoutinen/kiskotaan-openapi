@@ -38,12 +38,13 @@ Course:
       minItems: 1
       maxItems: 30
 
-Hole:
+NewHole:
+  description: A new course hole without ID.
   type: object
-  description: A hole in a disc golf course.
   required:
     - number
     - par
+    - distance
   properties:
     number:
       type: integer
@@ -56,3 +57,14 @@ Hole:
     distance:
       type: integer
       minimum: 1
+
+Hole:
+  type: object
+  description: A hole in a disc golf course.
+  required:
+    - id
+  properties:
+    id:
+      type: number
+  allOf:
+    - $ref: "#/NewHole"
