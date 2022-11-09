@@ -1,6 +1,6 @@
 Courses:
   get:
-    summary: Get courses.
+    summary: Get all courses.
     description: Returns a list of all courses.
     operationId: getCourses
     tags:
@@ -72,7 +72,7 @@ Course:
         $ref: "../errors/responses.yaml#/500ServerError"
 
 UpdateCourseName:
-  put:
+  patch:
     summary: Update course name.
     description: Update the given course's name.
     operationId: updateCourseName
@@ -85,29 +85,6 @@ UpdateCourseName:
           schema:
             description: New course name.
             type: string
-    responses:
-      200:
-        $ref: "#/CourseResponse"
-      400:
-        $ref: "../errors/responses.yaml#/400BadRequest"
-      404:
-        $ref: "../errors/responses.yaml#/404NotFound"
-      500:
-        $ref: "../errors/responses.yaml#/500ServerError"
-
-UpdateHole:
-  put:
-    summary: Update a single hole of a given course.
-    description: Update a hole identified by course ID and hole ID.
-    operationId: updateHole
-    tags:
-      - Courses
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "./schemas.yaml#/Hole"
     responses:
       200:
         $ref: "#/CourseResponse"
