@@ -92,6 +92,6 @@ PlayerRequest:
 
 PlayerResponse:
   content:
-  application/json:
-    schema:
-      $ref: "./schemas.yaml#/Player"
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Player"
