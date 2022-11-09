@@ -491,7 +491,15 @@
           "$ref" : "#/components/requestBodies/PlayerRequest"
         },
         "responses" : {
-          "201" : { },
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            }
+          },
           "400" : {
             "content" : {
               "application/json" : {
@@ -543,7 +551,15 @@
         "description" : "Get a single player by player ID.",
         "operationId" : "getPlayer",
         "responses" : {
-          "200" : { },
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            }
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -584,7 +600,15 @@
           "$ref" : "#/components/requestBodies/PlayerRequest"
         },
         "responses" : {
-          "200" : { },
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            }
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -1025,7 +1049,15 @@
           }
         }
       },
-      "PlayerResponse" : { }
+      "PlayerResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Player"
+            }
+          }
+        }
+      }
     },
     "schemas" : {
       "NewCourse" : {
@@ -1038,24 +1070,34 @@
           },
           "holes" : {
             "items" : {
-              "$ref" : "#/components/schemas/Hole"
+              "$ref" : "#/components/schemas/NewHole"
             },
             "maxItems" : 30,
             "minItems" : 1,
             "type" : "array"
           }
         },
-        "required" : [ "holes", "name", "par" ],
+        "required" : [ "holes", "name" ],
         "type" : "object"
       },
       "Course" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/NewCourse"
-        } ],
         "description" : "A disc golf course.",
         "properties" : {
           "id" : {
             "type" : "number"
+          },
+          "name" : {
+            "maxLength" : 40,
+            "minLength" : 3,
+            "type" : "string"
+          },
+          "holes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Hole"
+            },
+            "maxItems" : 30,
+            "minItems" : 1,
+            "type" : "array"
           }
         },
         "required" : [ "id" ]
@@ -1097,28 +1139,31 @@
       "NewPlayer" : {
         "description" : "A new player without ID.",
         "properties" : {
-          "name" : {
+          "firstName" : {
             "maxLength" : 40,
-            "minLength" : 3,
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "lastName" : {
+            "maxLength" : 40,
+            "minLength" : 1,
             "type" : "string"
           }
         },
-        "required" : [ "name" ],
+        "required" : [ "firstName", "lastName" ],
         "type" : "object"
       },
       "Player" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/NewPlayer"
+        } ],
         "description" : "A player returned from backend, who has an ID.",
         "properties" : {
           "id" : {
             "type" : "number"
-          },
-          "name" : {
-            "maxLength" : 40,
-            "minLength" : 3,
-            "type" : "string"
           }
         },
-        "required" : [ "id", "name" ]
+        "required" : [ "id" ]
       },
       "Game" : {
         "description" : "Object for persisting the state of a game; that is, a round of disc golf.",
