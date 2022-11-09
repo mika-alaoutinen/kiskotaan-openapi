@@ -1,6 +1,6 @@
 Players:
   get:
-    summary: Get players.
+    summary: Get all players.
     description: Returns a list of all players.
     operationId: getPlayers
     tags:
@@ -23,17 +23,10 @@ Players:
     tags:
       - Players
     requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "./schemas.yaml#/NewPlayer"
+      $ref: "#/PlayerRequest"
     responses:
       201:
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/Player"
+        $ref: "#/PlayerResponse"
       400:
         $ref: "../errors/responses.yaml#/400BadRequest"
       500:
@@ -50,16 +43,29 @@ Player:
 
   get:
     summary: Get player by ID.
-    description: Get a single player by player ID, given as path parameter.
+    description: Get a single player by player ID.
     operationId: getPlayer
     tags:
       - Players
     responses:
       200:
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/Player"
+        $ref: "#/PlayerResponse"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+  put:
+    summary: Update player by ID.
+    description: Update a single player by player ID.
+    operationId: updatePlayer
+    tags:
+      - Players
+    requestBody:
+      $ref: "#/PlayerRequest"
+    responses:
+      200:
+        $ref: "#/PlayerResponse"
       404:
         $ref: "../errors/responses.yaml#/404NotFound"
       500:
@@ -67,7 +73,7 @@ Player:
 
   delete:
     summary: Delete a player.
-    description: Delete a player by player ID, given in as path parameter.
+    description: Delete a player by player ID.
     operationId: deletePlayer
     tags:
       - Players
@@ -76,3 +82,16 @@ Player:
         description: The player was deleted successfully.
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
+
+PlayerRequest:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/NewPlayer"
+
+PlayerResponse:
+  content:
+  application/json:
+    schema:
+      $ref: "./schemas.yaml#/Player"
