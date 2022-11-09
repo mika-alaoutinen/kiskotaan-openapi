@@ -481,32 +481,17 @@
             "description" : "Unknown server error."
           }
         },
-        "summary" : "Get players.",
+        "summary" : "Get all players.",
         "tags" : [ "Players" ]
       },
       "post" : {
         "description" : "Add a new player.",
         "operationId" : "addPlayer",
         "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/NewPlayer"
-              }
-            }
-          },
-          "required" : true
+          "$ref" : "#/components/requestBodies/PlayerRequest"
         },
         "responses" : {
-          "201" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Player"
-                }
-              }
-            }
-          },
+          "201" : { },
           "400" : {
             "content" : {
               "application/json" : {
@@ -534,7 +519,7 @@
     },
     "/players/{id}" : {
       "delete" : {
-        "description" : "Delete a player by player ID, given in as path parameter.",
+        "description" : "Delete a player by player ID.",
         "operationId" : "deletePlayer",
         "responses" : {
           "204" : {
@@ -555,18 +540,10 @@
         "tags" : [ "Players" ]
       },
       "get" : {
-        "description" : "Get a single player by player ID, given as path parameter.",
+        "description" : "Get a single player by player ID.",
         "operationId" : "getPlayer",
         "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Player"
-                }
-              }
-            }
-          },
+          "200" : { },
           "404" : {
             "content" : {
               "application/json" : {
@@ -599,7 +576,39 @@
         "schema" : {
           "type" : "number"
         }
-      } ]
+      } ],
+      "put" : {
+        "description" : "Update a single player by player ID.",
+        "operationId" : "updatePlayer",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PlayerRequest"
+        },
+        "responses" : {
+          "200" : { },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Update player by ID.",
+        "tags" : [ "Players" ]
+      }
     },
     "/games" : {
       "post" : {
@@ -955,6 +964,16 @@
           }
         },
         "required" : true
+      },
+      "PlayerRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/NewPlayer"
+            }
+          }
+        },
+        "required" : true
       }
     },
     "responses" : {
@@ -1005,7 +1024,8 @@
             }
           }
         }
-      }
+      },
+      "PlayerResponse" : { }
     },
     "schemas" : {
       "NewCourse" : {
