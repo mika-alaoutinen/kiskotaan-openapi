@@ -13,10 +13,7 @@ ScoreCards:
             $ref: "./schemas.yaml#/NewScoreCard"
     responses:
       201:
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/ScoreCard"
+        $ref: "#/ScoreCardResponse"
       400:
         $ref: "../errors/responses.yaml#/400BadRequest"
       500:
@@ -39,10 +36,7 @@ ScoreCard:
       - ScoreCards
     responses:
       200:
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/ScoreCard"
+        $ref: "#/ScoreCardResponse"
       404:
         $ref: "../errors/responses.yaml#/404NotFound"
       500:
@@ -83,6 +77,7 @@ Scores:
             $ref: "./schemas.yaml#/ScoreRow"
     responses:
       200:
+        description: OK.
         content:
           application/json:
             schema:
@@ -93,3 +88,10 @@ Scores:
         $ref: "../errors/responses.yaml#/404NotFound"
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
+
+ScoreCardResponse:
+  description: OK.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/ScoreCard"

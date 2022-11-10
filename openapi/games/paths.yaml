@@ -13,10 +13,7 @@ Games:
             $ref: "./schemas.yaml#/NewGame"
     responses:
       201:
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/Game"
+        $ref: "#/GameResponse"
       400:
         $ref: "../errors/responses.yaml#/400BadRequest"
       500:
@@ -39,10 +36,7 @@ Game:
       - Game
     responses:
       200:
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/Game"
+        $ref: "#/GameResponse"
       404:
         $ref: "../errors/responses.yaml#/404NotFound"
       500:
@@ -77,3 +71,10 @@ Game:
         $ref: "../errors/responses.yaml#/400BadRequest"
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
+
+GameResponse:
+  description: OK.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Game"
