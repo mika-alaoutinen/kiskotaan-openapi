@@ -7,6 +7,7 @@ Players:
       - Players
     responses:
       200:
+        description: OK.
         content:
           application/json:
             schema:
@@ -91,6 +92,7 @@ PlayerRequest:
         $ref: "./schemas.yaml#/NewPlayer"
 
 PlayerResponse:
+  description: OK.
   content:
     application/json:
       schema:

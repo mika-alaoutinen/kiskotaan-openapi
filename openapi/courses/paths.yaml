@@ -7,6 +7,7 @@ Courses:
       - Courses
     responses:
       200:
+        description: OK.
         content:
           application/json:
             schema:
@@ -72,6 +73,14 @@ Course:
         $ref: "../errors/responses.yaml#/500ServerError"
 
 UpdateCourseName:
+  parameters:
+    - in: path
+      name: id
+      description: Course id.
+      required: true
+      schema:
+        type: number
+
   patch:
     summary: Update course name.
     description: Update the given course's name.
@@ -96,6 +105,7 @@ UpdateCourseName:
         $ref: "../errors/responses.yaml#/500ServerError"
 
 CourseResponse:
+  description: OK.
   content:
     application/json:
       schema:
