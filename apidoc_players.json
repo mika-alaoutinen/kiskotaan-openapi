@@ -153,6 +153,7 @@
         "name" : "id",
         "required" : true,
         "schema" : {
+          "format" : "int64",
           "type" : "number"
         }
       } ],
