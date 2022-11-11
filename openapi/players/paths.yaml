@@ -40,8 +40,7 @@ Player:
       description: Player's ID.
       required: true
       schema:
-        type: number
-        format: int64
+        type: integer
 
   get:
     summary: Get player by ID.
