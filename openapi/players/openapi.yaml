@@ -1,0 +1,28 @@
+openapi: 3.0.3
+
+info:
+  title: Players OpenAPI
+  version: 0.1.0
+  description: API definition for Kiskotaan players service.
+
+tags:
+  - name: Players
+    description: CRUD operations for handling players.
+
+servers:
+  - url: http://localhost:8081/api/
+
+paths:
+  /players:
+    $ref: "./paths.yaml#/Players"
+  /players/{id}:
+    $ref: "./paths.yaml#/Player"
+
+components:
+  schemas:
+    NewPlayer:
+      $ref: "./schemas.yaml#/NewPlayer"
+    Player:
+      $ref: "./schemas.yaml#/Player"
+    ErrorBody:
+      $ref: "../errors/schemas.yaml#/ErrorBody"

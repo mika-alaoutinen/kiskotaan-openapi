@@ -1,5 +1,4 @@
-# Builds the openapi.json schema by using Docker Compose
-# and pushes it to the master branch.
+# Builds the OpenAPI documents by using Docker Compose and pushes them to the master branch.
 name: Master branch workflow
 
 on:
