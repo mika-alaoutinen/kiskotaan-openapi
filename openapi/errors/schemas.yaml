@@ -1,14 +1,23 @@
 ErrorBody:
   type: object
-  description: An error resource with an error code, a message and a HTTP status.
+  description: An error resource with that matches Spring's default error format.
   required:
     - code
     - message
     - status
   properties:
-    code:
+    timestamp:
+      type: string
+      format: date-time
+    status:
+      description: HTTP status code.
+      type: integer
+    error:
+      description: Error status as text.
       type: string
     message:
+      description: Custom error message.
       type: string
-    status:
-      type: number
+    path:
+      description: Endpoint that was called.
+      type: string
