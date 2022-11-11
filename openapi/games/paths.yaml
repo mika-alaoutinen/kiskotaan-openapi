@@ -27,6 +27,7 @@ Game:
       required: true
       schema:
         type: number
+        format: int64
 
   get:
     summary: Get game.
