@@ -285,16 +285,27 @@
         "required" : [ "id" ]
       },
       "ErrorBody" : {
-        "description" : "An error resource with an error code, a message and a HTTP status.",
+        "description" : "An error resource with that matches Spring's default error format.",
         "properties" : {
-          "code" : {
-            "type" : "string"
-          },
-          "message" : {
+          "timestamp" : {
+            "format" : "date-time",
             "type" : "string"
           },
           "status" : {
-            "type" : "number"
+            "description" : "HTTP status code.",
+            "type" : "integer"
+          },
+          "error" : {
+            "description" : "Error status as text.",
+            "type" : "string"
+          },
+          "message" : {
+            "description" : "Custom error message.",
+            "type" : "string"
+          },
+          "path" : {
+            "description" : "Endpoint that was called.",
+            "type" : "string"
           }
         },
         "required" : [ "code", "message", "status" ],
