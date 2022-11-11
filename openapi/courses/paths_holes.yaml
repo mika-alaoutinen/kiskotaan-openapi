@@ -5,8 +5,7 @@ Holes:
       description: Course id.
       required: true
       schema:
-        type: number
-        format: int64
+        type: integer
 
   get:
     summary: Get all holes of a given course.
@@ -54,8 +53,7 @@ Hole:
       description: Hole id.
       required: true
       schema:
-        type: number
-        format: int64
+        type: integer
 
   get:
     summary: Get a single hole of a given course.

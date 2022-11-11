@@ -26,8 +26,7 @@ ScoreCard:
       description: Score card ID.
       required: true
       schema:
-        type: number
-        format: int64
+        type: integer
 
   get:
     summary: Get score card.
@@ -62,8 +61,7 @@ Scores:
       description: Score card ID.
       required: true
       schema:
-        type: number
-        format: int64
+        type: integer
 
   put:
     summary: Update scores on a score card.

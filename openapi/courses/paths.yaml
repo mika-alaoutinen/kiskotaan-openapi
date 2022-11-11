@@ -44,8 +44,7 @@ Course:
       description: Course id.
       required: true
       schema:
-        type: number
-        format: int64
+        type: integer
 
   delete:
     summary: Delete course.
@@ -80,8 +79,7 @@ UpdateCourseName:
       description: Course id.
       required: true
       schema:
-        type: number
-        format: int64
+        type: integer
 
   patch:
     summary: Update course name.
