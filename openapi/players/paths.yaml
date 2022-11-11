@@ -41,6 +41,7 @@ Player:
       required: true
       schema:
         type: number
+        format: int64
 
   get:
     summary: Get player by ID.

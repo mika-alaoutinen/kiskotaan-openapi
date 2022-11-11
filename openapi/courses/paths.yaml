@@ -45,6 +45,7 @@ Course:
       required: true
       schema:
         type: number
+        format: int64
 
   delete:
     summary: Delete course.
@@ -80,6 +81,7 @@ UpdateCourseName:
       required: true
       schema:
         type: number
+        format: int64
 
   patch:
     summary: Update course name.
