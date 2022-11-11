@@ -1,6 +1,6 @@
 ErrorBody:
   type: object
-  description: An error resource with an error code, a message and a HTTP status.
+  description: An error resource with that matches Spring's default error format.
   required:
     - code
     - message
