@@ -1,0 +1,305 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "description" : "API definition for Kiskotaan players service.",
+    "title" : "Players OpenAPI",
+    "version" : "0.1.0"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8081/api/"
+  } ],
+  "tags" : [ {
+    "description" : "CRUD operations for handling players.",
+    "name" : "Players"
+  } ],
+  "paths" : {
+    "/players" : {
+      "get" : {
+        "description" : "Returns a list of all players.",
+        "operationId" : "getPlayers",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Player"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get all players.",
+        "tags" : [ "Players" ]
+      },
+      "post" : {
+        "description" : "Add a new player.",
+        "operationId" : "addPlayer",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PlayerRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Bad request."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Add new player.",
+        "tags" : [ "Players" ]
+      }
+    },
+    "/players/{id}" : {
+      "delete" : {
+        "description" : "Delete a player by player ID.",
+        "operationId" : "deletePlayer",
+        "responses" : {
+          "204" : {
+            "description" : "The player was deleted successfully."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Delete a player.",
+        "tags" : [ "Players" ]
+      },
+      "get" : {
+        "description" : "Get a single player by player ID.",
+        "operationId" : "getPlayer",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get player by ID.",
+        "tags" : [ "Players" ]
+      },
+      "parameters" : [ {
+        "description" : "Player's ID.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "number"
+        }
+      } ],
+      "put" : {
+        "description" : "Update a single player by player ID.",
+        "operationId" : "updatePlayer",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PlayerRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Update player by ID.",
+        "tags" : [ "Players" ]
+      }
+    }
+  },
+  "components" : {
+    "requestBodies" : {
+      "PlayerRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/NewPlayer"
+            }
+          }
+        },
+        "required" : true
+      }
+    },
+    "responses" : {
+      "500ServerError" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorBody"
+            }
+          }
+        },
+        "description" : "Unknown server error."
+      },
+      "PlayerResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Player"
+            }
+          }
+        },
+        "description" : "OK."
+      },
+      "400BadRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorBody"
+            }
+          }
+        },
+        "description" : "Bad request."
+      },
+      "404NotFound" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorBody"
+            }
+          }
+        },
+        "description" : "Resource not found."
+      }
+    },
+    "schemas" : {
+      "NewPlayer" : {
+        "description" : "A new player without ID.",
+        "properties" : {
+          "firstName" : {
+            "maxLength" : 40,
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "lastName" : {
+            "maxLength" : 40,
+            "minLength" : 1,
+            "type" : "string"
+          }
+        },
+        "required" : [ "firstName", "lastName" ],
+        "type" : "object"
+      },
+      "Player" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/NewPlayer"
+        } ],
+        "description" : "A player returned from backend, who has an ID.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "id" ]
+      },
+      "ErrorBody" : {
+        "description" : "An error resource with an error code, a message and a HTTP status.",
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "code", "message", "status" ],
+        "type" : "object"
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+openapi: 3.0.3
+
+info:
+  title: Courses OpenAPI
+  version: 0.1.0
+  description: API definition for Kiskotaan courses service.
+
+tags:
+  - name: Courses
+    description: CRUD operations for handling courses.
+
+servers:
+  - url: http://localhost:8082/api/
+
+paths:
+  /courses:
+    $ref: "./paths.yaml#/Courses"
+  /courses/{id}:
+    $ref: "./paths.yaml#/Course"
+  /courses/{id}/name:
+    $ref: "./paths.yaml#/UpdateCourseName"
+  /courses/{id}/holes:
+    $ref: "./paths_holes.yaml#/Holes"
+  /holes/{id}:
+    $ref: "./paths_holes.yaml#/Hole"
+
+components:
+  schemas:
+    NewCourse:
+      $ref: "./schemas.yaml#/NewCourse"
+    Course:
+      $ref: "./schemas.yaml#/Course"
+    NewHole:
+      $ref: "./schemas.yaml#/NewHole"
+    Hole:
+      $ref: "./schemas.yaml#/Hole"
+    ErrorBody:
+      $ref: "../errors/schemas.yaml#/ErrorBody"

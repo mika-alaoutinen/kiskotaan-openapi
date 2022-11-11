@@ -1,0 +1,622 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "description" : "API definition for Kiskotaan courses service.",
+    "title" : "Courses OpenAPI",
+    "version" : "0.1.0"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8082/api/"
+  } ],
+  "tags" : [ {
+    "description" : "CRUD operations for handling courses.",
+    "name" : "Courses"
+  } ],
+  "paths" : {
+    "/courses" : {
+      "get" : {
+        "description" : "Returns a list of all courses.",
+        "operationId" : "getCourses",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Course"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get all courses.",
+        "tags" : [ "Courses" ]
+      },
+      "post" : {
+        "description" : "Add a new course.",
+        "operationId" : "addCourse",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/NewCourse"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Bad request."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Add new course.",
+        "tags" : [ "Courses" ]
+      }
+    },
+    "/courses/{id}" : {
+      "delete" : {
+        "description" : "Delete course by ID.",
+        "operationId" : "deleteCourse",
+        "responses" : {
+          "204" : {
+            "description" : "The course was deleted successfully."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Delete course.",
+        "tags" : [ "Courses" ]
+      },
+      "get" : {
+        "description" : "Find a single course by ID.",
+        "operationId" : "getCourse",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Find course by ID.",
+        "tags" : [ "Courses" ]
+      },
+      "parameters" : [ {
+        "description" : "Course id.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "number"
+        }
+      } ]
+    },
+    "/courses/{id}/name" : {
+      "parameters" : [ {
+        "description" : "Course id.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "number"
+        }
+      } ],
+      "patch" : {
+        "description" : "Update the given course's name.",
+        "operationId" : "updateCourseName",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "description" : "New course name.",
+                "type" : "string"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Bad request."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Update course name.",
+        "tags" : [ "Courses" ]
+      }
+    },
+    "/courses/{id}/holes" : {
+      "get" : {
+        "description" : "Get all holes of a particular course identified by course ID.",
+        "operationId" : "getHoles",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Hole"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Holes for a given course."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get all holes of a given course.",
+        "tags" : [ "Holes" ]
+      },
+      "parameters" : [ {
+        "description" : "Course id.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "number"
+        }
+      } ],
+      "post" : {
+        "description" : "Add a new hole to a course identified by course ID.",
+        "operationId" : "addHole",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/HoleRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Hole"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Bad request."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Add a new hole to a given course.",
+        "tags" : [ "Holes" ]
+      }
+    },
+    "/holes/{id}" : {
+      "delete" : {
+        "description" : "Delete a hole identified by its ID.",
+        "operationId" : "deleteHole",
+        "responses" : {
+          "204" : {
+            "description" : "The hole was deleted successfully."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Delete a single hole of a given course.",
+        "tags" : [ "Holes" ]
+      },
+      "get" : {
+        "description" : "Get a hole identified by course ID and hole ID.",
+        "operationId" : "getHole",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Hole"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get a single hole of a given course.",
+        "tags" : [ "Holes" ]
+      },
+      "parameters" : [ {
+        "description" : "Hole id.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "number"
+        }
+      } ],
+      "put" : {
+        "description" : "Update a hole identified by course ID and hole ID.",
+        "operationId" : "updateHole",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/HoleRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Hole"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Bad request."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Update a single hole of a given course.",
+        "tags" : [ "Holes" ]
+      }
+    }
+  },
+  "components" : {
+    "requestBodies" : {
+      "HoleRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/NewHole"
+            }
+          }
+        },
+        "required" : true
+      }
+    },
+    "responses" : {
+      "500ServerError" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorBody"
+            }
+          }
+        },
+        "description" : "Unknown server error."
+      },
+      "CourseResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Course"
+            }
+          }
+        },
+        "description" : "OK."
+      },
+      "400BadRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorBody"
+            }
+          }
+        },
+        "description" : "Bad request."
+      },
+      "404NotFound" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorBody"
+            }
+          }
+        },
+        "description" : "Resource not found."
+      },
+      "HoleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Hole"
+            }
+          }
+        },
+        "description" : "OK."
+      }
+    },
+    "schemas" : {
+      "NewCourse" : {
+        "description" : "A new disc golf course without ID.",
+        "properties" : {
+          "name" : {
+            "maxLength" : 40,
+            "minLength" : 3,
+            "type" : "string"
+          },
+          "holes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/NewHole"
+            },
+            "maxItems" : 30,
+            "minItems" : 1,
+            "type" : "array"
+          }
+        },
+        "required" : [ "holes", "name" ],
+        "type" : "object"
+      },
+      "Course" : {
+        "description" : "A disc golf course.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "name" : {
+            "maxLength" : 40,
+            "minLength" : 3,
+            "type" : "string"
+          },
+          "holes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Hole"
+            },
+            "maxItems" : 30,
+            "minItems" : 1,
+            "type" : "array"
+          }
+        },
+        "required" : [ "id" ]
+      },
+      "NewHole" : {
+        "description" : "A new course hole without ID.",
+        "properties" : {
+          "number" : {
+            "maximum" : 30,
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "par" : {
+            "maximum" : 6,
+            "minimum" : 2,
+            "type" : "integer"
+          },
+          "distance" : {
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "distance", "number", "par" ],
+        "type" : "object"
+      },
+      "Hole" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/NewHole"
+        } ],
+        "description" : "A hole in a disc golf course.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "id" ],
+        "type" : "object"
+      },
+      "ErrorBody" : {
+        "description" : "An error resource with an error code, a message and a HTTP status.",
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "code", "message", "status" ],
+        "type" : "object"
+      }
+    }
+  }
+}
