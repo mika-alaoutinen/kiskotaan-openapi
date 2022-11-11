@@ -172,8 +172,7 @@
         "name" : "id",
         "required" : true,
         "schema" : {
-          "format" : "int64",
-          "type" : "number"
+          "type" : "integer"
         }
       } ]
     },
@@ -184,8 +183,7 @@
         "name" : "id",
         "required" : true,
         "schema" : {
-          "format" : "int64",
-          "type" : "number"
+          "type" : "integer"
         }
       } ],
       "patch" : {
@@ -296,8 +294,7 @@
         "name" : "id",
         "required" : true,
         "schema" : {
-          "format" : "int64",
-          "type" : "number"
+          "type" : "integer"
         }
       } ],
       "post" : {
@@ -418,8 +415,7 @@
         "name" : "id",
         "required" : true,
         "schema" : {
-          "format" : "int64",
-          "type" : "number"
+          "type" : "integer"
         }
       } ],
       "put" : {
@@ -614,8 +610,7 @@
         "name" : "id",
         "required" : true,
         "schema" : {
-          "format" : "int64",
-          "type" : "number"
+          "type" : "integer"
         }
       } ],
       "put" : {
@@ -776,8 +771,7 @@
         "name" : "id",
         "required" : true,
         "schema" : {
-          "format" : "int64",
-          "type" : "number"
+          "type" : "integer"
         }
       } ],
       "patch" : {
@@ -935,8 +929,7 @@
         "name" : "id",
         "required" : true,
         "schema" : {
-          "format" : "int64",
-          "type" : "number"
+          "type" : "integer"
         }
       } ]
     },
@@ -947,8 +940,7 @@
         "name" : "id",
         "required" : true,
         "schema" : {
-          "format" : "int64",
-          "type" : "number"
+          "type" : "integer"
         }
       } ],
       "put" : {
