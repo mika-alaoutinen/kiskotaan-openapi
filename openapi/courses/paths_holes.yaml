@@ -1,51 +1,3 @@
-Holes:
-  parameters:
-    - in: path
-      name: id
-      description: Course id.
-      required: true
-      schema:
-        type: integer
-
-  get:
-    summary: Get all holes of a given course.
-    description: Get all holes of a particular course identified by course ID.
-    operationId: getHoles
-    tags:
-      - Holes
-    responses:
-      200:
-        description: Holes for a given course.
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: "./schemas.yaml#/Hole"
-
-      404:
-        $ref: "../errors/responses.yaml#/404NotFound"
-      500:
-        $ref: "../errors/responses.yaml#/500ServerError"
-
-  post:
-    summary: Add a new hole to a given course.
-    description: Add a new hole to a course identified by course ID.
-    operationId: addHole
-    tags:
-      - Holes
-    requestBody:
-      $ref: "#/HoleRequest"
-    responses:
-      200:
-        $ref: "#/HoleResponse"
-      400:
-        $ref: "../errors/responses.yaml#/400BadRequest"
-      404:
-        $ref: "../errors/responses.yaml#/404NotFound"
-      500:
-        $ref: "../errors/responses.yaml#/500ServerError"
-
 Hole:
   parameters:
     - in: path
@@ -76,7 +28,11 @@ Hole:
     tags:
       - Holes
     requestBody:
-      $ref: "#/HoleRequest"
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/NewHole"
     responses:
       200:
         $ref: "#/HoleResponse"
@@ -98,13 +54,6 @@ Hole:
         description: The hole was deleted successfully.
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
-
-HoleRequest:
-  required: true
-  content:
-    application/json:
-      schema:
-        $ref: "./schemas.yaml#/NewHole"
 
 HoleResponse:
   description: OK.

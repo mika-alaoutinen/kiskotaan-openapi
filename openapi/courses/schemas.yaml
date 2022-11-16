@@ -20,6 +20,8 @@ Course:
   description: A disc golf course.
   required:
     - id
+    - name
+    - holes
   properties:
     id:
       type: number
@@ -33,6 +35,25 @@ Course:
         $ref: "#/Hole"
       minItems: 1
       maxItems: 30
+
+CourseSummary:
+  description: A summary view of a disc golf course.
+  required:
+    - id
+    - name
+    - holes
+    - par
+  properties:
+    id:
+      type: number
+    name:
+      type: string
+      minLength: 3
+      maxLength: 40
+    holes:
+      type: number
+    par:
+      type: number
 
 NewHole:
   description: A new course hole without ID.

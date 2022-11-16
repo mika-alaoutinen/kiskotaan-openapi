@@ -20,7 +20,7 @@ paths:
   /courses/{id}/name:
     $ref: "./paths.yaml#/UpdateCourseName"
   /courses/{id}/holes:
-    $ref: "./paths_holes.yaml#/Holes"
+    $ref: "./paths.yaml#/AddHole"
   /holes/{id}:
     $ref: "./paths_holes.yaml#/Hole"
 
@@ -30,6 +30,8 @@ components:
       $ref: "./schemas.yaml#/NewCourse"
     Course:
       $ref: "./schemas.yaml#/Course"
+    CourseSummary:
+      $ref: "./schemas.yaml#/CourseSummary"
     NewHole:
       $ref: "./schemas.yaml#/NewHole"
     Hole:
