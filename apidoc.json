@@ -35,7 +35,7 @@
               "application/json" : {
                 "schema" : {
                   "items" : {
-                    "$ref" : "#/components/schemas/Course"
+                    "$ref" : "#/components/schemas/CourseSummary"
                   },
                   "type" : "array"
                 }
@@ -247,47 +247,6 @@
       }
     },
     "/courses/{id}/holes" : {
-      "get" : {
-        "description" : "Get all holes of a particular course identified by course ID.",
-        "operationId" : "getHoles",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/Hole"
-                  },
-                  "type" : "array"
-                }
-              }
-            },
-            "description" : "Holes for a given course."
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description" : "Resource not found."
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description" : "Unknown server error."
-          }
-        },
-        "summary" : "Get all holes of a given course.",
-        "tags" : [ "Holes" ]
-      },
       "parameters" : [ {
         "description" : "Course id.",
         "in" : "path",
@@ -301,14 +260,21 @@
         "description" : "Add a new hole to a course identified by course ID.",
         "operationId" : "addHole",
         "requestBody" : {
-          "$ref" : "#/components/requestBodies/HoleRequest"
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/NewHole"
+              }
+            }
+          },
+          "required" : true
         },
         "responses" : {
           "200" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Hole"
+                  "$ref" : "#/components/schemas/Course"
                 }
               }
             },
@@ -346,7 +312,7 @@
           }
         },
         "summary" : "Add a new hole to a given course.",
-        "tags" : [ "Holes" ]
+        "tags" : [ "Courses" ]
       }
     },
     "/holes/{id}" : {
@@ -422,7 +388,14 @@
         "description" : "Update a hole identified by course ID and hole ID.",
         "operationId" : "updateHole",
         "requestBody" : {
-          "$ref" : "#/components/requestBodies/HoleRequest"
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/NewHole"
+              }
+            }
+          },
+          "required" : true
         },
         "responses" : {
           "200" : {
@@ -1005,16 +978,6 @@
   },
   "components" : {
     "requestBodies" : {
-      "HoleRequest" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/NewHole"
-            }
-          }
-        },
-        "required" : true
-      },
       "PlayerRequest" : {
         "content" : {
           "application/json" : {
@@ -1149,7 +1112,27 @@
             "type" : "array"
           }
         },
-        "required" : [ "id" ]
+        "required" : [ "holes", "id", "name" ]
+      },
+      "CourseSummary" : {
+        "description" : "A summary view of a disc golf course.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "name" : {
+            "maxLength" : 40,
+            "minLength" : 3,
+            "type" : "string"
+          },
+          "holes" : {
+            "type" : "number"
+          },
+          "par" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "holes", "id", "name", "par" ]
       },
       "NewHole" : {
         "description" : "A new course hole without ID.",
