@@ -13,7 +13,7 @@ Courses:
             schema:
               type: array
               items:
-                $ref: "./schemas.yaml#/Course"
+                $ref: "./schemas.yaml#/CourseSummary"
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
 
@@ -94,6 +94,37 @@ UpdateCourseName:
           schema:
             description: New course name.
             type: string
+    responses:
+      200:
+        $ref: "#/CourseResponse"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+AddHole:
+  parameters:
+    - in: path
+      name: id
+      description: Course id.
+      required: true
+      schema:
+        type: integer
+
+  post:
+    summary: Add a new hole to a given course.
+    description: Add a new hole to a course identified by course ID.
+    operationId: addHole
+    tags:
+      - Courses
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/NewHole"
     responses:
       200:
         $ref: "#/CourseResponse"
