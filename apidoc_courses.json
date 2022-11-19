@@ -162,17 +162,6 @@
         "schema" : {
           "type" : "integer"
         }
-      } ]
-    },
-    "/courses/{id}/name" : {
-      "parameters" : [ {
-        "description" : "Course id.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
       } ],
       "patch" : {
         "description" : "Update the given course's name.",
@@ -193,11 +182,11 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Course"
+                  "type" : "string"
                 }
               }
             },
-            "description" : "OK."
+            "description" : "Name updated successfully."
           },
           "400" : {
             "content" : {
@@ -232,18 +221,7 @@
         },
         "summary" : "Update course name.",
         "tags" : [ "Courses" ]
-      }
-    },
-    "/courses/{id}/holes" : {
-      "parameters" : [ {
-        "description" : "Course id.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ],
+      },
       "post" : {
         "description" : "Add a new hole to a course identified by course ID.",
         "operationId" : "addHole",
@@ -258,15 +236,15 @@
           "required" : true
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Course"
+                  "$ref" : "#/components/schemas/Hole"
                 }
               }
             },
-            "description" : "OK."
+            "description" : "New hole added succesfully."
           },
           "400" : {
             "content" : {
