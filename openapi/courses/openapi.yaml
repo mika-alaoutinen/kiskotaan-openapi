@@ -17,10 +17,6 @@ paths:
     $ref: "./paths.yaml#/Courses"
   /courses/{id}:
     $ref: "./paths.yaml#/Course"
-  /courses/{id}/name:
-    $ref: "./paths.yaml#/UpdateCourseName"
-  /courses/{id}/holes:
-    $ref: "./paths.yaml#/AddHole"
   /holes/{id}:
     $ref: "./paths_holes.yaml#/Hole"
 

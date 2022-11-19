@@ -72,14 +72,31 @@ Course:
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
 
-UpdateCourseName:
-  parameters:
-    - in: path
-      name: id
-      description: Course id.
+  post:
+    summary: Add a new hole to a given course.
+    description: Add a new hole to a course identified by course ID.
+    operationId: addHole
+    tags:
+      - Courses
+    requestBody:
       required: true
-      schema:
-        type: integer
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/NewHole"
+    responses:
+      201:
+        description: New hole added succesfully.
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Hole"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
 
   patch:
     summary: Update course name.
@@ -96,38 +113,11 @@ UpdateCourseName:
             type: string
     responses:
       200:
-        $ref: "#/CourseResponse"
-      400:
-        $ref: "../errors/responses.yaml#/400BadRequest"
-      404:
-        $ref: "../errors/responses.yaml#/404NotFound"
-      500:
-        $ref: "../errors/responses.yaml#/500ServerError"
-
-AddHole:
-  parameters:
-    - in: path
-      name: id
-      description: Course id.
-      required: true
-      schema:
-        type: integer
-
-  post:
-    summary: Add a new hole to a given course.
-    description: Add a new hole to a course identified by course ID.
-    operationId: addHole
-    tags:
-      - Courses
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "./schemas.yaml#/NewHole"
-    responses:
-      200:
-        $ref: "#/CourseResponse"
+        description: Name updated successfully.
+        content:
+          application/json:
+            schema:
+              type: string
       400:
         $ref: "../errors/responses.yaml#/400BadRequest"
       404:
