@@ -182,8 +182,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "description" : "New course name.",
-                "type" : "string"
+                "$ref" : "#/components/schemas/CourseName"
               }
             }
           },
@@ -194,7 +193,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "type" : "string"
+                  "$ref" : "#/components/schemas/CourseName"
                 }
               }
             },
@@ -233,7 +232,9 @@
         },
         "summary" : "Update course name.",
         "tags" : [ "Courses" ]
-      },
+      }
+    },
+    "/courses/{id}/holes" : {
       "post" : {
         "description" : "Add a new hole to a course identified by course ID.",
         "operationId" : "addHole",
@@ -1317,6 +1318,17 @@
         },
         "required" : [ "code", "message", "status" ],
         "type" : "object"
+      },
+      "CourseName" : {
+        "description" : "Name of a disc golf course.",
+        "properties" : {
+          "name" : {
+            "maxLength" : 40,
+            "minLength" : 3,
+            "type" : "string"
+          }
+        },
+        "required" : [ "name" ]
       }
     }
   }
