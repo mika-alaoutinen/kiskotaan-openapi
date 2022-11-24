@@ -17,6 +17,8 @@ paths:
     $ref: "./paths.yaml#/Courses"
   /courses/{id}:
     $ref: "./paths.yaml#/Course"
+  /courses/{id}/holes:
+    $ref: "./paths.yaml#/AddNewHole"
   /holes/{id}:
     $ref: "./paths_holes.yaml#/Hole"
 

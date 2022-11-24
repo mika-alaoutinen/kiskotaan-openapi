@@ -71,7 +71,33 @@ Course:
         $ref: "../errors/responses.yaml#/404NotFound"
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
+  patch:
+    summary: Update course name.
+    description: Update the given course's name.
+    operationId: updateCourseName
+    tags:
+      - Courses
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/CourseName"
+    responses:
+      200:
+        description: Name updated successfully.
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/CourseName"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
 
+AddNewHole:
   post:
     summary: Add a new hole to a given course.
     description: Add a new hole to a course identified by course ID.
@@ -91,33 +117,6 @@ Course:
           application/json:
             schema:
               $ref: "./schemas.yaml#/Hole"
-      400:
-        $ref: "../errors/responses.yaml#/400BadRequest"
-      404:
-        $ref: "../errors/responses.yaml#/404NotFound"
-      500:
-        $ref: "../errors/responses.yaml#/500ServerError"
-
-  patch:
-    summary: Update course name.
-    description: Update the given course's name.
-    operationId: updateCourseName
-    tags:
-      - Courses
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            description: New course name.
-            type: string
-    responses:
-      200:
-        description: Name updated successfully.
-        content:
-          application/json:
-            schema:
-              type: string
       400:
         $ref: "../errors/responses.yaml#/400BadRequest"
       404:
