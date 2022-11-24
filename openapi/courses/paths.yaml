@@ -83,15 +83,14 @@ Course:
       content:
         application/json:
           schema:
-            description: New course name.
-            type: string
+            $ref: "./schemas.yaml#/CourseName"
     responses:
       200:
         description: Name updated successfully.
         content:
           application/json:
             schema:
-              type: string
+              $ref: "./schemas.yaml#/CourseName"
       400:
         $ref: "../errors/responses.yaml#/400BadRequest"
       404:

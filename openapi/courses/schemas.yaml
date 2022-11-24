@@ -36,6 +36,16 @@ Course:
       minItems: 1
       maxItems: 30
 
+CourseName:
+  description: Name of a disc golf course.
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      minLength: 3
+      maxLength: 40
+
 CourseSummary:
   description: A summary view of a disc golf course.
   required:
