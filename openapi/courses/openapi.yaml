@@ -28,6 +28,10 @@ components:
       $ref: "./schemas.yaml#/NewCourse"
     Course:
       $ref: "./schemas.yaml#/Course"
+    NewCourseName:
+      $ref: "./schemas.yaml#/NewCourseName"
+    CourseName:
+      $ref: "./schemas.yaml#/CourseName"
     CourseSummary:
       $ref: "./schemas.yaml#/CourseSummary"
     NewHole:
