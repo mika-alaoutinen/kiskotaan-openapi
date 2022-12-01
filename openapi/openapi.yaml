@@ -53,6 +53,10 @@ components:
       $ref: "./courses/schemas.yaml#/NewCourse"
     Course:
       $ref: "./courses/schemas.yaml#/Course"
+    NewCourseName:
+      $ref: "./courses/schemas.yaml#/NewCourseName"
+    CourseName:
+      $ref: "./courses/schemas.yaml#/CourseName"
     CourseSummary:
       $ref: "./courses/schemas.yaml#/CourseSummary"
 

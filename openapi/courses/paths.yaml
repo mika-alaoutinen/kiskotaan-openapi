@@ -82,7 +82,7 @@ Course:
       content:
         application/json:
           schema:
-            $ref: "./schemas.yaml#/CourseName"
+            $ref: "./schemas.yaml#/NewCourseName"
     responses:
       200:
         description: Name updated successfully.
