@@ -170,7 +170,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/CourseName"
+                "$ref" : "#/components/schemas/NewCourseName"
               }
             }
           },
@@ -507,6 +507,31 @@
         },
         "required" : [ "holes", "id", "name" ]
       },
+      "NewCourseName" : {
+        "description" : "Name of a disc golf course.",
+        "properties" : {
+          "name" : {
+            "maxLength" : 40,
+            "minLength" : 3,
+            "type" : "string"
+          }
+        },
+        "required" : [ "name" ]
+      },
+      "CourseName" : {
+        "description" : "A new name for a disc golf course.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "name" : {
+            "maxLength" : 40,
+            "minLength" : 3,
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "name" ]
+      },
       "CourseSummary" : {
         "description" : "A summary view of a disc golf course.",
         "properties" : {
@@ -587,17 +612,6 @@
         },
         "required" : [ "code", "message", "status" ],
         "type" : "object"
-      },
-      "CourseName" : {
-        "description" : "Name of a disc golf course.",
-        "properties" : {
-          "name" : {
-            "maxLength" : 40,
-            "minLength" : 3,
-            "type" : "string"
-          }
-        },
-        "required" : [ "name" ]
       }
     }
   }
