@@ -1167,9 +1167,12 @@
         "properties" : {
           "id" : {
             "type" : "number"
+          },
+          "courseId" : {
+            "type" : "number"
           }
         },
-        "required" : [ "id" ],
+        "required" : [ "courseId", "id" ],
         "type" : "object"
       },
       "NewPlayer" : {
