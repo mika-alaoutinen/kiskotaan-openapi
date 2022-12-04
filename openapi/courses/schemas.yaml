@@ -103,8 +103,11 @@ Hole:
   description: A hole in a disc golf course.
   required:
     - id
+    - courseId
   properties:
     id:
+      type: number
+    courseId:
       type: number
   allOf:
     - $ref: "#/NewHole"
