@@ -765,7 +765,7 @@
         "tags" : [ "Game" ]
       }
     },
-    "/scoreCards" : {
+    "/scorecards" : {
       "get" : {
         "description" : "Returns a list of all score cards.",
         "operationId" : "getScoreCards",
@@ -846,7 +846,7 @@
         "tags" : [ "ScoreCards" ]
       }
     },
-    "/scoreCards/{id}" : {
+    "/scorecards/{id}" : {
       "delete" : {
         "description" : "Delete a score card by ID.",
         "operationId" : "deleteScoreCard",
