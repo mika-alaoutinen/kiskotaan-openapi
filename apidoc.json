@@ -766,6 +766,37 @@
       }
     },
     "/scoreCards" : {
+      "get" : {
+        "description" : "Returns a list of all score cards.",
+        "operationId" : "getScoreCards",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/ScoreCard"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get all score cards.",
+        "tags" : [ "ScoreCards" ]
+      },
       "post" : {
         "description" : "Add a new score card. Give course and players as request body, wrapped in a NewScoreCard resource.",
         "operationId" : "addScoreCard",
@@ -883,19 +914,8 @@
         "schema" : {
           "type" : "integer"
         }
-      } ]
-    },
-    "/scoreCards/{id}/scores" : {
-      "parameters" : [ {
-        "description" : "Score card ID.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
       } ],
-      "put" : {
+      "patch" : {
         "description" : "Update a single score row on a score card.",
         "operationId" : "updateScores",
         "requestBody" : {
@@ -950,7 +970,7 @@
             "description" : "Unknown server error."
           }
         },
-        "summary" : "Update scores on a score card.",
+        "summary" : "Update scores for a given hole.",
         "tags" : [ "ScoreCards" ]
       }
     }
