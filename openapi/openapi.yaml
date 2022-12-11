@@ -44,8 +44,6 @@ paths:
     $ref: "./scoreCards/paths.yaml#/ScoreCards"
   /scoreCards/{id}:
     $ref: "./scoreCards/paths.yaml#/ScoreCard"
-  /scoreCards/{id}/scores:
-    $ref: "./scoreCards/paths.yaml#/Scores"
 
 components:
   schemas:
