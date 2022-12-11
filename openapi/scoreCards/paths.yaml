@@ -1,4 +1,22 @@
 ScoreCards:
+  get:
+    summary: Get all score cards.
+    description: Returns a list of all score cards.
+    operationId: getScoreCards
+    tags:
+      - ScoreCards
+    responses:
+      200:
+        description: OK.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas.yaml#/ScoreCard"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
   post:
     summary: Add new score card.
     description: Add a new score card. Give course and players as request body, wrapped in a NewScoreCard resource.
@@ -42,29 +60,8 @@ ScoreCard:
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
 
-  delete:
-    summary: Delete score card.
-    description: Delete a score card by ID.
-    operationId: deleteScoreCard
-    tags:
-      - ScoreCards
-    responses:
-      204:
-        description: The score card was deleted successfully.
-      500:
-        $ref: "../errors/responses.yaml#/500ServerError"
-
-Scores:
-  parameters:
-    - in: path
-      name: id
-      description: Score card ID.
-      required: true
-      schema:
-        type: integer
-
-  put:
-    summary: Update scores on a score card.
+  patch:
+    summary: Update scores for a given hole.
     description: Update a single score row on a score card.
     operationId: updateScores
     tags:
@@ -86,6 +83,18 @@ Scores:
         $ref: "../errors/responses.yaml#/400BadRequest"
       404:
         $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+  delete:
+    summary: Delete score card.
+    description: Delete a score card by ID.
+    operationId: deleteScoreCard
+    tags:
+      - ScoreCards
+    responses:
+      204:
+        description: The score card was deleted successfully.
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
 

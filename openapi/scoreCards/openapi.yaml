@@ -1,0 +1,32 @@
+openapi: 3.0.3
+
+info:
+  title: Score cards OpenAPI
+  version: 0.1.0
+  description: API definition for Kiskotaan score cards service.
+
+tags:
+  - name: ScoreCards
+    description: CRUD operations for handling score cards.
+
+servers:
+  - url: http://localhost:8083/api/
+
+paths:
+  /scoreCards:
+    $ref: "./paths.yaml#/ScoreCards"
+  /scoreCards/{id}:
+    $ref: "./paths.yaml#/ScoreCard"
+
+components:
+  schemas:
+    NewScoreCard:
+      $ref: "./schemas.yaml#/NewScoreCard"
+    ScoreCard:
+      $ref: "./schemas.yaml#/ScoreCard"
+    ScoreRow:
+      $ref: "./schemas.yaml#/ScoreRow"
+    Score:
+      $ref: "./schemas.yaml#/Score"
+    ErrorBody:
+      $ref: "../errors/schemas.yaml#/ErrorBody"
