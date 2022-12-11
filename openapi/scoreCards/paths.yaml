@@ -1,4 +1,22 @@
 ScoreCards:
+  get:
+    summary: Get all score cards.
+    description: Returns a list of all score cards.
+    operationId: getScoreCards
+    tags:
+      - ScoreCards
+    responses:
+      200:
+        description: OK.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas.yaml#/ScoreCard"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
   post:
     summary: Add new score card.
     description: Add a new score card. Give course and players as request body, wrapped in a NewScoreCard resource.
