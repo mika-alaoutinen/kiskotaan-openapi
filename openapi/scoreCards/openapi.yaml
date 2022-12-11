@@ -13,9 +13,9 @@ servers:
   - url: http://localhost:8083/api/
 
 paths:
-  /scoreCards:
+  /scorecards:
     $ref: "./paths.yaml#/ScoreCards"
-  /scoreCards/{id}:
+  /scorecards/{id}:
     $ref: "./paths.yaml#/ScoreCard"
 
 components:

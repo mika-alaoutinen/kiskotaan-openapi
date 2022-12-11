@@ -40,9 +40,9 @@ paths:
   /games/{id}:
     $ref: "./games/paths.yaml#/Game"
 
-  /scoreCards:
+  /scorecards:
     $ref: "./scoreCards/paths.yaml#/ScoreCards"
-  /scoreCards/{id}:
+  /scorecards/{id}:
     $ref: "./scoreCards/paths.yaml#/ScoreCard"
 
 components:
