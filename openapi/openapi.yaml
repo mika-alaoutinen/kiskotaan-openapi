@@ -78,6 +78,11 @@ components:
     NewGame:
       $ref: "./games/schemas.yaml#/NewGame"
 
+    ScoreCardAggregate:
+      $ref: "./scoreCardAggregates/schemas.yaml#/ScoreCardAggregate"
+    ScoreAggregate:
+      $ref: "./scoreCardAggregates/schemas.yaml#/ScoreAggregate"
+
     NewScoreCard:
       $ref: "./scoreCards/schemas.yaml#/NewScoreCard"
     PlayerScore:

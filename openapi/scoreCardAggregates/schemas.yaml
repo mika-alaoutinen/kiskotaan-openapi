@@ -17,11 +17,11 @@ ScoreCardAggregate:
     scores:
       type: array
       items:
-        $ref: "#/Score"
+        $ref: "#/ScoreAggregate"
 
-Score:
+ScoreAggregate:
   type: object
-  description: A score for a player
+  description: A score for a player with full info.
   required:
     - playerId
     - firstName
