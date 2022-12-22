@@ -37,8 +37,6 @@ ScoreCard:
       type: array
       items:
         $ref: "#/Score"
-      minItems: 1
-      maxItems: 30
 
 Course:
   type: object
