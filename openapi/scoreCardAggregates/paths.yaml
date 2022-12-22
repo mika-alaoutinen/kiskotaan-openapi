@@ -1,0 +1,26 @@
+ScoreCardAggregate:
+  parameters:
+    - in: path
+      name: id
+      description: Score card ID.
+      required: true
+      schema:
+        type: integer
+
+  get:
+    summary: Get a score card aggregate.
+    description: Get a single score card aggregate by ID.
+    operationId: getScoreCard
+    tags:
+      - ScoreCardAggregates
+    responses:
+      200:
+        description: OK.
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/ScoreCardAggregate"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
