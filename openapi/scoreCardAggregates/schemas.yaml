@@ -1,4 +1,4 @@
-ScoreCardAggregate:
+ScoreCard:
   description: A score card for tracking scores for a group of players.
   required:
     - id
@@ -17,9 +17,9 @@ ScoreCardAggregate:
     scores:
       type: array
       items:
-        $ref: "#/ScoreAggregate"
+        $ref: "#/Score"
 
-ScoreAggregate:
+Score:
   type: object
   description: A score for a player with full info.
   required:

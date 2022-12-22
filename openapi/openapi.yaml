@@ -48,7 +48,7 @@ paths:
     $ref: "./scoreCards/paths.yaml#/ScoreCard"
 
   /scorecards/query/{id}:
-    $ref: "./scoreCardAggregates/paths.yaml#/ScoreCardAggregate"
+    $ref: "./scoreCardAggregates/paths.yaml#/ScoreCard"
 
 components:
   schemas:
@@ -79,9 +79,9 @@ components:
       $ref: "./games/schemas.yaml#/NewGame"
 
     ScoreCardAggregate:
-      $ref: "./scoreCardAggregates/schemas.yaml#/ScoreCardAggregate"
+      $ref: "./scoreCardAggregates/schemas.yaml#/ScoreCard"
     ScoreAggregate:
-      $ref: "./scoreCardAggregates/schemas.yaml#/ScoreAggregate"
+      $ref: "./scoreCardAggregates/schemas.yaml#/Score"
 
     NewScoreCard:
       $ref: "./scoreCards/schemas.yaml#/NewScoreCard"

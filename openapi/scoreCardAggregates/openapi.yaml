@@ -14,7 +14,7 @@ servers:
 
 paths:
   /scorecards/query/{id}:
-    $ref: "./paths.yaml#/ScoreCardAggregate"
+    $ref: "./paths.yaml#/ScoreCard"
 
 components:
   schemas:
@@ -26,10 +26,10 @@ components:
     Player:
       $ref: "../players/schemas.yaml#/Player"
 
-    ScoreCardAggregate:
-      $ref: "./schemas.yaml#/ScoreCardAggregate"
-    ScoreAggregate:
-      $ref: "./schemas.yaml#/ScoreAggregate"
+    ScoreCard:
+      $ref: "./schemas.yaml#/ScoreCard"
+    Score:
+      $ref: "./schemas.yaml#/Score"
 
     ErrorBody:
       $ref: "../errors/schemas.yaml#/ErrorBody"

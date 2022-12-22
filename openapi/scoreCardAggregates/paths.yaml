@@ -1,4 +1,4 @@
-ScoreCardAggregate:
+ScoreCard:
   parameters:
     - in: path
       name: id
@@ -19,7 +19,7 @@ ScoreCardAggregate:
         content:
           application/json:
             schema:
-              $ref: "./schemas.yaml#/ScoreCardAggregate"
+              $ref: "./schemas.yaml#/ScoreCard"
       404:
         $ref: "../errors/responses.yaml#/404NotFound"
       500:
