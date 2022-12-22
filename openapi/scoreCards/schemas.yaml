@@ -20,17 +20,17 @@ ScoreCard:
   required:
     - id
     - course
-    - players
+    - playerIds
     - scores
   properties:
     id:
       type: number
     course:
-      $ref: "../courses/schemas.yaml#/Course"
-    players:
+      $ref: "#/Course"
+    playerIds:
       type: array
       items:
-        $ref: "../players/schemas.yaml#/Player"
+        type: number
       minItems: 1
       maxItems: 5
     scores:
@@ -39,6 +39,18 @@ ScoreCard:
         $ref: "#/Score"
       minItems: 1
       maxItems: 30
+
+Course:
+  type: object
+  description: Required info about a course.
+  required:
+    - id
+    - holes
+  properties:
+    id:
+      type: number
+    holes:
+      type: integer
 
 Score:
   type: object
