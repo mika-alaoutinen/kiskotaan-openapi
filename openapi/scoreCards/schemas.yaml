@@ -55,6 +55,7 @@ Score:
   description: A score for a player
   required:
     - playerId
+    - hole
     - score
   properties:
     playerId:
