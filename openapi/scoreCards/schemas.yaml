@@ -20,26 +20,54 @@ ScoreCard:
   required:
     - id
     - course
-    - players
-    - rows
+    - playerIds
+    - scores
   properties:
     id:
       type: number
     course:
-      $ref: "../courses/schemas.yaml#/Course"
-    players:
+      $ref: "#/Course"
+    playerIds:
       type: array
       items:
-        $ref: "../players/schemas.yaml#/Player"
+        type: number
       minItems: 1
       maxItems: 5
-    rows:
+    scores:
       type: array
       items:
-        $ref: "#/ScoreRow"
-      minItems: 1
-      maxItems: 30
-    
+        $ref: "#/Score"
+
+Course:
+  type: object
+  description: Required info about a course.
+  required:
+    - id
+    - holes
+  properties:
+    id:
+      type: number
+    holes:
+      type: integer
+
+Score:
+  type: object
+  description: A score for a player
+  required:
+    - playerId
+    - score
+  properties:
+    playerId:
+      type: number
+    hole:
+      type: integer
+      minimum: 1
+      maximum: 30
+    score:
+      type: integer
+      minimum: 1
+      maximum: 99
+
 ScoreRow:
   type: object
   description: The scores for a single hole.
@@ -54,11 +82,11 @@ ScoreRow:
     scores:
       type: array
       items:
-        $ref: "#/Score"
+        $ref: "#/PlayerScore"
       minItems: 1
       maxItems: 5
 
-Score:
+PlayerScore:
   type: object
   description: A score for a player
   required:

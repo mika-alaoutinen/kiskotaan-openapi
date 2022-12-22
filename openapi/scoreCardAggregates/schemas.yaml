@@ -1,0 +1,41 @@
+ScoreCard:
+  description: A score card for tracking scores for a group of players.
+  required:
+    - id
+    - course
+    - players
+    - scores
+  properties:
+    id:
+      type: number
+    course:
+      $ref: "../courses/schemas.yaml#/Course"
+    players:
+      type: array
+      items:
+        $ref: "../players/schemas.yaml#/Player"
+    scores:
+      type: array
+      items:
+        $ref: "#/Score"
+
+Score:
+  type: object
+  description: A score for a player with full info.
+  required:
+    - playerId
+    - firstName
+    - lastName
+    - hole
+    - score
+  properties:
+    playerId:
+      type: number
+    firstName:
+      type: string
+    lastName:
+      type: string
+    hole:
+      type: number
+    score:
+      type: integer

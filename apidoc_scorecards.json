@@ -295,24 +295,22 @@
           "course" : {
             "$ref" : "#/components/schemas/Course"
           },
-          "players" : {
+          "playerIds" : {
             "items" : {
-              "$ref" : "#/components/schemas/Player"
+              "type" : "number"
             },
             "maxItems" : 5,
             "minItems" : 1,
             "type" : "array"
           },
-          "rows" : {
+          "scores" : {
             "items" : {
-              "$ref" : "#/components/schemas/ScoreRow"
+              "$ref" : "#/components/schemas/Score"
             },
-            "maxItems" : 30,
-            "minItems" : 1,
             "type" : "array"
           }
         },
-        "required" : [ "course", "id", "players", "rows" ]
+        "required" : [ "course", "id", "playerIds", "scores" ]
       },
       "ScoreRow" : {
         "description" : "The scores for a single hole.",
@@ -324,7 +322,7 @@
           },
           "scores" : {
             "items" : {
-              "$ref" : "#/components/schemas/Score"
+              "$ref" : "#/components/schemas/PlayerScore"
             },
             "maxItems" : 5,
             "minItems" : 1,
@@ -339,6 +337,11 @@
         "properties" : {
           "playerId" : {
             "type" : "number"
+          },
+          "hole" : {
+            "maximum" : 30,
+            "minimum" : 1,
+            "type" : "integer"
           },
           "score" : {
             "maximum" : 99,
@@ -377,91 +380,31 @@
         "type" : "object"
       },
       "Course" : {
-        "description" : "A disc golf course.",
+        "description" : "Required info about a course.",
         "properties" : {
           "id" : {
             "type" : "number"
-          },
-          "name" : {
-            "maxLength" : 40,
-            "minLength" : 3,
-            "type" : "string"
           },
           "holes" : {
-            "items" : {
-              "$ref" : "#/components/schemas/Hole"
-            },
-            "maxItems" : 30,
-            "minItems" : 1,
-            "type" : "array"
+            "type" : "integer"
           }
         },
-        "required" : [ "holes", "id", "name" ]
-      },
-      "Hole" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/NewHole"
-        } ],
-        "description" : "A hole in a disc golf course.",
-        "properties" : {
-          "id" : {
-            "type" : "number"
-          },
-          "courseId" : {
-            "type" : "number"
-          }
-        },
-        "required" : [ "courseId", "id" ],
+        "required" : [ "holes", "id" ],
         "type" : "object"
       },
-      "NewHole" : {
-        "description" : "A new course hole without ID.",
+      "PlayerScore" : {
+        "description" : "A score for a player",
         "properties" : {
-          "number" : {
-            "maximum" : 30,
-            "minimum" : 1,
-            "type" : "integer"
+          "playerId" : {
+            "type" : "number"
           },
-          "par" : {
-            "maximum" : 6,
-            "minimum" : 2,
-            "type" : "integer"
-          },
-          "distance" : {
+          "score" : {
+            "maximum" : 99,
             "minimum" : 1,
             "type" : "integer"
           }
         },
-        "required" : [ "distance", "number", "par" ],
-        "type" : "object"
-      },
-      "Player" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/NewPlayer"
-        } ],
-        "description" : "A player returned from backend, who has an ID.",
-        "properties" : {
-          "id" : {
-            "type" : "number"
-          }
-        },
-        "required" : [ "id" ]
-      },
-      "NewPlayer" : {
-        "description" : "A new player without ID.",
-        "properties" : {
-          "firstName" : {
-            "maxLength" : 40,
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "lastName" : {
-            "maxLength" : 40,
-            "minLength" : 1,
-            "type" : "string"
-          }
-        },
-        "required" : [ "firstName", "lastName" ],
+        "required" : [ "playerId", "score" ],
         "type" : "object"
       }
     }

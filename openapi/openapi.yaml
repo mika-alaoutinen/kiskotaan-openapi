@@ -14,6 +14,8 @@ tags:
     description: CRUD operations for handling players.
   - name: Game
     description: Operations for starting and ending a game.
+  - name: ScoreCardAggregates
+    description: Read queries for aggregated score card info.
   - name: ScoreCards
     description: CRUD operations for handling score cards.
 
@@ -45,6 +47,9 @@ paths:
   /scorecards/{id}:
     $ref: "./scoreCards/paths.yaml#/ScoreCard"
 
+  /scorecards/query/{id}:
+    $ref: "./scoreCardAggregates/paths.yaml#/ScoreCard"
+
 components:
   schemas:
     NewCourse:
@@ -73,8 +78,15 @@ components:
     NewGame:
       $ref: "./games/schemas.yaml#/NewGame"
 
+    ScoreCardAggregate:
+      $ref: "./scoreCardAggregates/schemas.yaml#/ScoreCard"
+    ScoreAggregate:
+      $ref: "./scoreCardAggregates/schemas.yaml#/Score"
+
     NewScoreCard:
       $ref: "./scoreCards/schemas.yaml#/NewScoreCard"
+    PlayerScore:
+      $ref: "./scoreCards/schemas.yaml#/PlayerScore"
     ScoreCard:
       $ref: "./scoreCards/schemas.yaml#/ScoreCard"
     ScoreRow:
