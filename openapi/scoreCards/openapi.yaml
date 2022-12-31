@@ -10,6 +10,8 @@ tags:
     description: CRUD operations for handling score cards.
   - name: Scores
     description: CRUD operations for handling score rows in a score card.
+  - name: ScoresForHole
+    description: CRUD operations for handling score rows by hole number.
 
 servers:
   - url: http://localhost:8083/api/
@@ -20,9 +22,9 @@ paths:
   /scorecards/{id}:
     $ref: "./paths.yaml#/ScoreCard"
   /scorecards/{id}/scores:
-    $ref: "./paths_scores.yaml#/Score"
-  /scorecards/{id}/scores/{holeNumber}:
     $ref: "./paths_scores.yaml#/Scores"
+  /scorecards/{id}/scores/{holeNumber}:
+    $ref: "./paths_scores.yaml#/ScoresForHole"
 
 components:
   schemas:

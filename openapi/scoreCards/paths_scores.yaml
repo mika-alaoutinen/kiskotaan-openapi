@@ -6,69 +6,6 @@ Scores:
       required: true
       schema:
         type: integer
-    - in: path
-      name: holeNumber
-      description: Hole number.
-      required: true
-      schema:
-        type: integer
-
-  get:
-    summary: Get scores for a hole.
-    description: Returns scores for all players for a given hole.
-    operationId: getScores
-    tags:
-      - Scores
-    responses:
-      200:
-        $ref: "#/PlayerScores"
-      404:
-        $ref: "../errors/responses.yaml#/404NotFound"
-      500:
-        $ref: "../errors/responses.yaml#/500ServerError"
-
-  post:
-    summary: Add scores for a hole.
-    description: Add a list of scores for a given hole. New scores replace any old entries for the hole.
-    operationId: addScores
-    tags:
-      - Scores
-    requestBody:
-      required: true
-      $ref: "#/PlayerScores"
-    responses:
-      201:
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/ScoreRow"
-      400:
-        $ref: "../errors/responses.yaml#/400BadRequest"
-      404:
-        $ref: "../errors/responses.yaml#/404NotFound"
-      500:
-        $ref: "../errors/responses.yaml#/500ServerError"
-
-  delete:
-    summary: Delete scores for a hole.
-    description: Delete all player scores for a given hole.
-    operationId: deleteScores
-    tags:
-      - Scores
-    responses:
-      204:
-        description: Scores were deleted successfully.
-      500:
-        $ref: "../errors/responses.yaml#/500ServerError"
-
-Score:
-  parameters:
-    - in: path
-      name: id
-      description: Score card ID.
-      required: true
-      schema:
-        type: integer
 
   post:
     summary: Add single score.
@@ -98,6 +35,69 @@ Score:
     responses:
       204:
         description: Score was deleted successfully.
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+ScoresForHole:
+  parameters:
+    - in: path
+      name: id
+      description: Score card ID.
+      required: true
+      schema:
+        type: integer
+    - in: path
+      name: holeNumber
+      description: Hole number.
+      required: true
+      schema:
+        type: integer
+
+  get:
+    summary: Get scores for a hole.
+    description: Returns scores for all players for a given hole.
+    operationId: getScores
+    tags:
+      - ScoresForHole
+    responses:
+      200:
+        $ref: "#/PlayerScores"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+  post:
+    summary: Add scores for a hole.
+    description: Add a list of scores for a given hole. New scores replace any old entries for the hole.
+    operationId: addScores
+    tags:
+      - ScoresForHole
+    requestBody:
+      required: true
+      $ref: "#/PlayerScores"
+    responses:
+      201:
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/ScoreRow"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+  delete:
+    summary: Delete scores for a hole.
+    description: Delete all player scores for a given hole.
+    operationId: deleteScores
+    tags:
+      - ScoresForHole
+    responses:
+      204:
+        description: Scores were deleted successfully.
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
 
