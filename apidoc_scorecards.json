@@ -79,6 +79,16 @@
             },
             "description" : "Bad request."
           },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -267,6 +277,38 @@
       }
     },
     "schemas" : {
+      "Course" : {
+        "description" : "Info about a course.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "holes" : {
+            "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "holes", "id", "name" ],
+        "type" : "object"
+      },
+      "Player" : {
+        "description" : "Info about a player.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "firstName" : {
+            "type" : "string"
+          },
+          "lastName" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "firstName", "id", "lastName" ],
+        "type" : "object"
+      },
       "NewScoreCard" : {
         "description" : "A new  score card with selected course and players. Course and players are specified by IDs.",
         "properties" : {
@@ -295,9 +337,9 @@
           "course" : {
             "$ref" : "#/components/schemas/Course"
           },
-          "playerIds" : {
+          "players" : {
             "items" : {
-              "type" : "number"
+              "$ref" : "#/components/schemas/Player"
             },
             "maxItems" : 5,
             "minItems" : 1,
@@ -377,19 +419,6 @@
           }
         },
         "required" : [ "code", "message", "status" ],
-        "type" : "object"
-      },
-      "Course" : {
-        "description" : "Required info about a course.",
-        "properties" : {
-          "id" : {
-            "type" : "number"
-          },
-          "holes" : {
-            "type" : "integer"
-          }
-        },
-        "required" : [ "holes", "id" ],
         "type" : "object"
       },
       "PlayerScore" : {

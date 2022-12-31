@@ -834,6 +834,16 @@
             },
             "description" : "Bad request."
           },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -1399,9 +1409,9 @@
           "course" : {
             "$ref" : "#/components/schemas/Course_1"
           },
-          "playerIds" : {
+          "players" : {
             "items" : {
-              "type" : "number"
+              "$ref" : "#/components/schemas/Player_1"
             },
             "maxItems" : 5,
             "minItems" : 1,
@@ -1484,16 +1494,35 @@
         "type" : "object"
       },
       "Course_1" : {
-        "description" : "Required info about a course.",
+        "description" : "Info about a course.",
         "properties" : {
           "id" : {
             "type" : "number"
           },
           "holes" : {
             "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
           }
         },
-        "required" : [ "holes", "id" ],
+        "required" : [ "holes", "id", "name" ],
+        "type" : "object"
+      },
+      "Player_1" : {
+        "description" : "Info about a player.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "firstName" : {
+            "type" : "string"
+          },
+          "lastName" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "firstName", "id", "lastName" ],
         "type" : "object"
       },
       "ScoreCard_1" : {
