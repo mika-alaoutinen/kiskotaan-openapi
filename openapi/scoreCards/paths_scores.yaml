@@ -1,0 +1,58 @@
+Scores:
+  parameters:
+    - in: path
+      name: id
+      description: Score card ID.
+      required: true
+      schema:
+        type: integer
+    - in: path
+      name: holeNumber
+      description: Hole number.
+      required: true
+      schema:
+        type: integer
+
+  get:
+    summary: Get scores for a hole.
+    description: Returns scores for all players for a given hole.
+    operationId: getScores
+    tags:
+      - Scores
+    responses:
+      200:
+        $ref: "#/PlayerScores"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+  post:
+    summary: Add scores for a hole.
+    description: Add a list of scores for a given hole. New scores replace any old entries for the hole.
+    operationId: addScores
+    tags:
+      - Scores
+    requestBody:
+      required: true
+      $ref: "#/PlayerScores"
+    responses:
+      201:
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/ScoreRow"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+PlayerScores:
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: "./schemas.yaml#/PlayerScore"
