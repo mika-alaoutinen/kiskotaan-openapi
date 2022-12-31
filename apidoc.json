@@ -21,9 +21,6 @@
     "description" : "Operations for starting and ending a game.",
     "name" : "Game"
   }, {
-    "description" : "Read queries for aggregated score card info.",
-    "name" : "ScoreCardAggregates"
-  }, {
     "description" : "CRUD operations for handling score cards.",
     "name" : "ScoreCards"
   }, {
@@ -1142,55 +1139,6 @@
         "summary" : "Add scores for a hole.",
         "tags" : [ "ScoresForHole" ]
       }
-    },
-    "/scorecards/query/{id}" : {
-      "get" : {
-        "description" : "Get a single score card aggregate by ID.",
-        "operationId" : "getScoreCard",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ScoreCard_1"
-                }
-              }
-            },
-            "description" : "OK."
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description" : "Resource not found."
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description" : "Unknown server error."
-          }
-        },
-        "summary" : "Get a score card aggregate.",
-        "tags" : [ "ScoreCardAggregates" ]
-      },
-      "parameters" : [ {
-        "description" : "Score card ID.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ]
     }
   },
   "components" : {
@@ -1497,52 +1445,6 @@
         "required" : [ "scoreCardId" ],
         "type" : "object"
       },
-      "ScoreCardAggregate" : {
-        "description" : "A score card for tracking scores for a group of players.",
-        "properties" : {
-          "id" : {
-            "type" : "number"
-          },
-          "course" : {
-            "$ref" : "#/components/schemas/Course"
-          },
-          "players" : {
-            "items" : {
-              "$ref" : "#/components/schemas/Player"
-            },
-            "type" : "array"
-          },
-          "scores" : {
-            "items" : {
-              "$ref" : "#/components/schemas/Score_1"
-            },
-            "type" : "array"
-          }
-        },
-        "required" : [ "course", "id", "players", "scores" ]
-      },
-      "ScoreAggregate" : {
-        "description" : "A score for a player with full info.",
-        "properties" : {
-          "playerId" : {
-            "type" : "number"
-          },
-          "firstName" : {
-            "type" : "string"
-          },
-          "lastName" : {
-            "type" : "string"
-          },
-          "hole" : {
-            "type" : "number"
-          },
-          "score" : {
-            "type" : "integer"
-          }
-        },
-        "required" : [ "firstName", "hole", "lastName", "playerId", "score" ],
-        "type" : "object"
-      },
       "NewScoreCard" : {
         "description" : "A new  score card with selected course and players. Course and players are specified by IDs.",
         "properties" : {
@@ -1700,52 +1602,6 @@
           }
         },
         "required" : [ "firstName", "id", "lastName" ],
-        "type" : "object"
-      },
-      "ScoreCard_1" : {
-        "description" : "A score card for tracking scores for a group of players.",
-        "properties" : {
-          "id" : {
-            "type" : "number"
-          },
-          "course" : {
-            "$ref" : "#/components/schemas/Course"
-          },
-          "players" : {
-            "items" : {
-              "$ref" : "#/components/schemas/Player"
-            },
-            "type" : "array"
-          },
-          "scores" : {
-            "items" : {
-              "$ref" : "#/components/schemas/Score_1"
-            },
-            "type" : "array"
-          }
-        },
-        "required" : [ "course", "id", "players", "scores" ]
-      },
-      "Score_1" : {
-        "description" : "A score for a player with full info.",
-        "properties" : {
-          "playerId" : {
-            "type" : "number"
-          },
-          "firstName" : {
-            "type" : "string"
-          },
-          "lastName" : {
-            "type" : "string"
-          },
-          "hole" : {
-            "type" : "number"
-          },
-          "score" : {
-            "type" : "integer"
-          }
-        },
-        "required" : [ "firstName", "hole", "lastName", "playerId", "score" ],
         "type" : "object"
       }
     }
