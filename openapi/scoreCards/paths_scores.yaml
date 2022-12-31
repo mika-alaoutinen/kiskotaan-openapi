@@ -49,6 +49,18 @@ Scores:
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
 
+  delete:
+    summary: Delete scores for a hole.
+    description: Delete all player scores for a given hole.
+    operationId: deleteScores
+    tags:
+      - Scores
+    responses:
+      204:
+        description: Score were deleted successfully.
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
 PlayerScores:
   content:
     application/json:
