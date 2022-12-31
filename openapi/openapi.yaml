@@ -18,6 +18,10 @@ tags:
     description: Read queries for aggregated score card info.
   - name: ScoreCards
     description: CRUD operations for handling score cards.
+  - name: Scores
+    description: CRUD operations for handling score rows in a score card.
+  - name: ScoresForHole
+    description: CRUD operations for handling score rows by hole number.
 
 servers:
   - url: http://localhost:8080/api/
@@ -46,6 +50,10 @@ paths:
     $ref: "./scoreCards/paths.yaml#/ScoreCards"
   /scorecards/{id}:
     $ref: "./scoreCards/paths.yaml#/ScoreCard"
+  /scorecards/{id}/scores:
+    $ref: "./scoreCards/paths_scores.yaml#/Scores"
+  /scorecards/{id}/scores/{holeNumber}:
+    $ref: "./scoreCards/paths_scores.yaml#/ScoresForHole"
 
   /scorecards/query/{id}:
     $ref: "./scoreCardAggregates/paths.yaml#/ScoreCard"
