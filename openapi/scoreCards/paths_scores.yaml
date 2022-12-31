@@ -96,6 +96,7 @@ ScoresForHole:
       required: true
     responses:
       201:
+        description: Added scores succesfully.
         content:
           application/json:
             schema:
