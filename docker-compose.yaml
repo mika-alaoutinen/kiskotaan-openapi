@@ -28,10 +28,3 @@ services:
     volumes:
       - ./openapi:/openapi
       - ./apidoc_scorecards.json:/generated4/openapi.json
-
-  scorecard-aggregates-api:
-    command: generate -i /openapi/scoreCardAggregates/openapi.yaml -g openapi -o ./generated5
-    image: openapitools/openapi-generator-cli
-    volumes:
-      - ./openapi:/openapi
-      - ./apidoc_scorecard_aggregates.json:/generated5/openapi.json
