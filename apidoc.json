@@ -26,6 +26,12 @@
   }, {
     "description" : "CRUD operations for handling score cards.",
     "name" : "ScoreCards"
+  }, {
+    "description" : "CRUD operations for handling score rows in a score card.",
+    "name" : "Scores"
+  }, {
+    "description" : "CRUD operations for handling score rows by hole number.",
+    "name" : "ScoresForHole"
   } ],
   "paths" : {
     "/courses" : {
@@ -927,30 +933,49 @@
         "schema" : {
           "type" : "integer"
         }
-      } ],
-      "patch" : {
-        "description" : "Update a single score row on a score card.",
-        "operationId" : "updateScores",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ScoreRow"
-              }
-            }
+      } ]
+    },
+    "/scorecards/{id}/scores" : {
+      "delete" : {
+        "description" : "Deletes a single score entry.",
+        "operationId" : "deleteScore",
+        "responses" : {
+          "204" : {
+            "description" : "Score was deleted successfully."
           },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Delete single score.",
+        "tags" : [ "Scores" ]
+      },
+      "parameters" : [ {
+        "description" : "Score card ID.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        }
+      } ],
+      "post" : {
+        "description" : "Adds a single score entry. New score Replaces old entry.",
+        "operationId" : "addScore",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ScoreSchema",
           "required" : true
         },
         "responses" : {
           "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ScoreRow"
-                }
-              }
-            },
-            "description" : "OK."
+            "$ref" : "#/components/responses/ScoreSchema"
           },
           "400" : {
             "content" : {
@@ -983,8 +1008,139 @@
             "description" : "Unknown server error."
           }
         },
-        "summary" : "Update scores for a given hole.",
-        "tags" : [ "ScoreCards" ]
+        "summary" : "Add single score.",
+        "tags" : [ "Scores" ]
+      }
+    },
+    "/scorecards/{id}/scores/{holeNumber}" : {
+      "delete" : {
+        "description" : "Delete all player scores for a given hole.",
+        "operationId" : "deleteScores",
+        "responses" : {
+          "204" : {
+            "description" : "Scores were deleted successfully."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Delete scores for a hole.",
+        "tags" : [ "ScoresForHole" ]
+      },
+      "get" : {
+        "description" : "Returns scores for all players for a given hole.",
+        "operationId" : "getScores",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/PlayerScore"
+                  },
+                  "type" : "array"
+                }
+              }
+            }
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get scores for a hole.",
+        "tags" : [ "ScoresForHole" ]
+      },
+      "parameters" : [ {
+        "description" : "Score card ID.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        }
+      }, {
+        "description" : "Hole number.",
+        "in" : "path",
+        "name" : "holeNumber",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        }
+      } ],
+      "post" : {
+        "description" : "Add a list of scores for a given hole. New scores replace any old entries for the hole.",
+        "operationId" : "addScores",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PlayerScores",
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ScoreRow"
+                }
+              }
+            }
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Bad request."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Add scores for a hole.",
+        "tags" : [ "ScoresForHole" ]
       }
     },
     "/scorecards/query/{id}" : {
@@ -1048,6 +1204,15 @@
           }
         },
         "required" : true
+      },
+      "ScoreSchema" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/Score"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -1130,6 +1295,18 @@
           }
         },
         "description" : "OK."
+      },
+      "PlayerScores" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "items" : {
+                "$ref" : "#/components/schemas/PlayerScore"
+              },
+              "type" : "array"
+            }
+          }
+        }
       }
     },
     "schemas" : {
