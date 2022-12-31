@@ -352,7 +352,7 @@
             "type" : "array"
           }
         },
-        "required" : [ "course", "id", "playerIds", "scores" ]
+        "required" : [ "course", "id", "players", "scores" ]
       },
       "ScoreRow" : {
         "description" : "The scores for a single hole.",
