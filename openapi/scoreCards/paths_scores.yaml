@@ -14,11 +14,18 @@ Scores:
     tags:
       - Scores
     requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/Score"
       required: true
-      $ref: "#/ScoreSchema"
     responses:
       200:
-        $ref: "#/ScoreSchema"
+        description: Added new score.
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Score"
       400:
         $ref: "../errors/responses.yaml#/400BadRequest"
       404:
@@ -61,7 +68,13 @@ ScoresForHole:
       - ScoresForHole
     responses:
       200:
-        $ref: "#/PlayerScores"
+        description: List of player IDs and scores.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas.yaml#/PlayerScore"
       404:
         $ref: "../errors/responses.yaml#/404NotFound"
       500:
@@ -74,8 +87,13 @@ ScoresForHole:
     tags:
       - ScoresForHole
     requestBody:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "./schemas.yaml#/PlayerScore"
       required: true
-      $ref: "#/PlayerScores"
     responses:
       201:
         content:
@@ -100,17 +118,3 @@ ScoresForHole:
         description: Scores were deleted successfully.
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
-
-PlayerScores:
-  content:
-    application/json:
-      schema:
-        type: array
-        items:
-          $ref: "./schemas.yaml#/PlayerScore"
-
-ScoreSchema:
-  content:
-    application/json:
-      schema:
-        $ref: "./schemas.yaml#/Score"
