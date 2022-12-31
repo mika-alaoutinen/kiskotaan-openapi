@@ -967,12 +967,25 @@
         "description" : "Adds a single score entry. New score Replaces old entry.",
         "operationId" : "addScore",
         "requestBody" : {
-          "$ref" : "#/components/requestBodies/ScoreSchema",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Score"
+              }
+            }
+          },
           "required" : true
         },
         "responses" : {
           "200" : {
-            "$ref" : "#/components/responses/ScoreSchema"
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Score"
+                }
+              }
+            },
+            "description" : "Added new score."
           },
           "400" : {
             "content" : {
@@ -1045,7 +1058,8 @@
                   "type" : "array"
                 }
               }
-            }
+            },
+            "description" : "List of player IDs and scores."
           },
           "404" : {
             "content" : {
@@ -1092,7 +1106,16 @@
         "description" : "Add a list of scores for a given hole. New scores replace any old entries for the hole.",
         "operationId" : "addScores",
         "requestBody" : {
-          "$ref" : "#/components/requestBodies/PlayerScores",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "items" : {
+                  "$ref" : "#/components/schemas/PlayerScore"
+                },
+                "type" : "array"
+              }
+            }
+          },
           "required" : true
         },
         "responses" : {
@@ -1152,15 +1175,6 @@
           }
         },
         "required" : true
-      },
-      "ScoreSchema" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Score"
-            }
-          }
-        }
       }
     },
     "responses" : {
@@ -1243,18 +1257,6 @@
           }
         },
         "description" : "OK."
-      },
-      "PlayerScores" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "items" : {
-                "$ref" : "#/components/schemas/PlayerScore"
-              },
-              "type" : "array"
-            }
-          }
-        }
       }
     },
     "schemas" : {
