@@ -1126,7 +1126,8 @@
                   "$ref" : "#/components/schemas/ScoreRow"
                 }
               }
-            }
+            },
+            "description" : "Added scores succesfully."
           },
           "400" : {
             "content" : {
