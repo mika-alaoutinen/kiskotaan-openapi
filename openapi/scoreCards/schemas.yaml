@@ -27,10 +27,10 @@ ScoreCard:
       type: number
     course:
       $ref: "#/Course"
-    playerIds:
+    players:
       type: array
       items:
-        type: number
+        $ref: "#/Player"
       minItems: 1
       maxItems: 5
     scores:
@@ -40,15 +40,33 @@ ScoreCard:
 
 Course:
   type: object
-  description: Required info about a course.
+  description: Info about a course.
   required:
     - id
     - holes
+    - name
   properties:
     id:
       type: number
     holes:
       type: integer
+    name:
+      type: string
+
+Player:
+  type: object
+  description: Info about a player.
+  required:
+    - id
+    - firstName
+    - lastName
+  properties:
+    id:
+      type: number
+    firstName:
+      type: string
+    lastName:
+      type: string
 
 Score:
   type: object

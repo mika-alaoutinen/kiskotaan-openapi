@@ -20,6 +20,10 @@ paths:
 
 components:
   schemas:
+    Course:
+      $ref: "./schemas.yaml#/Course"
+    Player:
+      $ref: "./schemas.yaml#/Player"
     NewScoreCard:
       $ref: "./schemas.yaml#/NewScoreCard"
     ScoreCard:
