@@ -62,32 +62,6 @@ ScoreCard:
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
 
-  patch:
-    summary: Update scores for a given hole.
-    description: Update a single score row on a score card.
-    operationId: updateScores
-    tags:
-      - ScoreCards
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "./schemas.yaml#/ScoreRow"
-    responses:
-      200:
-        description: OK.
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/ScoreRow"
-      400:
-        $ref: "../errors/responses.yaml#/400BadRequest"
-      404:
-        $ref: "../errors/responses.yaml#/404NotFound"
-      500:
-        $ref: "../errors/responses.yaml#/500ServerError"
-
   delete:
     summary: Delete score card.
     description: Delete a score card by ID.
