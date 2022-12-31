@@ -34,6 +34,8 @@ ScoreCards:
         $ref: "#/ScoreCardResponse"
       400:
         $ref: "../errors/responses.yaml#/400BadRequest"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
 
