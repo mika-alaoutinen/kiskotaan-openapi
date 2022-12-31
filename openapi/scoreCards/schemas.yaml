@@ -20,7 +20,7 @@ ScoreCard:
   required:
     - id
     - course
-    - playerIds
+    - players
     - scores
   properties:
     id:
