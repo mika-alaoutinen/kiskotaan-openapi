@@ -19,6 +19,8 @@ paths:
     $ref: "./paths.yaml#/ScoreCards"
   /scorecards/{id}:
     $ref: "./paths.yaml#/ScoreCard"
+  /scorecards/{id}/scores:
+    $ref: "./paths_scores.yaml#/Score"
   /scorecards/{id}/scores/{holeNumber}:
     $ref: "./paths_scores.yaml#/Scores"
 

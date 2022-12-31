@@ -57,7 +57,47 @@ Scores:
       - Scores
     responses:
       204:
-        description: Score were deleted successfully.
+        description: Scores were deleted successfully.
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+Score:
+  parameters:
+    - in: path
+      name: id
+      description: Score card ID.
+      required: true
+      schema:
+        type: integer
+
+  post:
+    summary: Add single score.
+    description: Adds a single score entry. New score Replaces old entry.
+    operationId: addScore
+    tags:
+      - Scores
+    requestBody:
+      required: true
+      $ref: "#/ScoreSchema"
+    responses:
+      200:
+        $ref: "#/ScoreSchema"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+  delete:
+    summary: Delete single score.
+    description: Deletes a single score entry.
+    operationId: deleteScore
+    tags:
+      - Scores
+    responses:
+      204:
+        description: Score was deleted successfully.
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
 
@@ -68,3 +108,9 @@ PlayerScores:
         type: array
         items:
           $ref: "./schemas.yaml#/PlayerScore"
+
+ScoreSchema:
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Score"
