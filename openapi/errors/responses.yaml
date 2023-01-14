@@ -3,7 +3,7 @@
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/ErrorBody"
+        $ref: "./schemas.yaml#/ValidationErrorBody"
 
 404NotFound:
   description: Resource not found.
