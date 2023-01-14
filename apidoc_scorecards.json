@@ -510,7 +510,7 @@
           "courseId" : {
             "type" : "number"
           },
-          "playersIds" : {
+          "playerIds" : {
             "items" : {
               "type" : "number"
             },
@@ -520,7 +520,7 @@
             "uniqueItems" : true
           }
         },
-        "required" : [ "course", "players" ],
+        "required" : [ "courseId", "playerIds" ],
         "type" : "object"
       },
       "ScoreCard" : {
