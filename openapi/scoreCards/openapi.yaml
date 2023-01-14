@@ -44,3 +44,5 @@ components:
       $ref: "./schemas.yaml#/Score"
     ErrorBody:
       $ref: "../errors/schemas.yaml#/ErrorBody"
+    ValidationErrorBody:
+      $ref: "../errors/schemas.yaml#/ValidationErrorBody"

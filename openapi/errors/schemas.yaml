@@ -21,3 +21,29 @@ ErrorBody:
     path:
       description: Endpoint that was called.
       type: string
+
+ValidationErrorBody:
+  type: object
+  description: An extended error resource with a list of validation errors.
+  required:
+    - id
+    - courseId
+  properties:
+    validationErrors:
+      type: array
+      items:
+        $ref: "#/ValidationError"
+  allOf:
+    - $ref: "#/ErrorBody"
+
+ValidationError:
+  type: object
+  description: A validation error.
+  required:
+    - field
+    - message
+  properties:
+    field:
+      type: string
+    message:
+      type: string
