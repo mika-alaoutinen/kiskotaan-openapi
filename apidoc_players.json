@@ -66,7 +66,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ErrorBody"
+                  "$ref" : "#/components/schemas/ValidationErrorBody"
                 }
               }
             },
@@ -237,7 +237,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/ErrorBody"
+              "$ref" : "#/components/schemas/ValidationErrorBody"
             }
           }
         },
@@ -309,6 +309,35 @@
           }
         },
         "required" : [ "code", "message", "status" ],
+        "type" : "object"
+      },
+      "ValidationErrorBody" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ErrorBody"
+        } ],
+        "description" : "An extended error resource with a list of validation errors.",
+        "properties" : {
+          "validationErrors" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ValidationError"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "courseId", "id" ],
+        "type" : "object"
+      },
+      "ValidationError" : {
+        "description" : "A validation error.",
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "field", "message" ],
         "type" : "object"
       }
     }
