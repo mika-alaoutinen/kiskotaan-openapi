@@ -17,7 +17,7 @@ Scores:
       content:
         application/json:
           schema:
-            $ref: "./schemas.yaml#/Score"
+            $ref: "./schemas.yaml#/NewScore"
       required: true
     responses:
       200:

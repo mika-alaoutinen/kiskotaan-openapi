@@ -40,6 +40,8 @@ components:
       $ref: "./schemas.yaml#/ScoreCard"
     ScoreRow:
       $ref: "./schemas.yaml#/ScoreRow"
+    NewScore:
+      $ref: "./schemas.yaml#/NewScore"
     Score:
       $ref: "./schemas.yaml#/Score"
     ErrorBody:
