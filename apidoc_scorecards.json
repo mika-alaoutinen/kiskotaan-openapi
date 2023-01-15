@@ -246,7 +246,7 @@
           }
         },
         "summary" : "Add single score.",
-        "tags" : [ "ScoreCards" ]
+        "tags" : [ "Scores" ]
       }
     },
     "/scores/{id}" : {
@@ -322,7 +322,7 @@
     "/scorecards/{id}/scores/{holeNumber}" : {
       "delete" : {
         "description" : "Delete all player scores for a given hole.",
-        "operationId" : "deleteScores",
+        "operationId" : "deleteScoresForHole",
         "responses" : {
           "204" : {
             "description" : "Scores were deleted successfully."
@@ -343,7 +343,7 @@
       },
       "get" : {
         "description" : "Returns scores for all players for a given hole.",
-        "operationId" : "getScores",
+        "operationId" : "getScoresForHole",
         "responses" : {
           "200" : {
             "content" : {
@@ -401,7 +401,7 @@
       } ],
       "post" : {
         "description" : "Add a list of scores for a given hole. New scores replace any old entries for the hole.",
-        "operationId" : "addScores",
+        "operationId" : "addScoresForHole",
         "requestBody" : {
           "content" : {
             "application/json" : {
