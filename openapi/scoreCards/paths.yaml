@@ -1,38 +1,3 @@
-AddNewScore:
-  parameters:
-    - in: path
-      name: id
-      description: Score card ID.
-      required: true
-      schema:
-        type: integer
-
-  post:
-    summary: Add single score.
-    description: Adds a single score entry to a score card. New score Replaces old entry.
-    operationId: addScore
-    tags:
-      - ScoreCards
-    requestBody:
-      content:
-        application/json:
-          schema:
-            $ref: "./schemas.yaml#/NewScore"
-      required: true
-    responses:
-      200:
-        description: Added new score.
-        content:
-          application/json:
-            schema:
-              $ref: "./schemas.yaml#/Score"
-      400:
-        $ref: "../errors/responses.yaml#/400BadRequest"
-      404:
-        $ref: "../errors/responses.yaml#/404NotFound"
-      500:
-        $ref: "../errors/responses.yaml#/500ServerError"
-
 ScoreCards:
   get:
     summary: Get all score cards.
