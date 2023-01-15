@@ -89,6 +89,8 @@ components:
       $ref: "./scoreCards/schemas.yaml#/ScoreCard"
     ScoreRow:
       $ref: "./scoreCards/schemas.yaml#/ScoreRow"
+    NewScore:
+      $ref: "./scoreCards/schemas.yaml#/NewScore"
     Score:
       $ref: "./scoreCards/schemas.yaml#/Score"
 

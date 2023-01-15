@@ -82,9 +82,9 @@ PlayerScore:
       minimum: 1
       maximum: 99
 
-Score:
+NewScore:
   type: object
-  description: A score for a player
+  description: A new score entry for a player
   required:
     - playerId
     - hole
@@ -100,6 +100,17 @@ Score:
       type: integer
       minimum: 1
       maximum: 99
+
+Score:
+  type: object
+  description: A score for a player
+  required:
+    - id
+  properties:
+    id:
+      type: number
+  allOf:
+    - $ref: "#/NewScore"
 
 ScoreRow:
   type: object
