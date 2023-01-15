@@ -22,11 +22,11 @@ paths:
   /scorecards/{id}:
     $ref: "./paths.yaml#/ScoreCard"
   /scorecards/{id}/scores:
-    $ref: "./paths.yaml#/AddNewScore"
+    $ref: "./paths_scores.yaml#/AddNewScore"
   /scores/{id}:
     $ref: "./paths_scores.yaml#/Scores"
   /scorecards/{id}/scores/{holeNumber}:
-    $ref: "./paths_scores.yaml#/ScoresForHole"
+    $ref: "./paths_scores_for_holes.yaml#/ScoresForHole"
 
 components:
   schemas:
