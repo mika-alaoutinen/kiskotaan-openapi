@@ -181,27 +181,6 @@
       } ]
     },
     "/scorecards/{id}/scores" : {
-      "delete" : {
-        "description" : "Deletes a single score entry.",
-        "operationId" : "deleteScore",
-        "responses" : {
-          "204" : {
-            "description" : "Score was deleted successfully."
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description" : "Unknown server error."
-          }
-        },
-        "summary" : "Delete single score.",
-        "tags" : [ "Scores" ]
-      },
       "parameters" : [ {
         "description" : "Score card ID.",
         "in" : "path",
@@ -212,7 +191,7 @@
         }
       } ],
       "post" : {
-        "description" : "Adds a single score entry. New score Replaces old entry.",
+        "description" : "Adds a single score entry to a score card. New score Replaces old entry.",
         "operationId" : "addScore",
         "requestBody" : {
           "content" : {
@@ -267,8 +246,78 @@
           }
         },
         "summary" : "Add single score.",
-        "tags" : [ "Scores" ]
+        "tags" : [ "ScoreCards" ]
       }
+    },
+    "/scores/{id}" : {
+      "delete" : {
+        "description" : "Deletes a single score entry.",
+        "operationId" : "deleteScore",
+        "responses" : {
+          "204" : {
+            "description" : "Score was deleted successfully."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Delete single score.",
+        "tags" : [ "Scores" ]
+      },
+      "get" : {
+        "description" : "Finds a single score by ID.",
+        "operationId" : "getScore",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Score"
+                }
+              }
+            },
+            "description" : "Found score entry."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get single score.",
+        "tags" : [ "Scores" ]
+      },
+      "parameters" : [ {
+        "description" : "Score ID.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        }
+      } ]
     },
     "/scorecards/{id}/scores/{holeNumber}" : {
       "delete" : {
