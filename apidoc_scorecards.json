@@ -12,6 +12,9 @@
     "description" : "CRUD operations for handling score cards.",
     "name" : "ScoreCards"
   }, {
+    "description" : "Adding a new score to a score card. This is it's own API to make Quarkus code generation work correctly.",
+    "name" : "AddNewScore"
+  }, {
     "description" : "CRUD operations for handling score rows in a score card.",
     "name" : "Scores"
   }, {
@@ -246,7 +249,7 @@
           }
         },
         "summary" : "Add single score.",
-        "tags" : [ "Scores" ]
+        "tags" : [ "AddNewScore" ]
       }
     },
     "/scores/{id}" : {
