@@ -16,6 +16,8 @@ tags:
     description: Operations for starting and ending a game.
   - name: ScoreCards
     description: CRUD operations for handling score cards.
+  - name: AddNewScore
+    description: Adding a new score to a score card. This is it's own API to make Quarkus code generation work correctly.
   - name: Scores
     description: CRUD operations for handling score rows in a score card.
   - name: ScoresForHole
@@ -49,7 +51,7 @@ paths:
   /scorecards/{id}:
     $ref: "./scoreCards/paths.yaml#/ScoreCard"
   /scorecards/{id}/scores:
-    $ref: "./scoreCards/paths_scores.yaml#/AddNewScore"
+    $ref: "./scoreCards/paths_add_score.yaml#/AddNewScore"
   /scores/{id}:
     $ref: "./scoreCards/paths_scores.yaml#/Scores"
   /scorecards/{id}/scores/{holeNumber}:
