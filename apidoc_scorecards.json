@@ -218,7 +218,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/Score"
+                "$ref" : "#/components/schemas/NewScore"
               }
             }
           },
@@ -569,8 +569,8 @@
         "required" : [ "hole", "scores" ],
         "type" : "object"
       },
-      "Score" : {
-        "description" : "A score for a player",
+      "NewScore" : {
+        "description" : "A new score entry for a player",
         "properties" : {
           "playerId" : {
             "type" : "number"
@@ -587,6 +587,19 @@
           }
         },
         "required" : [ "hole", "playerId", "score" ],
+        "type" : "object"
+      },
+      "Score" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/NewScore"
+        } ],
+        "description" : "A score for a player",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "id" ],
         "type" : "object"
       },
       "ErrorBody" : {
