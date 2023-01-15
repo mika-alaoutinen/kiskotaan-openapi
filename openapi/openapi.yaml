@@ -49,6 +49,8 @@ paths:
   /scorecards/{id}:
     $ref: "./scoreCards/paths.yaml#/ScoreCard"
   /scorecards/{id}/scores:
+    $ref: "./scoreCards/paths.yaml#/AddNewScore"
+  /scores/{id}:
     $ref: "./scoreCards/paths_scores.yaml#/Scores"
   /scorecards/{id}/scores/{holeNumber}:
     $ref: "./scoreCards/paths_scores.yaml#/ScoresForHole"

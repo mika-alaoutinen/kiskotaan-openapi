@@ -2,32 +2,24 @@ Scores:
   parameters:
     - in: path
       name: id
-      description: Score card ID.
+      description: Score ID.
       required: true
       schema:
         type: integer
 
-  post:
-    summary: Add single score.
-    description: Adds a single score entry. New score Replaces old entry.
-    operationId: addScore
+  get:
+    summary: Get single score.
+    description: Finds a single score by ID.
+    operationId: getScore
     tags:
       - Scores
-    requestBody:
-      content:
-        application/json:
-          schema:
-            $ref: "./schemas.yaml#/NewScore"
-      required: true
     responses:
       200:
-        description: Added new score.
+        description: Found score entry.
         content:
           application/json:
             schema:
               $ref: "./schemas.yaml#/Score"
-      400:
-        $ref: "../errors/responses.yaml#/400BadRequest"
       404:
         $ref: "../errors/responses.yaml#/404NotFound"
       500:
