@@ -5,14 +5,14 @@ Players:
     operationId: getPlayers
     parameters:
       - in: query
-        name: firstName
-        description: Filter players by first name. Does not have to be an exact match.
-        required: false
-        schema:
-          type: string
-      - in: query
-        name: lastName
-        description: Filter players by last name. Does not have to be an exact match.
+        name: name
+        description: |
+          Filter players by name. If given a single input, filter considers both the players'
+          first and last names. If given two inputs separated by a plus sign, filter treats
+          first input as a first name and second input as a last name. If given more than two
+          inputs separated by a plus sign, filter only considers the first two inputs and
+          ignores the rest. Filters do not have to be an exact match.
+        example: "?name=Pekka+Kana"
         required: false
         schema:
           type: string
