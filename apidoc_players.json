@@ -15,8 +15,25 @@
   "paths" : {
     "/players" : {
       "get" : {
-        "description" : "Returns a list of all players.",
+        "description" : "Returns a list of all players. Players can be filtered by name.",
         "operationId" : "getPlayers",
+        "parameters" : [ {
+          "description" : "Filter players by first name. Does not have to be an exact match.",
+          "in" : "query",
+          "name" : "firstName",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "Filter players by last name. Does not have to be an exact match.",
+          "in" : "query",
+          "name" : "lastName",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "responses" : {
           "200" : {
             "content" : {

@@ -36,8 +36,49 @@
   "paths" : {
     "/courses" : {
       "get" : {
-        "description" : "Returns a list of all courses.",
+        "description" : "Returns a list of all courses. Courses can be filtered.",
         "operationId" : "getCourses",
+        "parameters" : [ {
+          "description" : "Filter courses by name. Does not have to be an exact match.",
+          "in" : "query",
+          "name" : "name",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "Filter courses by minimum hole count, inclusive.",
+          "in" : "query",
+          "name" : "holesMin",
+          "required" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Filter courses by maximum hole count, inclusive.",
+          "in" : "query",
+          "name" : "holesMax",
+          "required" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Filter courses by minimum course par, inclusive.",
+          "in" : "query",
+          "name" : "parMin",
+          "required" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Filter courses by maximum course par, inclusive.",
+          "in" : "query",
+          "name" : "parMax",
+          "required" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -433,8 +474,25 @@
     },
     "/players" : {
       "get" : {
-        "description" : "Returns a list of all players.",
+        "description" : "Returns a list of all players. Players can be filtered by name.",
         "operationId" : "getPlayers",
+        "parameters" : [ {
+          "description" : "Filter players by first name. Does not have to be an exact match.",
+          "in" : "query",
+          "name" : "firstName",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "Filter players by last name. Does not have to be an exact match.",
+          "in" : "query",
+          "name" : "lastName",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "responses" : {
           "200" : {
             "content" : {
