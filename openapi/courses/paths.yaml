@@ -131,6 +131,13 @@ Course:
         $ref: "../errors/responses.yaml#/500ServerError"
 
 AddNewHole:
+  parameters:
+    - in: path
+      name: id
+      description: Course id.
+      required: true
+      schema:
+        type: integer
   post:
     summary: Add a new hole to a given course.
     description: Add a new hole to a course identified by course ID.
