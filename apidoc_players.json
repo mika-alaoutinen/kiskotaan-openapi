@@ -18,17 +18,10 @@
         "description" : "Returns a list of all players. Players can be filtered by name.",
         "operationId" : "getPlayers",
         "parameters" : [ {
-          "description" : "Filter players by first name. Does not have to be an exact match.",
+          "description" : "Filter players by name. If given a single input, filter considers both the players'\nfirst and last names. If given two inputs separated by a plus sign, filter treats\nfirst input as a first name and second input as a last name. If given more than two\ninputs separated by a plus sign, filter only considers the first two inputs and\nignores the rest. Filters do not have to be an exact match.\n",
+          "example" : "?name=Pekka+Kana",
           "in" : "query",
-          "name" : "firstName",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "description" : "Filter players by last name. Does not have to be an exact match.",
-          "in" : "query",
-          "name" : "lastName",
+          "name" : "name",
           "required" : false,
           "schema" : {
             "type" : "string"
