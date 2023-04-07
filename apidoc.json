@@ -285,6 +285,15 @@
       }
     },
     "/courses/{id}/holes" : {
+      "parameters" : [ {
+        "description" : "Course id.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        }
+      } ],
       "post" : {
         "description" : "Add a new hole to a course identified by course ID.",
         "operationId" : "addHole",
