@@ -1,8 +1,21 @@
 Players:
   get:
     summary: Get all players.
-    description: Returns a list of all players.
+    description: Returns a list of all players. Players can be filtered by name.
     operationId: getPlayers
+    parameters:
+      - in: query
+        name: firstName
+        description: Filter players by first name.
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: lastName
+        description: Filter players by last name.
+        required: false
+        schema:
+          type: string
     tags:
       - Players
     responses:
