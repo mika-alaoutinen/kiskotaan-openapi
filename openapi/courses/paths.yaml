@@ -1,8 +1,41 @@
 Courses:
   get:
     summary: Get all courses.
-    description: Returns a list of all courses.
+    description: Returns a list of all courses. Courses can be filtered.
     operationId: getCourses
+    parameters:
+      - in: query
+        name: name
+        description: Filter courses by name. Does not have to be an exact match.
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: holesMin
+        description: Filter courses by minimum hole count, inclusive.
+        default: 1
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: holesMax
+        description: Filter courses by maximum hole count, inclusive.
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: parMin
+        description: Filter courses by minimum course par, inclusive.
+        default: 1
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: parMax
+        description: Filter courses by maximum course par, inclusive.
+        required: false
+        schema:
+          type: integer
     tags:
       - Courses
     responses:
