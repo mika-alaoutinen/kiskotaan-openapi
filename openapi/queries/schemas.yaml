@@ -1,0 +1,102 @@
+# Courses
+Course:
+  description: A disc golf course.
+  required:
+    - id
+    - name
+    - holes
+  properties:
+    id:
+      type: number
+    holes:
+      type: array
+      items:
+        $ref: "#/Hole"
+    name:
+      type: string
+    par:
+      type: number
+
+CourseSummary:
+  description: A summary view of a disc golf course.
+  required:
+    - id
+    - name
+    - holes
+    - par
+  properties:
+    id:
+      type: number
+    name:
+      type: string
+    holes:
+      type: number
+    par:
+      type: number
+
+Hole:
+  type: object
+  description: A hole in a disc golf course.
+  required:
+    - id
+    - number
+    - par
+    - distance
+  properties:
+    id:
+      type: number
+    number:
+      type: integer
+    par:
+      type: integer
+    distance:
+      type: integer
+
+# Players
+Player:
+  type: object
+  description: Info about a player.
+  required:
+    - id
+    - firstName
+    - lastName
+  properties:
+    id:
+      type: number
+    firstName:
+      type: string
+    lastName:
+      type: string
+
+# Score cards
+Score:
+  type: object
+  description: A score for a player
+  required:
+    - id
+  properties:
+    id:
+      type: number
+  allOf:
+    - $ref: "#/NewScore"
+
+ScoreCard:
+  description: A score card for tracking scores for a group of players.
+  required:
+    - id
+    - course
+    - players
+    - scores
+  properties:
+    id:
+      type: number
+    course:
+      $ref: "#/Course"
+    players:
+      type: array
+      items:
+        $ref: "#/Player"
+    scores:
+      type: array
+      items:
+        $ref: "#/Score"
