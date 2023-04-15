@@ -1,0 +1,44 @@
+ScoreCards:
+  get:
+    summary: Get all score cards.
+    description: Returns a list of all score cards.
+    operationId: getScoreCards
+    tags:
+      - ScoreCards
+    responses:
+      200:
+        description: OK.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas.yaml#/ScoreCard"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+ScoreCard:
+  parameters:
+    - in: path
+      name: id
+      description: Score card ID.
+      required: true
+      schema:
+        type: integer
+  get:
+    summary: Get score card.
+    description: Get a single score card by ID.
+    operationId: getScoreCard
+    tags:
+      - ScoreCards
+    responses:
+      200:
+        description: Score card found.
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/ScoreCard"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
