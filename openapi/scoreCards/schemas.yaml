@@ -68,20 +68,6 @@ Player:
     lastName:
       type: string
 
-PlayerScore:
-  type: object
-  description: A score for a player
-  required:
-    - playerId
-    - score
-  properties:
-    playerId:
-      type: number
-    score:
-      type: integer
-      minimum: 1
-      maximum: 99
-
 NewScore:
   type: object
   description: A new score entry for a player
@@ -111,21 +97,3 @@ Score:
       type: number
   allOf:
     - $ref: "#/NewScore"
-
-ScoreRow:
-  type: object
-  description: The scores for a single hole.
-  required:
-    - hole
-    - scores
-  properties:
-    hole:
-      type: integer
-      minimum: 1
-      maximum: 30
-    scores:
-      type: array
-      items:
-        $ref: "#/PlayerScore"
-      minItems: 1
-      maxItems: 5

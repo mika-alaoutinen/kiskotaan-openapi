@@ -12,8 +12,6 @@ tags:
     description: Adding a new score to a score card. This is it's own API to make Quarkus code generation work correctly.
   - name: Scores
     description: CRUD operations for handling score rows in a score card.
-  - name: ScoresForHole
-    description: CRUD operations for handling score rows by hole number.
 
 servers:
   - url: http://localhost:8083/api/
@@ -27,8 +25,6 @@ paths:
     $ref: "./paths_add_score.yaml#/AddNewScore"
   /scores/{id}:
     $ref: "./paths_scores.yaml#/Scores"
-  /scorecards/{id}/scores/{holeNumber}:
-    $ref: "./paths_scores_for_holes.yaml#/ScoresForHole"
 
 components:
   schemas:
@@ -36,14 +32,10 @@ components:
       $ref: "./schemas.yaml#/Course"
     Player:
       $ref: "./schemas.yaml#/Player"
-    PlayerScore:
-      $ref: "./schemas.yaml#/PlayerScore"
     NewScoreCard:
       $ref: "./schemas.yaml#/NewScoreCard"
     ScoreCard:
       $ref: "./schemas.yaml#/ScoreCard"
-    ScoreRow:
-      $ref: "./schemas.yaml#/ScoreRow"
     NewScore:
       $ref: "./schemas.yaml#/NewScore"
     Score:
