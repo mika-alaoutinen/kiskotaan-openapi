@@ -28,3 +28,10 @@ services:
     volumes:
       - ./openapi:/openapi
       - ./apidoc_scorecards.json:/generated4/openapi.json
+
+  queries-api:
+    command: generate -i /openapi/queries/openapi.yaml -g openapi -o ./generated5
+    image: openapitools/openapi-generator-cli
+    volumes:
+      - ./openapi:/openapi
+      - ./apidoc_queries.json:/generated5/openapi.json
