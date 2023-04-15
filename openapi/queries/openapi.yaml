@@ -8,6 +8,8 @@ info:
 tags:
   - name: Courses
     description: Fetch disc golf courses.
+  - name: Players
+    description: Fetch players.
 
 servers:
   - url: http://localhost:8080/api/
@@ -17,6 +19,10 @@ paths:
     $ref: "./paths_courses.yaml#/Courses"
   /courses/{id}:
     $ref: "./paths_courses.yaml#/Course"
+  /players:
+    $ref: "./paths_players.yaml#/Players"
+  /players/{id}:
+    $ref: "./paths_players.yaml#/Player"
 
 components:
   schemas:
@@ -26,5 +32,7 @@ components:
       $ref: "./schemas.yaml#/CourseSummary"
     Hole:
       $ref: "./schemas.yaml#/Hole"
+    Player:
+      $ref: "./schemas.yaml#/Player"
     ErrorBody:
       $ref: "../errors/schemas.yaml#/ErrorBody"
