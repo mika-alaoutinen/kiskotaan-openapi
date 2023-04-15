@@ -1,0 +1,58 @@
+Players:
+  get:
+    summary: Get all players.
+    description: Returns a list of all players. Players can be filtered by name.
+    operationId: getPlayers
+    parameters:
+      - in: query
+        name: name
+        description: |
+          Filter players by name. If given a single input, filter considers both the players'
+          first and last names. If given two inputs separated by a plus sign, filter treats
+          first input as a first name and second input as a last name. If given more than two
+          inputs separated by a plus sign, filter only considers the first two inputs and
+          ignores the rest. Filters do not have to be an exact match.
+        example: "?name=Pekka+Kana"
+        required: false
+        schema:
+          type: string
+    tags:
+      - Players
+    responses:
+      200:
+        description: OK.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas.yaml#/Player"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+Player:
+  parameters:
+    - in: path
+      name: id
+      description: Player's ID.
+      required: true
+      schema:
+        type: integer
+  get:
+    summary: Get player by ID.
+    description: Get a single player by player ID.
+    operationId: getPlayer
+    tags:
+      - Players
+    responses:
+      200:
+        description: Found player.
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Player"
+
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"

@@ -1,0 +1,48 @@
+openapi: 3.0.3
+
+info:
+  title: Queries OpenAPI
+  version: 0.1.0
+  description: API definition for Kiskotaan queries service.
+
+tags:
+  - name: Courses
+    description: Fetch disc golf courses.
+  - name: Players
+    description: Fetch players.
+  - name: ScoreCards
+    description: Fetch disc golf score cards.
+
+servers:
+  - url: http://localhost:8080/api/
+
+paths:
+  /courses:
+    $ref: "./paths_courses.yaml#/Courses"
+  /courses/{id}:
+    $ref: "./paths_courses.yaml#/Course"
+  /players:
+    $ref: "./paths_players.yaml#/Players"
+  /players/{id}:
+    $ref: "./paths_players.yaml#/Player"
+  /scorecards:
+    $ref: "./paths_scorecards.yaml#/ScoreCards"
+  /scorecards/{id}:
+    $ref: "./paths_scorecards.yaml#/ScoreCard"
+
+components:
+  schemas:
+    Course:
+      $ref: "./schemas.yaml#/Course"
+    CourseSummary:
+      $ref: "./schemas.yaml#/CourseSummary"
+    Hole:
+      $ref: "./schemas.yaml#/Hole"
+    Player:
+      $ref: "./schemas.yaml#/Player"
+    Score:
+      $ref: "./schemas.yaml#/Score"
+    ScoreCard:
+      $ref: "./schemas.yaml#/ScoreCard"
+    ErrorBody:
+      $ref: "../errors/schemas.yaml#/ErrorBody"
