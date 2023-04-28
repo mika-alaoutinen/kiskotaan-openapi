@@ -638,15 +638,18 @@
       },
       "HoleDetails" : {
         "allOf" : [ {
-          "$ref" : "#/components/schemas/Hole"
+          "$ref" : "#/components/schemas/NewHole"
         } ],
         "description" : "A hole in a disc golf course. Includes a course ID.",
         "properties" : {
+          "id" : {
+            "type" : "number"
+          },
           "courseId" : {
             "type" : "number"
           }
         },
-        "required" : [ "courseId" ],
+        "required" : [ "courseId", "id" ],
         "type" : "object"
       },
       "ErrorBody" : {
