@@ -380,7 +380,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Hole"
+                  "$ref" : "#/components/schemas/HoleDetails"
                 }
               }
             },
@@ -437,7 +437,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Hole"
+                  "$ref" : "#/components/schemas/HoleDetails"
                 }
               }
             },
@@ -1190,7 +1190,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/Hole"
+              "$ref" : "#/components/schemas/HoleDetails"
             }
           }
         },
@@ -1344,12 +1344,22 @@
         "properties" : {
           "id" : {
             "type" : "number"
-          },
+          }
+        },
+        "required" : [ "id" ],
+        "type" : "object"
+      },
+      "HoleDetails" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/Hole"
+        } ],
+        "description" : "A hole in a disc golf course. Includes a course ID.",
+        "properties" : {
           "courseId" : {
             "type" : "number"
           }
         },
-        "required" : [ "courseId", "id" ],
+        "required" : [ "courseId" ],
         "type" : "object"
       },
       "NewPlayer" : {
