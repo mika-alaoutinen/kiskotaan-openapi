@@ -70,6 +70,8 @@ components:
       $ref: "./courses/schemas.yaml#/NewHole"
     Hole:
       $ref: "./courses/schemas.yaml#/Hole"
+    HoleDetails:
+      $ref: "./courses/schemas.yaml#/HoleDetails"
 
     NewPlayer:
       $ref: "./players/schemas.yaml#/NewPlayer"

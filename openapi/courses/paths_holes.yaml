@@ -60,4 +60,4 @@ HoleResponse:
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/Hole"
+        $ref: "./schemas.yaml#/HoleDetails"

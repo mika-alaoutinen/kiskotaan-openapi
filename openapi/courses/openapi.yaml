@@ -38,6 +38,8 @@ components:
       $ref: "./schemas.yaml#/NewHole"
     Hole:
       $ref: "./schemas.yaml#/Hole"
+    HoleDetails:
+      $ref: "./schemas.yaml#/HoleDetails"
     ErrorBody:
       $ref: "../errors/schemas.yaml#/ErrorBody"
     ValidationErrorBody:
