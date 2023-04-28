@@ -113,9 +113,12 @@ HoleDetails:
   type: object
   description: A hole in a disc golf course. Includes a course ID.
   required:
+    - id
     - courseId
   properties:
+    id:
+      type: number
     courseId:
       type: number
   allOf:
-    - $ref: "#/Hole"
+    - $ref: "#/NewHole"
