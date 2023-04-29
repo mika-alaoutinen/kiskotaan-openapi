@@ -132,7 +132,7 @@ ScoreCardSummary:
     id:
       type: number
     course:
-      $ref: "#/Course"
+      $ref: "#/CourseSummary"
     players:
       type: array
       items:
