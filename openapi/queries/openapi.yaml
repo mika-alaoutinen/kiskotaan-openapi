@@ -26,9 +26,9 @@ paths:
   /players/{id}:
     $ref: "players/paths.yaml#/Player"
   /scorecards:
-    $ref: "./paths_scorecards.yaml#/ScoreCards"
+    $ref: "./scorecards/paths.yaml#/ScoreCards"
   /scorecards/{id}:
-    $ref: "./paths_scorecards.yaml#/ScoreCard"
+    $ref: "./scorecards/paths.yaml#/ScoreCard"
 
 components:
   schemas:
@@ -41,12 +41,12 @@ components:
     Player:
       $ref: "players/schemas.yaml#/Player"
     Score:
-      $ref: "./schemas.yaml#/Score"
+      $ref: "scorecards/schemas.yaml#/Score"
     ScoreSummary:
-      $ref: "./schemas.yaml#/ScoreSummary"
+      $ref: "scorecards/schemas.yaml#/ScoreSummary"
     ScoreCard:
-      $ref: "./schemas.yaml#/ScoreCard"
+      $ref: "scorecards/schemas.yaml#/ScoreCard"
     ScoreCardSummary:
-      $ref: "./schemas.yaml#/ScoreCardSummary"
+      $ref: "scorecards/schemas.yaml#/ScoreCardSummary"
     ErrorBody:
       $ref: "../errors/schemas.yaml#/ErrorBody"

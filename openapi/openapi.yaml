@@ -38,9 +38,9 @@ paths:
   /query/players/{id}:
     $ref: "queries/players/paths.yaml#/Player"
   /query/scorecards:
-    $ref: "queries/paths_scorecards.yaml#/ScoreCards"
+    $ref: "queries/scorecards/paths.yaml#/ScoreCards"
   /query/scorecards/{id}:
-    $ref: "queries/paths_scorecards.yaml#/ScoreCard"
+    $ref: "queries/scorecards/paths.yaml#/ScoreCard"
 
   /courses:
     $ref: "./courses/paths.yaml#/Courses"

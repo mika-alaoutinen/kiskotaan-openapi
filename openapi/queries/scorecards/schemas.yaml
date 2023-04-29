@@ -27,11 +27,11 @@ ScoreCard:
     id:
       type: number
     course:
-      $ref: "courses/schemas.yaml#/Course"
+      $ref: "../courses/schemas.yaml#/Course"
     players:
       type: array
       items:
-        $ref: "players/schemas.yaml#/Player"
+        $ref: "../players/schemas.yaml#/Player"
     scores:
       type: array
       items:
@@ -61,11 +61,11 @@ ScoreCardSummary:
     id:
       type: number
     course:
-      $ref: "courses/schemas.yaml#/CourseSummary"
+      $ref: "../courses/schemas.yaml#/CourseSummary"
     players:
       type: array
       items:
-        $ref: "players/schemas.yaml#/Player"
+        $ref: "../players/schemas.yaml#/Player"
     scores:
       type: array
       items:
