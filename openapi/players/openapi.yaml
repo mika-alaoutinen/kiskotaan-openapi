@@ -10,7 +10,7 @@ tags:
     description: CRUD operations for handling players.
 
 servers:
-  - url: http://localhost:8081/api/
+  - url: http://localhost:8081
 
 paths:
   /players:

@@ -20,7 +20,7 @@ tags:
     description: CRUD operations for handling score rows in a score card.
 
 servers:
-  - url: http://localhost:8080/api/
+  - url: http://localhost:8080
 
 paths:
   /courses:

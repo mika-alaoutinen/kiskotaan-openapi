@@ -10,7 +10,7 @@ tags:
     description: CRUD operations for handling courses.
 
 servers:
-  - url: http://localhost:8082/api/
+  - url: http://localhost:8082
 
 paths:
   /courses:
