@@ -6,9 +6,18 @@
     "version" : "0.2.0"
   },
   "servers" : [ {
-    "url" : "http://localhost:8080/api/"
+    "url" : "http://localhost:8080"
   } ],
   "tags" : [ {
+    "description" : "Fetch courses.",
+    "name" : "QueryCourses"
+  }, {
+    "description" : "Fetch players.",
+    "name" : "QueryPlayers"
+  }, {
+    "description" : "Fetch score cards.",
+    "name" : "QueryScoreCards"
+  }, {
     "description" : "CRUD operations for handling courses.",
     "name" : "Courses"
   }, {
@@ -17,9 +26,6 @@
   }, {
     "description" : "CRUD operations for handling players.",
     "name" : "Players"
-  }, {
-    "description" : "Operations for starting and ending a game.",
-    "name" : "Game"
   }, {
     "description" : "CRUD operations for handling score cards.",
     "name" : "ScoreCards"
@@ -31,7 +37,7 @@
     "name" : "Scores"
   } ],
   "paths" : {
-    "/courses" : {
+    "/query/courses" : {
       "get" : {
         "description" : "Returns a list of all courses. Courses can be filtered.",
         "operationId" : "getCourses",
@@ -102,6 +108,303 @@
           }
         },
         "summary" : "Get all courses.",
+        "tags" : [ "QueryCourses" ]
+      }
+    },
+    "/query/courses/{id}" : {
+      "get" : {
+        "description" : "Find a single course by ID.",
+        "operationId" : "getCourse",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            },
+            "description" : "Course found."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Find course by ID.",
+        "tags" : [ "QueryCourses" ]
+      },
+      "parameters" : [ {
+        "description" : "Course id.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        }
+      } ]
+    },
+    "/query/players" : {
+      "get" : {
+        "description" : "Returns a list of all players. Players can be filtered by name.",
+        "operationId" : "getPlayers",
+        "parameters" : [ {
+          "description" : "Filter players by name. If given a single input, filter considers both the players'\nfirst and last names. If given two inputs separated by a plus sign, filter treats\nfirst input as a first name and second input as a last name. If given more than two\ninputs separated by a plus sign, filter only considers the first two inputs and\nignores the rest. Filters do not have to be an exact match.\n",
+          "example" : "?name=Pekka+Kana",
+          "in" : "query",
+          "name" : "name",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Player"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get all players.",
+        "tags" : [ "QueryPlayers" ]
+      }
+    },
+    "/query/players/{id}" : {
+      "get" : {
+        "description" : "Get a single player by player ID.",
+        "operationId" : "getPlayer",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Player"
+                }
+              }
+            },
+            "description" : "Found player."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get player by ID.",
+        "tags" : [ "QueryPlayers" ]
+      },
+      "parameters" : [ {
+        "description" : "Player's ID.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        }
+      } ]
+    },
+    "/query/scorecards" : {
+      "get" : {
+        "description" : "Returns a list of all score cards.",
+        "operationId" : "getScoreCards",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/ScoreCard"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get all score cards.",
+        "tags" : [ "QueryScoreCards" ]
+      }
+    },
+    "/query/scorecards/{id}" : {
+      "get" : {
+        "description" : "Get a single score card by ID.",
+        "operationId" : "getScoreCard",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ScoreCard"
+                }
+              }
+            },
+            "description" : "Score card found."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get score card.",
+        "tags" : [ "QueryScoreCards" ]
+      },
+      "parameters" : [ {
+        "description" : "Score card ID.",
+        "in" : "path",
+        "name" : "id",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        }
+      } ]
+    },
+    "/courses" : {
+      "get" : {
+        "description" : "Returns a list of all courses. Courses can be filtered.",
+        "operationId" : "getCourses",
+        "parameters" : [ {
+          "description" : "Filter courses by name. Does not have to be an exact match.",
+          "in" : "query",
+          "name" : "name",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "Filter courses by minimum hole count, inclusive.",
+          "in" : "query",
+          "name" : "holesMin",
+          "required" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Filter courses by maximum hole count, inclusive.",
+          "in" : "query",
+          "name" : "holesMax",
+          "required" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Filter courses by minimum course par, inclusive.",
+          "in" : "query",
+          "name" : "parMin",
+          "required" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Filter courses by maximum course par, inclusive.",
+          "in" : "query",
+          "name" : "parMax",
+          "required" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/CourseSummary_1"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get all courses.",
         "tags" : [ "Courses" ]
       },
       "post" : {
@@ -122,7 +425,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Course"
+                  "$ref" : "#/components/schemas/Course_1"
                 }
               }
             },
@@ -183,7 +486,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Course"
+                  "$ref" : "#/components/schemas/Course_1"
                 }
               }
             },
@@ -309,7 +612,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Hole"
+                  "$ref" : "#/components/schemas/Hole_1"
                 }
               }
             },
@@ -498,7 +801,7 @@
               "application/json" : {
                 "schema" : {
                   "items" : {
-                    "$ref" : "#/components/schemas/Player"
+                    "$ref" : "#/components/schemas/Player_1"
                   },
                   "type" : "array"
                 }
@@ -531,7 +834,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Player"
+                  "$ref" : "#/components/schemas/Player_1"
                 }
               }
             },
@@ -592,7 +895,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Player"
+                  "$ref" : "#/components/schemas/Player_1"
                 }
               }
             },
@@ -642,7 +945,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Player"
+                  "$ref" : "#/components/schemas/Player_1"
                 }
               }
             },
@@ -673,164 +976,6 @@
         "tags" : [ "Players" ]
       }
     },
-    "/games" : {
-      "post" : {
-        "description" : "Start a new game. Give score card ID as a request body.",
-        "operationId" : "startGame",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/NewGame"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "201" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Game"
-                }
-              }
-            },
-            "description" : "OK."
-          },
-          "400" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ValidationErrorBody"
-                }
-              }
-            },
-            "description" : "Bad request."
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description" : "Unknown server error."
-          }
-        },
-        "summary" : "Start new game.",
-        "tags" : [ "Game" ]
-      }
-    },
-    "/games/{id}" : {
-      "delete" : {
-        "description" : "Delete game by ID.",
-        "operationId" : "deleteGame",
-        "responses" : {
-          "204" : {
-            "description" : "The game was deleted successfully."
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description" : "Unknown server error."
-          }
-        },
-        "summary" : "Delete game.",
-        "tags" : [ "Game" ]
-      },
-      "get" : {
-        "description" : "Get an ongoing game by ID.",
-        "operationId" : "getGame",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Game"
-                }
-              }
-            },
-            "description" : "OK."
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description" : "Resource not found."
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description" : "Unknown server error."
-          }
-        },
-        "summary" : "Get game.",
-        "tags" : [ "Game" ]
-      },
-      "parameters" : [ {
-        "description" : "Game ID.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ],
-      "patch" : {
-        "description" : "End an ongoing game. Give game ID as a path parameter.",
-        "operationId" : "endGame",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Game"
-                }
-              }
-            },
-            "description" : "The game was ended successfully."
-          },
-          "400" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ValidationErrorBody"
-                }
-              }
-            },
-            "description" : "Bad request."
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorBody"
-                }
-              }
-            },
-            "description" : "Unknown server error."
-          }
-        },
-        "summary" : "End game.",
-        "tags" : [ "Game" ]
-      }
-    },
     "/scorecards" : {
       "get" : {
         "description" : "Returns a list of all score cards.",
@@ -841,7 +986,7 @@
               "application/json" : {
                 "schema" : {
                   "items" : {
-                    "$ref" : "#/components/schemas/ScoreCard"
+                    "$ref" : "#/components/schemas/ScoreCard_1"
                   },
                   "type" : "array"
                 }
@@ -881,7 +1026,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ScoreCard"
+                  "$ref" : "#/components/schemas/ScoreCard_1"
                 }
               }
             },
@@ -952,7 +1097,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ScoreCard"
+                  "$ref" : "#/components/schemas/ScoreCard_1"
                 }
               }
             },
@@ -1020,7 +1165,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Score"
+                  "$ref" : "#/components/schemas/Score_1"
                 }
               }
             },
@@ -1091,7 +1236,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/Score"
+                  "$ref" : "#/components/schemas/Score_1"
                 }
               }
             },
@@ -1156,11 +1301,21 @@
         },
         "description" : "Unknown server error."
       },
+      "404NotFound" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorBody"
+            }
+          }
+        },
+        "description" : "Resource not found."
+      },
       "CourseResponse" : {
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/Course"
+              "$ref" : "#/components/schemas/Course_1"
             }
           }
         },
@@ -1176,16 +1331,6 @@
         },
         "description" : "Bad request."
       },
-      "404NotFound" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/ErrorBody"
-            }
-          }
-        },
-        "description" : "Resource not found."
-      },
       "HoleResponse" : {
         "content" : {
           "application/json" : {
@@ -1200,17 +1345,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/Player"
-            }
-          }
-        },
-        "description" : "OK."
-      },
-      "GameResponse" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Game"
+              "$ref" : "#/components/schemas/Player_1"
             }
           }
         },
@@ -1220,7 +1355,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/ScoreCard"
+              "$ref" : "#/components/schemas/ScoreCard_1"
             }
           }
         },
@@ -1254,18 +1389,17 @@
           "id" : {
             "type" : "number"
           },
-          "name" : {
-            "maxLength" : 40,
-            "minLength" : 3,
-            "type" : "string"
-          },
           "holes" : {
             "items" : {
               "$ref" : "#/components/schemas/Hole"
             },
-            "maxItems" : 30,
-            "minItems" : 1,
             "type" : "array"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "par" : {
+            "type" : "number"
           }
         },
         "required" : [ "holes", "id", "name" ]
@@ -1302,8 +1436,6 @@
             "type" : "number"
           },
           "name" : {
-            "maxLength" : 40,
-            "minLength" : 3,
             "type" : "string"
           },
           "holes" : {
@@ -1337,16 +1469,22 @@
         "type" : "object"
       },
       "Hole" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/NewHole"
-        } ],
         "description" : "A hole in a disc golf course.",
         "properties" : {
           "id" : {
             "type" : "number"
+          },
+          "number" : {
+            "type" : "integer"
+          },
+          "par" : {
+            "type" : "integer"
+          },
+          "distance" : {
+            "type" : "integer"
           }
         },
-        "required" : [ "id" ],
+        "required" : [ "distance", "id", "number", "par" ],
         "type" : "object"
       },
       "HoleDetails" : {
@@ -1383,49 +1521,19 @@
         "type" : "object"
       },
       "Player" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/NewPlayer"
-        } ],
-        "description" : "A player returned from backend, who has an ID.",
-        "properties" : {
-          "id" : {
-            "type" : "number"
-          }
-        },
-        "required" : [ "id" ]
-      },
-      "Game" : {
-        "description" : "Object for persisting the state of a game; that is, a round of disc golf.",
+        "description" : "Info about a player.",
         "properties" : {
           "id" : {
             "type" : "number"
           },
-          "scoreChanged" : {
-            "type" : "boolean"
+          "firstName" : {
+            "type" : "string"
           },
-          "hole" : {
-            "maximum" : 30,
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "gameOver" : {
-            "type" : "boolean"
-          },
-          "scoreCardId" : {
-            "type" : "number"
+          "lastName" : {
+            "type" : "string"
           }
         },
-        "required" : [ "hole", "id", "isOver", "scoreCardId", "scoreChanged" ],
-        "type" : "object"
-      },
-      "NewGame" : {
-        "description" : "Contains ID for the scorecard that is related to the new game.",
-        "properties" : {
-          "scoreCardId" : {
-            "type" : "number"
-          }
-        },
-        "required" : [ "scoreCardId" ],
+        "required" : [ "firstName", "id", "lastName" ],
         "type" : "object"
       },
       "NewScoreCard" : {
@@ -1454,14 +1562,12 @@
             "type" : "number"
           },
           "course" : {
-            "$ref" : "#/components/schemas/Course_1"
+            "$ref" : "#/components/schemas/Course"
           },
           "players" : {
             "items" : {
-              "$ref" : "#/components/schemas/Player_1"
+              "$ref" : "#/components/schemas/Player"
             },
-            "maxItems" : 5,
-            "minItems" : 1,
             "type" : "array"
           },
           "scores" : {
@@ -1494,16 +1600,22 @@
         "type" : "object"
       },
       "Score" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/NewScore"
-        } ],
         "description" : "A score for a player",
         "properties" : {
           "id" : {
             "type" : "number"
+          },
+          "playerId" : {
+            "type" : "number"
+          },
+          "hole" : {
+            "type" : "integer"
+          },
+          "score" : {
+            "type" : "integer"
           }
         },
-        "required" : [ "id" ],
+        "required" : [ "hole", "id", "playerId", "score" ],
         "type" : "object"
       },
       "ErrorBody" : {
@@ -1549,6 +1661,61 @@
         "required" : [ "courseId", "id" ],
         "type" : "object"
       },
+      "CourseSummary_1" : {
+        "description" : "A summary view of a disc golf course.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "name" : {
+            "maxLength" : 40,
+            "minLength" : 3,
+            "type" : "string"
+          },
+          "holes" : {
+            "type" : "number"
+          },
+          "par" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "holes", "id", "name", "par" ]
+      },
+      "Course_1" : {
+        "description" : "A disc golf course.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "name" : {
+            "maxLength" : 40,
+            "minLength" : 3,
+            "type" : "string"
+          },
+          "holes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Hole_1"
+            },
+            "maxItems" : 30,
+            "minItems" : 1,
+            "type" : "array"
+          }
+        },
+        "required" : [ "holes", "id", "name" ]
+      },
+      "Hole_1" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/NewHole"
+        } ],
+        "description" : "A hole in a disc golf course.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "id" ],
+        "type" : "object"
+      },
       "ValidationError" : {
         "description" : "A validation error.",
         "properties" : {
@@ -1562,7 +1729,45 @@
         "required" : [ "field", "message" ],
         "type" : "object"
       },
-      "Course_1" : {
+      "Player_1" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/NewPlayer"
+        } ],
+        "description" : "A player returned from backend, who has an ID.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "id" ]
+      },
+      "ScoreCard_1" : {
+        "description" : "A score card for tracking scores for a group of players.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "course" : {
+            "$ref" : "#/components/schemas/Course_2"
+          },
+          "players" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Player"
+            },
+            "maxItems" : 5,
+            "minItems" : 1,
+            "type" : "array"
+          },
+          "scores" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Score_1"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "course", "id", "players", "scores" ]
+      },
+      "Course_2" : {
         "description" : "Info about a course.",
         "properties" : {
           "id" : {
@@ -1578,20 +1783,17 @@
         "required" : [ "holes", "id", "name" ],
         "type" : "object"
       },
-      "Player_1" : {
-        "description" : "Info about a player.",
+      "Score_1" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/NewScore"
+        } ],
+        "description" : "A score for a player",
         "properties" : {
           "id" : {
             "type" : "number"
-          },
-          "firstName" : {
-            "type" : "string"
-          },
-          "lastName" : {
-            "type" : "string"
           }
         },
-        "required" : [ "firstName", "id", "lastName" ],
+        "required" : [ "id" ],
         "type" : "object"
       }
     }

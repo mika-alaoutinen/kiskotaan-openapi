@@ -6,17 +6,17 @@
     "version" : "0.1.0"
   },
   "servers" : [ {
-    "url" : "http://localhost:8080/api/"
+    "url" : "http://localhost:8080"
   } ],
   "tags" : [ {
     "description" : "Fetch disc golf courses.",
-    "name" : "Courses"
+    "name" : "QueryCourses"
   }, {
     "description" : "Fetch players.",
-    "name" : "Players"
+    "name" : "QueryPlayers"
   }, {
     "description" : "Fetch disc golf score cards.",
-    "name" : "ScoreCards"
+    "name" : "QueryScoreCards"
   } ],
   "paths" : {
     "/courses" : {
@@ -90,7 +90,7 @@
           }
         },
         "summary" : "Get all courses.",
-        "tags" : [ "Courses" ]
+        "tags" : [ "QueryCourses" ]
       }
     },
     "/courses/{id}" : {
@@ -130,7 +130,7 @@
           }
         },
         "summary" : "Find course by ID.",
-        "tags" : [ "Courses" ]
+        "tags" : [ "QueryCourses" ]
       },
       "parameters" : [ {
         "description" : "Course id.",
@@ -182,7 +182,7 @@
           }
         },
         "summary" : "Get all players.",
-        "tags" : [ "Players" ]
+        "tags" : [ "QueryPlayers" ]
       }
     },
     "/players/{id}" : {
@@ -222,7 +222,7 @@
           }
         },
         "summary" : "Get player by ID.",
-        "tags" : [ "Players" ]
+        "tags" : [ "QueryPlayers" ]
       },
       "parameters" : [ {
         "description" : "Player's ID.",
@@ -264,7 +264,7 @@
           }
         },
         "summary" : "Get all score cards.",
-        "tags" : [ "ScoreCards" ]
+        "tags" : [ "QueryScoreCards" ]
       }
     },
     "/scorecards/{id}" : {
@@ -304,7 +304,7 @@
           }
         },
         "summary" : "Get score card.",
-        "tags" : [ "ScoreCards" ]
+        "tags" : [ "QueryScoreCards" ]
       },
       "parameters" : [ {
         "description" : "Score card ID.",
