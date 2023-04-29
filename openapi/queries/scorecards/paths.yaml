@@ -13,9 +13,9 @@ ScoreCards:
             schema:
               type: array
               items:
-                $ref: "./schemas.yaml#/ScoreCard"
+                $ref: "./schemas.yaml#/ScoreCardSummary"
       500:
-        $ref: "../errors/responses.yaml#/500ServerError"
+        $ref: "../../errors/responses.yaml#/500ServerError"
 
 ScoreCard:
   parameters:
@@ -39,6 +39,6 @@ ScoreCard:
             schema:
               $ref: "./schemas.yaml#/ScoreCard"
       404:
-        $ref: "../errors/responses.yaml#/404NotFound"
+        $ref: "../../errors/responses.yaml#/404NotFound"
       500:
-        $ref: "../errors/responses.yaml#/500ServerError"
+        $ref: "../../errors/responses.yaml#/500ServerError"

@@ -48,7 +48,7 @@ Courses:
               items:
                 $ref: "./schemas.yaml#/CourseSummary"
       500:
-        $ref: "../errors/responses.yaml#/500ServerError"
+        $ref: "../../errors/responses.yaml#/500ServerError"
 
 Course:
   parameters:
@@ -72,6 +72,6 @@ Course:
             schema:
               $ref: "./schemas.yaml#/Course"
       404:
-        $ref: "../errors/responses.yaml#/404NotFound"
+        $ref: "../../errors/responses.yaml#/404NotFound"
       500:
-        $ref: "../errors/responses.yaml#/500ServerError"
+        $ref: "../../errors/responses.yaml#/500ServerError"

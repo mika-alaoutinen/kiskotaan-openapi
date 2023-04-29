@@ -30,17 +30,17 @@ servers:
 
 paths:
   /query/courses:
-    $ref: "queries/paths_courses.yaml#/Courses"
+    $ref: "queries/courses/paths.yaml#/Courses"
   /query/courses/{id}:
-    $ref: "queries/paths_courses.yaml#/Course"
+    $ref: "queries/courses/paths.yaml#/Course"
   /query/players:
-    $ref: "queries/paths_players.yaml#/Players"
+    $ref: "queries/players/paths.yaml#/Players"
   /query/players/{id}:
-    $ref: "queries/paths_players.yaml#/Player"
+    $ref: "queries/players/paths.yaml#/Player"
   /query/scorecards:
-    $ref: "queries/paths_scorecards.yaml#/ScoreCards"
+    $ref: "queries/scorecards/paths.yaml#/ScoreCards"
   /query/scorecards/{id}:
-    $ref: "queries/paths_scorecards.yaml#/ScoreCard"
+    $ref: "queries/scorecards/paths.yaml#/ScoreCard"
 
   /courses:
     $ref: "./courses/paths.yaml#/Courses"

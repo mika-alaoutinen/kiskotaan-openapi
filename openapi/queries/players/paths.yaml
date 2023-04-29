@@ -28,7 +28,7 @@ Players:
               items:
                 $ref: "./schemas.yaml#/Player"
       500:
-        $ref: "../errors/responses.yaml#/500ServerError"
+        $ref: "../../errors/responses.yaml#/500ServerError"
 
 Player:
   parameters:
@@ -51,8 +51,7 @@ Player:
           application/json:
             schema:
               $ref: "./schemas.yaml#/Player"
-
       404:
-        $ref: "../errors/responses.yaml#/404NotFound"
+        $ref: "../../errors/responses.yaml#/404NotFound"
       500:
-        $ref: "../errors/responses.yaml#/500ServerError"
+        $ref: "../../errors/responses.yaml#/500ServerError"
