@@ -107,3 +107,37 @@ ScoreCard:
       type: array
       items:
         $ref: "#/Score"
+
+ScoreSummary:
+  description: Player's score summary for a round.
+  required:
+  properties:
+    playerId:
+      type: number
+    result:
+      description: How many strokes over or under par was the final score.
+      type: integer
+    roundScore:
+      description: Total round score.
+      type: integer
+
+ScoreCardSummary:
+  description: A summary view of a score card.
+  required:
+    - id
+    - course
+    - players
+    - scores
+  properties:
+    id:
+      type: number
+    course:
+      $ref: "#/Course"
+    players:
+      type: array
+      items:
+        $ref: "#/Player"
+    scores:
+      type: array
+      items:
+        $ref: "#/ScoreSummary"
