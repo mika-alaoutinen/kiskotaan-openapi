@@ -1,0 +1,14 @@
+Player:
+  type: object
+  description: Info about a player.
+  required:
+    - id
+    - firstName
+    - lastName
+  properties:
+    id:
+      type: number
+    firstName:
+      type: string
+    lastName:
+      type: string

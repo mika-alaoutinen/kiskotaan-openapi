@@ -22,9 +22,9 @@ paths:
   /courses/{id}:
     $ref: "courses/paths.yaml#/Course"
   /players:
-    $ref: "./paths_players.yaml#/Players"
+    $ref: "players/paths.yaml#/Players"
   /players/{id}:
-    $ref: "./paths_players.yaml#/Player"
+    $ref: "players/paths.yaml#/Player"
   /scorecards:
     $ref: "./paths_scorecards.yaml#/ScoreCards"
   /scorecards/{id}:
@@ -39,7 +39,7 @@ components:
     Hole:
       $ref: "courses/schemas.yaml#/Hole"
     Player:
-      $ref: "./schemas.yaml#/Player"
+      $ref: "players/schemas.yaml#/Player"
     Score:
       $ref: "./schemas.yaml#/Score"
     ScoreSummary:

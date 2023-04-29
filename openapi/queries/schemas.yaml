@@ -1,20 +1,3 @@
-# Players
-Player:
-  type: object
-  description: Info about a player.
-  required:
-    - id
-    - firstName
-    - lastName
-  properties:
-    id:
-      type: number
-    firstName:
-      type: string
-    lastName:
-      type: string
-
-# Score cards
 Score:
   type: object
   description: A score for a player
@@ -48,7 +31,7 @@ ScoreCard:
     players:
       type: array
       items:
-        $ref: "#/Player"
+        $ref: "players/schemas.yaml#/Player"
     scores:
       type: array
       items:
@@ -82,7 +65,7 @@ ScoreCardSummary:
     players:
       type: array
       items:
-        $ref: "#/Player"
+        $ref: "players/schemas.yaml#/Player"
     scores:
       type: array
       items:
