@@ -244,7 +244,7 @@
               "application/json" : {
                 "schema" : {
                   "items" : {
-                    "$ref" : "#/components/schemas/ScoreCard"
+                    "$ref" : "#/components/schemas/ScoreCardSummary"
                   },
                   "type" : "array"
                 }
@@ -421,9 +421,6 @@
           "id" : {
             "type" : "number"
           },
-          "playerId" : {
-            "type" : "number"
-          },
           "hole" : {
             "type" : "integer"
           },
@@ -431,8 +428,25 @@
             "type" : "integer"
           }
         },
-        "required" : [ "hole", "id", "playerId", "score" ],
+        "required" : [ "hole", "id", "score" ],
         "type" : "object"
+      },
+      "ScoreSummary" : {
+        "description" : "Player's score summary for a round.",
+        "properties" : {
+          "playerId" : {
+            "type" : "number"
+          },
+          "result" : {
+            "description" : "How many strokes over or under par was the final score.",
+            "type" : "integer"
+          },
+          "roundScore" : {
+            "description" : "Total round score.",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "playerId", "result", "roundScore" ]
       },
       "ScoreCard" : {
         "description" : "A score card for tracking scores for a group of players.",
@@ -450,8 +464,48 @@
             "type" : "array"
           },
           "scores" : {
+            "additionalProperties" : {
+              "items" : {
+                "$ref" : "#/components/schemas/Score"
+              },
+              "type" : "array"
+            },
+            "description" : "Map of players' scores. Key is playerId and value is list of scores.\nKeys are strings due to OpenAPI spec limitations.\n",
+            "example" : {
+              "123" : [ {
+                "id" : 111,
+                "hole" : 1,
+                "score" : 3
+              } ],
+              "456" : [ {
+                "id" : 222,
+                "hole" : 1,
+                "score" : 4
+              } ]
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "course", "id", "players", "scores" ]
+      },
+      "ScoreCardSummary" : {
+        "description" : "A summary view of a score card.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "course" : {
+            "$ref" : "#/components/schemas/CourseSummary"
+          },
+          "players" : {
             "items" : {
-              "$ref" : "#/components/schemas/Score"
+              "$ref" : "#/components/schemas/Player"
+            },
+            "type" : "array"
+          },
+          "scores" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ScoreSummary"
             },
             "type" : "array"
           }
