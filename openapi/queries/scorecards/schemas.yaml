@@ -40,6 +40,9 @@ ScoreCard:
 ScoreSummary:
   description: Player's score summary for a round.
   required:
+    - playerId
+    - result
+    - roundScore
   properties:
     playerId:
       type: number
