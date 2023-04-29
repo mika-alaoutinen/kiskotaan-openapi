@@ -1,57 +1,3 @@
-# Courses
-Course:
-  description: A disc golf course.
-  required:
-    - id
-    - name
-    - holes
-  properties:
-    id:
-      type: number
-    holes:
-      type: array
-      items:
-        $ref: "#/Hole"
-    name:
-      type: string
-    par:
-      type: number
-
-CourseSummary:
-  description: A summary view of a disc golf course.
-  required:
-    - id
-    - name
-    - holes
-    - par
-  properties:
-    id:
-      type: number
-    name:
-      type: string
-    holes:
-      type: number
-    par:
-      type: number
-
-Hole:
-  type: object
-  description: A hole in a disc golf course.
-  required:
-    - id
-    - number
-    - par
-    - distance
-  properties:
-    id:
-      type: number
-    number:
-      type: integer
-    par:
-      type: integer
-    distance:
-      type: integer
-
 # Players
 Player:
   type: object
@@ -98,7 +44,7 @@ ScoreCard:
     id:
       type: number
     course:
-      $ref: "#/Course"
+      $ref: "courses/schemas.yaml#/Course"
     players:
       type: array
       items:
@@ -132,7 +78,7 @@ ScoreCardSummary:
     id:
       type: number
     course:
-      $ref: "#/CourseSummary"
+      $ref: "courses/schemas.yaml#/CourseSummary"
     players:
       type: array
       items:

@@ -18,9 +18,9 @@ servers:
 
 paths:
   /courses:
-    $ref: "./paths_courses.yaml#/Courses"
+    $ref: "courses/paths.yaml#/Courses"
   /courses/{id}:
-    $ref: "./paths_courses.yaml#/Course"
+    $ref: "courses/paths.yaml#/Course"
   /players:
     $ref: "./paths_players.yaml#/Players"
   /players/{id}:
@@ -33,11 +33,11 @@ paths:
 components:
   schemas:
     Course:
-      $ref: "./schemas.yaml#/Course"
+      $ref: "courses/schemas.yaml#/Course"
     CourseSummary:
-      $ref: "./schemas.yaml#/CourseSummary"
+      $ref: "courses/schemas.yaml#/CourseSummary"
     Hole:
-      $ref: "./schemas.yaml#/Hole"
+      $ref: "courses/schemas.yaml#/Hole"
     Player:
       $ref: "./schemas.yaml#/Player"
     Score:

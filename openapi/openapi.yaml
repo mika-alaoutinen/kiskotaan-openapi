@@ -30,9 +30,9 @@ servers:
 
 paths:
   /query/courses:
-    $ref: "queries/paths_courses.yaml#/Courses"
+    $ref: "queries/courses/paths.yaml#/Courses"
   /query/courses/{id}:
-    $ref: "queries/paths_courses.yaml#/Course"
+    $ref: "queries/courses/paths.yaml#/Course"
   /query/players:
     $ref: "queries/paths_players.yaml#/Players"
   /query/players/{id}:
