@@ -3,13 +3,10 @@ Score:
   description: A score for a player
   required:
     - id
-    - playerId
     - hole
     - score
   properties:
     id:
-      type: number
-    playerId:
       type: number
     hole:
       type: integer
@@ -33,9 +30,17 @@ ScoreCard:
       items:
         $ref: "../players/schemas.yaml#/Player"
     scores:
-      type: array
-      items:
-        $ref: "#/Score"
+      description: |
+        Map of players' scores. Key is playerId and value is list of scores.
+        Keys are strings due to OpenAPI spec limitations.
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          $ref: "#/Score"
+      example:
+        123: [{ id: 111, hole: 1, score: 3 }]
+        456: [{ id: 222, hole: 1, score: 4 }]
 
 ScoreSummary:
   description: Player's score summary for a round.
