@@ -4,7 +4,7 @@ Games:
     description: Start a new game. Give score card ID as a request body.
     operationId: startGame
     tags:
-      - Game
+      - Games
     requestBody:
       required: true
       content:
@@ -33,7 +33,7 @@ Game:
     description: Get an ongoing game by ID.
     operationId: getGame
     tags:
-      - Game
+      - Games
     responses:
       200:
         $ref: "#/GameResponse"
@@ -47,7 +47,7 @@ Game:
     description: Delete game by ID.
     operationId: deleteGame
     tags:
-      - Game
+      - Games
     responses:
       204:
         description: The game was deleted successfully.
@@ -59,7 +59,7 @@ Game:
     description: End an ongoing game. Give game ID as a path parameter.
     operationId: endGame
     tags:
-      - Game
+      - Games
     responses:
       200:
         description: The game was ended successfully.
