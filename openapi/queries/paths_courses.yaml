@@ -37,7 +37,7 @@ Courses:
         schema:
           type: integer
     tags:
-      - Courses
+      - QueryCourses
     responses:
       200:
         description: OK.
@@ -63,7 +63,7 @@ Course:
     description: Find a single course by ID.
     operationId: getCourse
     tags:
-      - Courses
+      - QueryCourses
     responses:
       200:
         description: Course found.
