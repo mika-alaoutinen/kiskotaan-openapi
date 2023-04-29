@@ -6,14 +6,18 @@ info:
   description: API definition for Kiskotaan disc golf score card application.
 
 tags:
+  - name: QueryCourses
+    description: Fetch courses.
+  - name: QueryPlayers
+    description: Fetch players.
+  - name: QueryScoreCards
+    description: Fetch score cards.
   - name: Courses
     description: CRUD operations for handling courses.
   - name: Holes
     description: CRUD operations for handling a course's holes.
   - name: Players
     description: CRUD operations for handling players.
-  - name: Game
-    description: Operations for starting and ending a game.
   - name: ScoreCards
     description: CRUD operations for handling score cards.
   - name: AddNewScore
@@ -22,9 +26,22 @@ tags:
     description: CRUD operations for handling score rows in a score card.
 
 servers:
-  - url: http://localhost:8080/api/
+  - url: http://localhost:8080
 
 paths:
+  /query/courses:
+    $ref: "queries/paths_courses.yaml#/Courses"
+  /query/courses/{id}:
+    $ref: "queries/paths_courses.yaml#/Course"
+  /query/players:
+    $ref: "queries/paths_players.yaml#/Players"
+  /query/players/{id}:
+    $ref: "queries/paths_players.yaml#/Player"
+  /query/scorecards:
+    $ref: "queries/paths_scorecards.yaml#/ScoreCards"
+  /query/scorecards/{id}:
+    $ref: "queries/paths_scorecards.yaml#/ScoreCard"
+
   /courses:
     $ref: "./courses/paths.yaml#/Courses"
   /courses/{id}:
@@ -38,11 +55,6 @@ paths:
     $ref: "./players/paths.yaml#/Players"
   /players/{id}:
     $ref: "./players/paths.yaml#/Player"
-
-  /games:
-    $ref: "./games/paths.yaml#/Games"
-  /games/{id}:
-    $ref: "./games/paths.yaml#/Game"
 
   /scorecards:
     $ref: "./scoreCards/paths.yaml#/ScoreCards"
@@ -77,11 +89,6 @@ components:
       $ref: "./players/schemas.yaml#/NewPlayer"
     Player:
       $ref: "./players/schemas.yaml#/Player"
-
-    Game:
-      $ref: "./games/schemas.yaml#/Game"
-    NewGame:
-      $ref: "./games/schemas.yaml#/NewGame"
 
     NewScoreCard:
       $ref: "./scoreCards/schemas.yaml#/NewScoreCard"

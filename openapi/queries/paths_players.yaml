@@ -17,7 +17,7 @@ Players:
         schema:
           type: string
     tags:
-      - Players
+      - QueryPlayers
     responses:
       200:
         description: OK.
@@ -43,7 +43,7 @@ Player:
     description: Get a single player by player ID.
     operationId: getPlayer
     tags:
-      - Players
+      - QueryPlayers
     responses:
       200:
         description: Found player.

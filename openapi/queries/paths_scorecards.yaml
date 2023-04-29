@@ -4,7 +4,7 @@ ScoreCards:
     description: Returns a list of all score cards.
     operationId: getScoreCards
     tags:
-      - ScoreCards
+      - QueryScoreCards
     responses:
       200:
         description: OK.
@@ -30,7 +30,7 @@ ScoreCard:
     description: Get a single score card by ID.
     operationId: getScoreCard
     tags:
-      - ScoreCards
+      - QueryScoreCards
     responses:
       200:
         description: Score card found.

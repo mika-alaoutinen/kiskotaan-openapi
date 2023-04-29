@@ -6,15 +6,15 @@ info:
   description: API definition for Kiskotaan queries service.
 
 tags:
-  - name: Courses
+  - name: QueryCourses
     description: Fetch disc golf courses.
-  - name: Players
+  - name: QueryPlayers
     description: Fetch players.
-  - name: ScoreCards
+  - name: QueryScoreCards
     description: Fetch disc golf score cards.
 
 servers:
-  - url: http://localhost:8080/api/
+  - url: http://localhost:8080
 
 paths:
   /courses:
