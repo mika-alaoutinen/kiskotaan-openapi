@@ -6,6 +6,12 @@ info:
   description: API definition for Kiskotaan disc golf score card application.
 
 tags:
+  - name: QueryCourses
+    description: Fetch courses.
+  - name: QueryPlayers
+    description: Fetch players.
+  - name: QueryScoreCards
+    description: Fetch score cards.
   - name: Courses
     description: CRUD operations for handling courses.
   - name: Holes
@@ -23,6 +29,19 @@ servers:
   - url: http://localhost:8080
 
 paths:
+  /query/courses:
+    $ref: "queries/paths_courses.yaml#/Courses"
+  /query/courses/{id}:
+    $ref: "queries/paths_courses.yaml#/Course"
+  /query/players:
+    $ref: "queries/paths_players.yaml#/Players"
+  /query/players/{id}:
+    $ref: "queries/paths_players.yaml#/Player"
+  /query/scorecards:
+    $ref: "queries/paths_scorecards.yaml#/ScoreCards"
+  /query/scorecards/{id}:
+    $ref: "queries/paths_scorecards.yaml#/ScoreCard"
+
   /courses:
     $ref: "./courses/paths.yaml#/Courses"
   /courses/{id}:
