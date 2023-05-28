@@ -34,9 +34,19 @@ ScoreCard:
       minItems: 1
       maxItems: 5
     scores:
-      type: array
-      items:
-        $ref: "#/Score"
+      description: |
+        Map of players' scores. Key is playerId and value is list of scores.
+        Keys are strings due to OpenAPI spec limitations.
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          $ref: "#/PlayerScore"
+      example:
+        "123":
+          [{ result: 0, total: 3, scores: [{ id: 111, hole: 1, score: 4 }] }]
+        "456":
+          [{ result: 1, total: 4, scores: [{ id: 222, hole: 1, score: 5 }] }]
 
 Course:
   type: object
@@ -45,6 +55,7 @@ Course:
     - id
     - holes
     - name
+    - par
   properties:
     id:
       type: number
@@ -52,6 +63,8 @@ Course:
       type: integer
     name:
       type: string
+    par:
+      type: integer
 
 Player:
   type: object
@@ -70,7 +83,7 @@ Player:
 
 NewScore:
   type: object
-  description: A new score entry for a player
+  description: A new score entry for a player.
   required:
     - playerId
     - hole
@@ -87,13 +100,41 @@ NewScore:
       minimum: 1
       maximum: 99
 
+PlayerScore:
+  type: object
+  description: Round scores for a player.
+  required:
+    - result
+    - total
+    - scores
+  properties:
+    result:
+      description: How many strokes over or under course par the current total score is.
+      type: integer
+    total:
+      description: Sum of player's scores for all holes.
+      type: integer
+    scores:
+      description: Players' score entries for the round.
+      type: array
+      items:
+        $ref: "#/Score"
+
 Score:
   type: object
-  description: A score for a player
+  description: A score entry.
   required:
     - id
+    - hole
+    - score
   properties:
     id:
       type: number
-  allOf:
-    - $ref: "#/NewScore"
+    hole:
+      type: integer
+      minimum: 1
+      maximum: 30
+    score:
+      type: integer
+      minimum: 1
+      maximum: 99
