@@ -42,6 +42,8 @@ components:
       $ref: "./schemas.yaml#/NewScore"
     PlayerScore:
       $ref: "./schemas.yaml#/PlayerScore"
+    PlayerScoreEntry:
+      $ref: "./schemas.yaml#/PlayerScoreEntry"
     PlayerScoreSummary:
       $ref: "./schemas.yaml#/PlayerScoreSummary"
     Score:

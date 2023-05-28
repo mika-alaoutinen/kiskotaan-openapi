@@ -42,11 +42,6 @@ ScoreCard:
         type: array
         items:
           $ref: "#/PlayerScore"
-      example:
-        "123":
-          [{ result: 0, total: 3, scores: [{ id: 111, hole: 1, score: 4 }] }]
-        "456":
-          [{ result: 1, total: 4, scores: [{ id: 222, hole: 1, score: 5 }] }]
 
 ScoreCardSummary:
   description: A summarized view of a score card with scores condensed.
@@ -135,21 +130,40 @@ PlayerScore:
   type: object
   description: Round scores for a player.
   required:
+    - entries
     - result
     - total
-    - scores
   properties:
+    entries:
+      description: Players' score entries for the round.
+      type: array
+      items:
+        $ref: "#/PlayerScoreEntry"
     result:
       description: How many strokes over or under course par the current total score is.
       type: integer
     total:
       description: Sum of player's scores for all holes.
       type: integer
-    scores:
-      description: Players' score entries for the round.
-      type: array
-      items:
-        $ref: "#/Score"
+
+PlayerScoreEntry:
+  type: object
+  description: A score entry embedded in PlayerScore object.
+  required:
+    - id
+    - hole
+    - score
+  properties:
+    id:
+      type: number
+    hole:
+      type: integer
+      minimum: 1
+      maximum: 30
+    score:
+      type: integer
+      minimum: 1
+      maximum: 99
 
 PlayerScoreSummary:
   type: object
@@ -174,11 +188,17 @@ Score:
   description: A score entry.
   required:
     - id
+    - playerId
+    - scoreCardId
     - hole
     - score
   properties:
     id:
       type: number
+    playerId:
+      type: integer
+    scoreCardId:
+      type: integer
     hole:
       type: integer
       minimum: 1
@@ -186,4 +206,3 @@ Score:
     score:
       type: integer
       minimum: 1
-      maximum: 99
