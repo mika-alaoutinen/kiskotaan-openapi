@@ -139,6 +139,15 @@
       "delete" : {
         "description" : "Delete course by ID.",
         "operationId" : "deleteCourse",
+        "parameters" : [ {
+          "description" : "Course id.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "204" : {
             "description" : "The course was deleted successfully."
@@ -160,6 +169,15 @@
       "get" : {
         "description" : "Find a single course by ID.",
         "operationId" : "getCourse",
+        "parameters" : [ {
+          "description" : "Course id.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -195,18 +213,18 @@
         "summary" : "Find course by ID.",
         "tags" : [ "Courses" ]
       },
-      "parameters" : [ {
-        "description" : "Course id.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ],
       "patch" : {
         "description" : "Update the given course's name.",
         "operationId" : "updateCourseName",
+        "parameters" : [ {
+          "description" : "Course id.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -264,18 +282,18 @@
       }
     },
     "/courses/{id}/holes" : {
-      "parameters" : [ {
-        "description" : "Course id.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ],
       "post" : {
         "description" : "Add a new hole to a course identified by course ID.",
         "operationId" : "addHole",
+        "parameters" : [ {
+          "description" : "Course id.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -336,6 +354,15 @@
       "delete" : {
         "description" : "Delete a hole identified by its ID.",
         "operationId" : "deleteHole",
+        "parameters" : [ {
+          "description" : "Hole id.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "204" : {
             "description" : "The hole was deleted successfully."
@@ -357,6 +384,15 @@
       "get" : {
         "description" : "Get a hole identified by course ID and hole ID.",
         "operationId" : "getHole",
+        "parameters" : [ {
+          "description" : "Hole id.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -392,18 +428,18 @@
         "summary" : "Get a single hole of a given course.",
         "tags" : [ "Holes" ]
       },
-      "parameters" : [ {
-        "description" : "Hole id.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ],
       "put" : {
         "description" : "Update a hole identified by course ID and hole ID.",
         "operationId" : "updateHole",
+        "parameters" : [ {
+          "description" : "Hole id.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "requestBody" : {
           "content" : {
             "application/json" : {

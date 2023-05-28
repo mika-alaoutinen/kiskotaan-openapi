@@ -97,6 +97,15 @@
       "get" : {
         "description" : "Find a single course by ID.",
         "operationId" : "getCourse",
+        "parameters" : [ {
+          "description" : "Course id.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -131,16 +140,7 @@
         },
         "summary" : "Find course by ID.",
         "tags" : [ "QueryCourses" ]
-      },
-      "parameters" : [ {
-        "description" : "Course id.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ]
+      }
     },
     "/players" : {
       "get" : {
@@ -189,6 +189,15 @@
       "get" : {
         "description" : "Get a single player by player ID.",
         "operationId" : "getPlayer",
+        "parameters" : [ {
+          "description" : "Player's ID.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -223,16 +232,7 @@
         },
         "summary" : "Get player by ID.",
         "tags" : [ "QueryPlayers" ]
-      },
-      "parameters" : [ {
-        "description" : "Player's ID.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ]
+      }
     },
     "/scorecards" : {
       "get" : {
@@ -271,6 +271,15 @@
       "get" : {
         "description" : "Get a single score card by ID.",
         "operationId" : "getScoreCard",
+        "parameters" : [ {
+          "description" : "Score card ID.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -305,16 +314,7 @@
         },
         "summary" : "Get score card.",
         "tags" : [ "QueryScoreCards" ]
-      },
-      "parameters" : [ {
-        "description" : "Score card ID.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ]
+      }
     }
   },
   "components" : {

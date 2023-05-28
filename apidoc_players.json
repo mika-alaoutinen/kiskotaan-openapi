@@ -101,6 +101,15 @@
       "delete" : {
         "description" : "Delete a player by player ID.",
         "operationId" : "deletePlayer",
+        "parameters" : [ {
+          "description" : "Player's ID.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "204" : {
             "description" : "The player was deleted successfully."
@@ -122,6 +131,15 @@
       "get" : {
         "description" : "Get a single player by player ID.",
         "operationId" : "getPlayer",
+        "parameters" : [ {
+          "description" : "Player's ID.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -157,18 +175,18 @@
         "summary" : "Get player by ID.",
         "tags" : [ "Players" ]
       },
-      "parameters" : [ {
-        "description" : "Player's ID.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ],
       "put" : {
         "description" : "Update a single player by player ID.",
         "operationId" : "updatePlayer",
+        "parameters" : [ {
+          "description" : "Player's ID.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "requestBody" : {
           "$ref" : "#/components/requestBodies/PlayerRequest"
         },

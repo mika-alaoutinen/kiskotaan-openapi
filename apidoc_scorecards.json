@@ -21,7 +21,7 @@
   "paths" : {
     "/scorecards" : {
       "get" : {
-        "description" : "Returns a list of all score cards.",
+        "description" : "Returns a summarized list of all score cards.",
         "operationId" : "getScoreCards",
         "responses" : {
           "200" : {
@@ -29,7 +29,7 @@
               "application/json" : {
                 "schema" : {
                   "items" : {
-                    "$ref" : "#/components/schemas/ScoreCard"
+                    "$ref" : "#/components/schemas/ScoreCardSummary"
                   },
                   "type" : "array"
                 }
@@ -114,6 +114,15 @@
       "delete" : {
         "description" : "Delete a score card by ID.",
         "operationId" : "deleteScoreCard",
+        "parameters" : [ {
+          "description" : "Score card ID.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "204" : {
             "description" : "The score card was deleted successfully."
@@ -135,6 +144,15 @@
       "get" : {
         "description" : "Get a single score card by ID.",
         "operationId" : "getScoreCard",
+        "parameters" : [ {
+          "description" : "Score card ID.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -169,30 +187,21 @@
         },
         "summary" : "Get score card.",
         "tags" : [ "ScoreCards" ]
-      },
-      "parameters" : [ {
-        "description" : "Score card ID.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ]
+      }
     },
     "/scorecards/{id}/scores" : {
-      "parameters" : [ {
-        "description" : "Score card ID.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ],
       "post" : {
         "description" : "Adds a single score entry to a score card. New score Replaces old entry.",
         "operationId" : "addScore",
+        "parameters" : [ {
+          "description" : "Score card ID.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -253,6 +262,15 @@
       "delete" : {
         "description" : "Deletes a single score entry.",
         "operationId" : "deleteScore",
+        "parameters" : [ {
+          "description" : "Score ID.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "204" : {
             "description" : "Score was deleted successfully."
@@ -274,6 +292,15 @@
       "get" : {
         "description" : "Finds a single score by ID.",
         "operationId" : "getScore",
+        "parameters" : [ {
+          "description" : "Score ID.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -308,16 +335,7 @@
         },
         "summary" : "Get single score.",
         "tags" : [ "Scores" ]
-      },
-      "parameters" : [ {
-        "description" : "Score ID.",
-        "in" : "path",
-        "name" : "id",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        }
-      } ]
+      }
     }
   },
   "components" : {
@@ -375,9 +393,12 @@
           },
           "name" : {
             "type" : "string"
+          },
+          "par" : {
+            "type" : "integer"
           }
         },
-        "required" : [ "holes", "id", "name" ],
+        "required" : [ "holes", "id", "name", "par" ],
         "type" : "object"
       },
       "Player" : {
@@ -433,16 +454,82 @@
             "type" : "array"
           },
           "scores" : {
-            "items" : {
-              "$ref" : "#/components/schemas/Score"
+            "additionalProperties" : {
+              "items" : {
+                "$ref" : "#/components/schemas/PlayerScore"
+              },
+              "type" : "array"
             },
+            "description" : "Map of players' scores. Key is playerId and value is list of scores.\nKeys are strings due to OpenAPI spec limitations.\n",
+            "example" : {
+              "123" : [ {
+                "result" : 0,
+                "total" : 3,
+                "scores" : [ {
+                  "id" : 111,
+                  "hole" : 1,
+                  "score" : 4
+                } ]
+              } ],
+              "456" : [ {
+                "result" : 1,
+                "total" : 4,
+                "scores" : [ {
+                  "id" : 222,
+                  "hole" : 1,
+                  "score" : 5
+                } ]
+              } ]
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "course", "id", "players", "scores" ]
+      },
+      "ScoreCardSummary" : {
+        "description" : "A summarized view of a score card with scores condensed.",
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "course" : {
+            "$ref" : "#/components/schemas/Course"
+          },
+          "players" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Player"
+            },
+            "maxItems" : 5,
+            "minItems" : 1,
             "type" : "array"
+          },
+          "scores" : {
+            "additionalProperties" : {
+              "items" : {
+                "$ref" : "#/components/schemas/PlayerScoreSummary"
+              },
+              "type" : "array"
+            },
+            "description" : "Map of players' scores. Key is playerId and value is summary of player's round score.\nKeys are strings due to OpenAPI spec limitations.\n",
+            "example" : {
+              "123" : [ {
+                "holesPlayed" : 2,
+                "result" : -1,
+                "total" : 5
+              } ],
+              "456" : [ {
+                "holesPlayed" : 2,
+                "result" : 1,
+                "total" : 7
+              } ]
+            },
+            "type" : "object"
           }
         },
         "required" : [ "course", "id", "players", "scores" ]
       },
       "NewScore" : {
-        "description" : "A new score entry for a player",
+        "description" : "A new score entry for a player.",
         "properties" : {
           "playerId" : {
             "type" : "number"
@@ -461,17 +548,65 @@
         "required" : [ "hole", "playerId", "score" ],
         "type" : "object"
       },
+      "PlayerScore" : {
+        "description" : "Round scores for a player.",
+        "properties" : {
+          "result" : {
+            "description" : "How many strokes over or under course par the current total score is.",
+            "type" : "integer"
+          },
+          "total" : {
+            "description" : "Sum of player's scores for all holes.",
+            "type" : "integer"
+          },
+          "scores" : {
+            "description" : "Players' score entries for the round.",
+            "items" : {
+              "$ref" : "#/components/schemas/Score"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "result", "scores", "total" ],
+        "type" : "object"
+      },
+      "PlayerScoreSummary" : {
+        "description" : "A summarized view of player's round scores.",
+        "properties" : {
+          "holesPlayed" : {
+            "description" : "How many holes have been played.",
+            "type" : "integer"
+          },
+          "result" : {
+            "description" : "How many strokes over or under course par the current total score is.",
+            "type" : "integer"
+          },
+          "total" : {
+            "description" : "Sum of player's scores for all holes.",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "holesPlayed", "result", "total" ],
+        "type" : "object"
+      },
       "Score" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/NewScore"
-        } ],
-        "description" : "A score for a player",
+        "description" : "A score entry.",
         "properties" : {
           "id" : {
             "type" : "number"
+          },
+          "hole" : {
+            "maximum" : 30,
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "score" : {
+            "maximum" : 99,
+            "minimum" : 1,
+            "type" : "integer"
           }
         },
-        "required" : [ "id" ],
+        "required" : [ "hole", "id", "score" ],
         "type" : "object"
       },
       "ErrorBody" : {
