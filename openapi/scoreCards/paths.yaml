@@ -1,7 +1,7 @@
 ScoreCards:
   get:
     summary: Get all score cards.
-    description: Returns a list of all score cards.
+    description: Returns a summarized list of all score cards.
     operationId: getScoreCards
     tags:
       - ScoreCards
@@ -13,7 +13,7 @@ ScoreCards:
             schema:
               type: array
               items:
-                $ref: "./schemas.yaml#/ScoreCard"
+                $ref: "./schemas.yaml#/ScoreCardSummary"
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
 

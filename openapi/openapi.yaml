@@ -7,11 +7,11 @@ info:
 
 tags:
   - name: QueryCourses
-    description: Fetch courses.
+    description: Fetch courses. API not used currently.
   - name: QueryPlayers
-    description: Fetch players.
+    description: Fetch players. API not used currently.
   - name: QueryScoreCards
-    description: Fetch score cards.
+    description: Fetch score cards. API not used currently.
   - name: Courses
     description: CRUD operations for handling courses.
   - name: Holes
@@ -94,8 +94,14 @@ components:
       $ref: "./scoreCards/schemas.yaml#/NewScoreCard"
     ScoreCard:
       $ref: "./scoreCards/schemas.yaml#/ScoreCard"
+    ScoreCardSummary:
+      $ref: "./scoreCards/schemas.yaml#/ScoreCardSummary"
     NewScore:
       $ref: "./scoreCards/schemas.yaml#/NewScore"
+    PlayerScore:
+      $ref: "./scoreCards/schemas.yaml#/PlayerScore"
+    PlayerScoreSummary:
+      $ref: "./scoreCards/schemas.yaml#/PlayerScoreSummary"
     Score:
       $ref: "./scoreCards/schemas.yaml#/Score"
 
