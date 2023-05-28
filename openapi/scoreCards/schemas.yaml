@@ -48,6 +48,37 @@ ScoreCard:
         "456":
           [{ result: 1, total: 4, scores: [{ id: 222, hole: 1, score: 5 }] }]
 
+ScoreCardSummary:
+  description: A summarized view of a score card with scores condensed.
+  required:
+    - id
+    - course
+    - players
+    - scores
+  properties:
+    id:
+      type: number
+    course:
+      $ref: "#/Course"
+    players:
+      type: array
+      items:
+        $ref: "#/Player"
+      minItems: 1
+      maxItems: 5
+    scores:
+      description: |
+        Map of players' scores. Key is playerId and value is summary of player's round score.
+        Keys are strings due to OpenAPI spec limitations.
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          $ref: "#/PlayerScoreSummary"
+      example:
+        "123": [{ holesPlayed: 2, result: -1, total: 5 }]
+        "456": [{ holesPlayed: 2, result: 1, total: 7 }]
+
 Course:
   type: object
   description: Info about a course.
@@ -119,6 +150,24 @@ PlayerScore:
       type: array
       items:
         $ref: "#/Score"
+
+PlayerScoreSummary:
+  type: object
+  description: A summarized view of player's round scores.
+  required:
+    - holesPlayed
+    - result
+    - total
+  properties:
+    holesPlayed:
+      description: How many holes have been played.
+      type: integer
+    result:
+      description: How many strokes over or under course par the current total score is.
+      type: integer
+    total:
+      description: Sum of player's scores for all holes.
+      type: integer
 
 Score:
   type: object

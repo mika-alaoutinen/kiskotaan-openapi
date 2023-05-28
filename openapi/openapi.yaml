@@ -94,8 +94,14 @@ components:
       $ref: "./scoreCards/schemas.yaml#/NewScoreCard"
     ScoreCard:
       $ref: "./scoreCards/schemas.yaml#/ScoreCard"
+    ScoreCardSummary:
+      $ref: "./scoreCards/schemas.yaml#/ScoreCardSummary"
     NewScore:
       $ref: "./scoreCards/schemas.yaml#/NewScore"
+    PlayerScore:
+      $ref: "./scoreCards/schemas.yaml#/PlayerScore"
+    PlayerScoreSummary:
+      $ref: "./scoreCards/schemas.yaml#/PlayerScoreSummary"
     Score:
       $ref: "./scoreCards/schemas.yaml#/Score"
 
