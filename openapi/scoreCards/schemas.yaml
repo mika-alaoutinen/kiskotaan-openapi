@@ -39,9 +39,7 @@ ScoreCard:
         Keys are strings due to OpenAPI spec limitations.
       type: object
       additionalProperties:
-        type: array
-        items:
-          $ref: "#/PlayerScore"
+        $ref: "#/PlayerScore"
 
 ScoreCardSummary:
   description: A summarized view of a score card with scores condensed.
