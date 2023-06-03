@@ -65,12 +65,7 @@ ScoreCardSummary:
         Keys are strings due to OpenAPI spec limitations.
       type: object
       additionalProperties:
-        type: array
-        items:
-          $ref: "#/PlayerScoreSummary"
-      example:
-        "123": [{ holesPlayed: 2, result: -1, total: 5 }]
-        "456": [{ holesPlayed: 2, result: 1, total: 7 }]
+        $ref: "#/PlayerScoreSummary"
 
 Course:
   type: object
