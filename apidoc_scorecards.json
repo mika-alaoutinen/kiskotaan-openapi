@@ -455,10 +455,7 @@
           },
           "scores" : {
             "additionalProperties" : {
-              "items" : {
-                "$ref" : "#/components/schemas/PlayerScore"
-              },
-              "type" : "array"
+              "$ref" : "#/components/schemas/PlayerScore"
             },
             "description" : "Map of players' scores. Key is playerId and value is list of scores.\nKeys are strings due to OpenAPI spec limitations.\n",
             "type" : "object"
