@@ -482,24 +482,9 @@
           },
           "scores" : {
             "additionalProperties" : {
-              "items" : {
-                "$ref" : "#/components/schemas/PlayerScoreSummary"
-              },
-              "type" : "array"
+              "$ref" : "#/components/schemas/PlayerScoreSummary"
             },
             "description" : "Map of players' scores. Key is playerId and value is summary of player's round score.\nKeys are strings due to OpenAPI spec limitations.\n",
-            "example" : {
-              "123" : [ {
-                "holesPlayed" : 2,
-                "result" : -1,
-                "total" : 5
-              } ],
-              "456" : [ {
-                "holesPlayed" : 2,
-                "result" : 1,
-                "total" : 7
-              } ]
-            },
             "type" : "object"
           }
         },
