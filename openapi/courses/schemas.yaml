@@ -12,7 +12,7 @@ NewCourse:
     holes:
       type: array
       items:
-        $ref: "#/NewHole"
+        $ref: "#/Hole"
       minItems: 1
       maxItems: 30
 
@@ -78,8 +78,10 @@ CourseSummary:
     par:
       type: number
 
-NewHole:
-  description: A new course hole without ID.
+Hole:
+  description: |
+    A hole in a disc golf course. Does not have ID because holes of a particular
+    course should be distinct and identifiable by the hole number.
   type: object
   required:
     - number
@@ -98,27 +100,17 @@ NewHole:
       type: integer
       minimum: 1
 
-Hole:
+UpdatedHole:
+  description: An updated course without number. Hole number cannot be changed.
   type: object
-  description: A hole in a disc golf course.
   required:
-    - id
+    - par
+    - distance
   properties:
-    id:
-      type: number
-  allOf:
-    - $ref: "#/NewHole"
-
-HoleDetails:
-  type: object
-  description: A hole in a disc golf course. Includes a course ID.
-  required:
-    - id
-    - courseId
-  properties:
-    id:
-      type: number
-    courseId:
-      type: number
-  allOf:
-    - $ref: "#/NewHole"
+    par:
+      type: integer
+      minimum: 2
+      maximum: 6
+    distance:
+      type: integer
+      minimum: 1

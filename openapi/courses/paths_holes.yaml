@@ -1,8 +1,67 @@
+Holes:
+  parameters:
+    - in: path
+      name: id
+      description: Course id.
+      required: true
+      schema:
+        type: integer
+
+  get:
+    summary: Get all holes for a course.
+    description: Get all holes for a course by course ID.
+    operationId: getHoles
+    tags:
+      - Holes
+    responses:
+      200:
+        description: OK.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas.yaml#/Hole"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+  post:
+    summary: Add a new hole to a given course.
+    description: Add a new hole to a course identified by course ID.
+    operationId: addHole
+    tags:
+      - Holes
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yaml#/Hole"
+    responses:
+      201:
+        description: New hole added succesfully.
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/Hole"
+      400:
+        $ref: "../errors/responses.yaml#/400BadRequest"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
 Hole:
   parameters:
     - in: path
       name: id
-      description: Hole id.
+      description: Course id.
+      required: true
+      schema:
+        type: integer
+    - in: path
+      name: number
+      description: Hole number.
       required: true
       schema:
         type: integer
@@ -32,7 +91,7 @@ Hole:
       content:
         application/json:
           schema:
-            $ref: "./schemas.yaml#/NewHole"
+            $ref: "./schemas.yaml#/UpdatedHole"
     responses:
       200:
         $ref: "#/HoleResponse"
@@ -60,4 +119,4 @@ HoleResponse:
   content:
     application/json:
       schema:
-        $ref: "./schemas.yaml#/HoleDetails"
+        $ref: "./schemas.yaml#/Hole"

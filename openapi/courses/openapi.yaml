@@ -18,8 +18,8 @@ paths:
   /courses/{id}:
     $ref: "./paths.yaml#/Course"
   /courses/{id}/holes:
-    $ref: "./paths.yaml#/AddNewHole"
-  /holes/{id}:
+    $ref: "./paths_holes.yaml#/Holes"
+  /courses/{id}/holes/{number}:
     $ref: "./paths_holes.yaml#/Hole"
 
 components:
@@ -34,12 +34,10 @@ components:
       $ref: "./schemas.yaml#/CourseName"
     CourseSummary:
       $ref: "./schemas.yaml#/CourseSummary"
-    NewHole:
-      $ref: "./schemas.yaml#/NewHole"
+    UpdatedHole:
+      $ref: "./schemas.yaml#/UpdatedHole"
     Hole:
       $ref: "./schemas.yaml#/Hole"
-    HoleDetails:
-      $ref: "./schemas.yaml#/HoleDetails"
     ErrorBody:
       $ref: "../errors/schemas.yaml#/ErrorBody"
     ValidationErrorBody:
