@@ -47,8 +47,8 @@ paths:
   /courses/{id}:
     $ref: "./courses/paths.yaml#/Course"
   /courses/{id}/holes:
-    $ref: "./courses/paths.yaml#/AddNewHole"
-  /holes/{id}:
+    $ref: "./courses/paths_holes.yaml#/Holes"
+  /courses/{id}/holes/{number}:
     $ref: "./courses/paths_holes.yaml#/Hole"
 
   /players:
@@ -78,12 +78,10 @@ components:
     CourseSummary:
       $ref: "./courses/schemas.yaml#/CourseSummary"
 
-    NewHole:
-      $ref: "./courses/schemas.yaml#/NewHole"
     Hole:
       $ref: "./courses/schemas.yaml#/Hole"
-    HoleDetails:
-      $ref: "./courses/schemas.yaml#/HoleDetails"
+    UpdatedHole:
+      $ref: "./courses/schemas.yaml#/UpdatedHole"
 
     NewPlayer:
       $ref: "./players/schemas.yaml#/NewPlayer"
