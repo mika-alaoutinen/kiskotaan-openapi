@@ -603,6 +603,46 @@
       }
     },
     "/courses/{id}/holes" : {
+      "get" : {
+        "description" : "Get all holes for a course by course ID.",
+        "operationId" : "getHoles",
+        "parameters" : [ {
+          "description" : "Course id.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Hole_1"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get all holes for a course.",
+        "tags" : [ "Holes" ]
+      },
       "post" : {
         "description" : "Add a new hole to a course identified by course ID.",
         "operationId" : "addHole",
@@ -619,7 +659,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/NewHole"
+                "$ref" : "#/components/schemas/Hole_1"
               }
             }
           },
@@ -668,17 +708,25 @@
           }
         },
         "summary" : "Add a new hole to a given course.",
-        "tags" : [ "Courses" ]
+        "tags" : [ "Holes" ]
       }
     },
-    "/holes/{id}" : {
+    "/courses/{id}/holes/{number}" : {
       "delete" : {
         "description" : "Delete a hole identified by its ID.",
         "operationId" : "deleteHole",
         "parameters" : [ {
-          "description" : "Hole id.",
+          "description" : "Course id.",
           "in" : "path",
           "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Hole number.",
+          "in" : "path",
+          "name" : "number",
           "required" : true,
           "schema" : {
             "type" : "integer"
@@ -706,9 +754,17 @@
         "description" : "Get a hole identified by course ID and hole ID.",
         "operationId" : "getHole",
         "parameters" : [ {
-          "description" : "Hole id.",
+          "description" : "Course id.",
           "in" : "path",
           "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Hole number.",
+          "in" : "path",
+          "name" : "number",
           "required" : true,
           "schema" : {
             "type" : "integer"
@@ -719,7 +775,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/HoleDetails"
+                  "$ref" : "#/components/schemas/Hole_1"
                 }
               }
             },
@@ -753,9 +809,17 @@
         "description" : "Update a hole identified by course ID and hole ID.",
         "operationId" : "updateHole",
         "parameters" : [ {
-          "description" : "Hole id.",
+          "description" : "Course id.",
           "in" : "path",
           "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Hole number.",
+          "in" : "path",
+          "name" : "number",
           "required" : true,
           "schema" : {
             "type" : "integer"
@@ -765,7 +829,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/NewHole"
+                "$ref" : "#/components/schemas/UpdatedHole"
               }
             }
           },
@@ -776,7 +840,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/HoleDetails"
+                  "$ref" : "#/components/schemas/Hole_1"
                 }
               }
             },
@@ -1407,7 +1471,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/HoleDetails"
+              "$ref" : "#/components/schemas/Hole_1"
             }
           }
         },
@@ -1445,7 +1509,7 @@
           },
           "holes" : {
             "items" : {
-              "$ref" : "#/components/schemas/NewHole"
+              "$ref" : "#/components/schemas/Hole_1"
             },
             "maxItems" : 30,
             "minItems" : 1,
@@ -1519,27 +1583,6 @@
         },
         "required" : [ "holes", "id", "name", "par" ]
       },
-      "NewHole" : {
-        "description" : "A new course hole without ID.",
-        "properties" : {
-          "number" : {
-            "maximum" : 30,
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "par" : {
-            "maximum" : 6,
-            "minimum" : 2,
-            "type" : "integer"
-          },
-          "distance" : {
-            "minimum" : 1,
-            "type" : "integer"
-          }
-        },
-        "required" : [ "distance", "number", "par" ],
-        "type" : "object"
-      },
       "Hole" : {
         "description" : "A hole in a disc golf course.",
         "properties" : {
@@ -1559,20 +1602,20 @@
         "required" : [ "distance", "id", "number", "par" ],
         "type" : "object"
       },
-      "HoleDetails" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/NewHole"
-        } ],
-        "description" : "A hole in a disc golf course. Includes a course ID.",
+      "UpdatedHole" : {
+        "description" : "An updated course without number. Hole number cannot be changed.",
         "properties" : {
-          "id" : {
-            "type" : "number"
+          "par" : {
+            "maximum" : 6,
+            "minimum" : 2,
+            "type" : "integer"
           },
-          "courseId" : {
-            "type" : "number"
+          "distance" : {
+            "minimum" : 1,
+            "type" : "integer"
           }
         },
-        "required" : [ "courseId", "id" ],
+        "required" : [ "distance", "par" ],
         "type" : "object"
       },
       "NewPlayer" : {
@@ -1868,6 +1911,27 @@
         },
         "required" : [ "holes", "id", "name", "par" ]
       },
+      "Hole_1" : {
+        "description" : "A hole in a disc golf course. Does not have ID because holes of a particular\ncourse should be distinct and identifiable by the hole number.\n",
+        "properties" : {
+          "number" : {
+            "maximum" : 30,
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "par" : {
+            "maximum" : 6,
+            "minimum" : 2,
+            "type" : "integer"
+          },
+          "distance" : {
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "distance", "number", "par" ],
+        "type" : "object"
+      },
       "Course_1" : {
         "description" : "A disc golf course.",
         "properties" : {
@@ -1889,19 +1953,6 @@
           }
         },
         "required" : [ "holes", "id", "name" ]
-      },
-      "Hole_1" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/NewHole"
-        } ],
-        "description" : "A hole in a disc golf course.",
-        "properties" : {
-          "id" : {
-            "type" : "number"
-          }
-        },
-        "required" : [ "id" ],
-        "type" : "object"
       },
       "ValidationError" : {
         "description" : "A validation error.",
