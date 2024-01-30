@@ -134,11 +134,17 @@ Score:
   description: A score entry embedded in PlayerScore object.
   required:
     - id
+    - playerId
+    - scoreCardId
     - hole
     - score
   properties:
     id:
       type: number
+    playerId:
+      type: integer
+    scoreCardId:
+      type: integer
     hole:
       type: integer
       minimum: 1
