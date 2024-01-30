@@ -21,6 +21,7 @@ ScoreCard:
     - id
     - course
     - players
+    - results
     - scores
   properties:
     id:
@@ -33,13 +34,22 @@ ScoreCard:
         $ref: "#/Player"
       minItems: 1
       maxItems: 5
+    results:
+      description: |
+        Map of players' round scores. Key is playerId and value is summary of player's round score.
+        Keys are strings due to OpenAPI spec limitations.
+      type: object
+      additionalProperties:
+        $ref: "#/Result"
     scores:
       description: |
         Map of players' scores. Key is playerId and value is list of scores.
         Keys are strings due to OpenAPI spec limitations.
       type: object
       additionalProperties:
-        $ref: "#/PlayerScore"
+        type: array
+        items:
+          $ref: "#/Score"
 
 ScoreCardSummary:
   description: A summarized view of a score card with scores condensed.
@@ -47,7 +57,7 @@ ScoreCardSummary:
     - id
     - course
     - players
-    - scores
+    - results
   properties:
     id:
       type: number
@@ -59,13 +69,13 @@ ScoreCardSummary:
         $ref: "#/Player"
       minItems: 1
       maxItems: 5
-    scores:
+    results:
       description: |
-        Map of players' scores. Key is playerId and value is summary of player's round score.
+        Map of players' round scores. Key is playerId and value is summary of player's round score.
         Keys are strings due to OpenAPI spec limitations.
       type: object
       additionalProperties:
-        $ref: "#/PlayerScoreSummary"
+        $ref: "#/Result"
 
 Course:
   type: object
@@ -119,27 +129,7 @@ NewScore:
       minimum: 1
       maximum: 99
 
-PlayerScore:
-  type: object
-  description: Round scores for a player.
-  required:
-    - entries
-    - result
-    - total
-  properties:
-    entries:
-      description: Players' score entries for the round.
-      type: array
-      items:
-        $ref: "#/PlayerScoreEntry"
-    result:
-      description: How many strokes over or under course par the current total score is.
-      type: integer
-    total:
-      description: Sum of player's scores for all holes.
-      type: integer
-
-PlayerScoreEntry:
+Score:
   type: object
   description: A score entry embedded in PlayerScore object.
   required:
@@ -158,7 +148,7 @@ PlayerScoreEntry:
       minimum: 1
       maximum: 99
 
-PlayerScoreSummary:
+Result:
   type: object
   description: A summarized view of player's round scores.
   required:
@@ -175,27 +165,3 @@ PlayerScoreSummary:
     total:
       description: Sum of player's scores for all holes.
       type: integer
-
-Score:
-  type: object
-  description: A score entry.
-  required:
-    - id
-    - playerId
-    - scoreCardId
-    - hole
-    - score
-  properties:
-    id:
-      type: number
-    playerId:
-      type: integer
-    scoreCardId:
-      type: integer
-    hole:
-      type: integer
-      minimum: 1
-      maximum: 30
-    score:
-      type: integer
-      minimum: 1

@@ -96,14 +96,10 @@ components:
       $ref: "./scoreCards/schemas.yaml#/ScoreCardSummary"
     NewScore:
       $ref: "./scoreCards/schemas.yaml#/NewScore"
-    PlayerScore:
-      $ref: "./scoreCards/schemas.yaml#/PlayerScore"
-    PlayerScoreEntry:
-      $ref: "./scoreCards/schemas.yaml#/PlayerScoreEntry"
-    PlayerScoreSummary:
-      $ref: "./scoreCards/schemas.yaml#/PlayerScoreSummary"
     Score:
       $ref: "./scoreCards/schemas.yaml#/Score"
+    Result:
+      $ref: "./scoreCards/schemas.yaml#/Result"
 
     ErrorBody:
       $ref: "./errors/schemas.yaml#/ErrorBody"
