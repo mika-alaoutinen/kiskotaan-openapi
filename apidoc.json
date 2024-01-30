@@ -2026,6 +2026,12 @@
           "id" : {
             "type" : "number"
           },
+          "playerId" : {
+            "type" : "integer"
+          },
+          "scoreCardId" : {
+            "type" : "integer"
+          },
           "hole" : {
             "maximum" : 30,
             "minimum" : 1,
@@ -2037,7 +2043,7 @@
             "type" : "integer"
           }
         },
-        "required" : [ "hole", "id", "score" ],
+        "required" : [ "hole", "id", "playerId", "score", "scoreCardId" ],
         "type" : "object"
       }
     }
