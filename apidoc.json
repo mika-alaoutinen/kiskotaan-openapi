@@ -1754,49 +1754,23 @@
         "required" : [ "hole", "playerId", "score" ],
         "type" : "object"
       },
-      "PlayerScore" : {
-        "description" : "Round scores for a player.",
-        "properties" : {
-          "entries" : {
-            "description" : "Players' score entries for the round.",
-            "items" : {
-              "$ref" : "#/components/schemas/PlayerScoreEntry"
-            },
-            "type" : "array"
-          },
-          "result" : {
-            "description" : "How many strokes over or under course par the current total score is.",
-            "type" : "integer"
-          },
-          "total" : {
-            "description" : "Sum of player's scores for all holes.",
-            "type" : "integer"
-          }
-        },
-        "required" : [ "entries", "result", "total" ],
-        "type" : "object"
-      },
-      "PlayerScoreEntry" : {
-        "description" : "A score entry embedded in PlayerScore object.",
+      "Score" : {
+        "description" : "A score for a player",
         "properties" : {
           "id" : {
             "type" : "number"
           },
           "hole" : {
-            "maximum" : 30,
-            "minimum" : 1,
             "type" : "integer"
           },
           "score" : {
-            "maximum" : 99,
-            "minimum" : 1,
             "type" : "integer"
           }
         },
         "required" : [ "hole", "id", "score" ],
         "type" : "object"
       },
-      "PlayerScoreSummary" : {
+      "Result" : {
         "description" : "A summarized view of player's round scores.",
         "properties" : {
           "holesPlayed" : {
@@ -1813,22 +1787,6 @@
           }
         },
         "required" : [ "holesPlayed", "result", "total" ],
-        "type" : "object"
-      },
-      "Score" : {
-        "description" : "A score for a player",
-        "properties" : {
-          "id" : {
-            "type" : "number"
-          },
-          "hole" : {
-            "type" : "integer"
-          },
-          "score" : {
-            "type" : "integer"
-          }
-        },
-        "required" : [ "hole", "id", "score" ],
         "type" : "object"
       },
       "ErrorBody" : {
@@ -1996,15 +1954,15 @@
             "minItems" : 1,
             "type" : "array"
           },
-          "scores" : {
+          "results" : {
             "additionalProperties" : {
-              "$ref" : "#/components/schemas/PlayerScoreSummary"
+              "$ref" : "#/components/schemas/Result"
             },
-            "description" : "Map of players' scores. Key is playerId and value is summary of player's round score.\nKeys are strings due to OpenAPI spec limitations.\n",
+            "description" : "Map of players' round scores. Key is playerId and value is summary of player's round score.\nKeys are strings due to OpenAPI spec limitations.\n",
             "type" : "object"
           }
         },
-        "required" : [ "course", "id", "players", "scores" ]
+        "required" : [ "course", "id", "players", "results" ]
       },
       "Course_2" : {
         "description" : "Info about a course.",
@@ -2042,27 +2000,31 @@
             "minItems" : 1,
             "type" : "array"
           },
+          "results" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/Result"
+            },
+            "description" : "Map of players' round scores. Key is playerId and value is summary of player's round score.\nKeys are strings due to OpenAPI spec limitations.\n",
+            "type" : "object"
+          },
           "scores" : {
             "additionalProperties" : {
-              "$ref" : "#/components/schemas/PlayerScore"
+              "items" : {
+                "$ref" : "#/components/schemas/Score_1"
+              },
+              "type" : "array"
             },
             "description" : "Map of players' scores. Key is playerId and value is list of scores.\nKeys are strings due to OpenAPI spec limitations.\n",
             "type" : "object"
           }
         },
-        "required" : [ "course", "id", "players", "scores" ]
+        "required" : [ "course", "id", "players", "results", "scores" ]
       },
       "Score_1" : {
-        "description" : "A score entry.",
+        "description" : "A score entry embedded in PlayerScore object.",
         "properties" : {
           "id" : {
             "type" : "number"
-          },
-          "playerId" : {
-            "type" : "integer"
-          },
-          "scoreCardId" : {
-            "type" : "integer"
           },
           "hole" : {
             "maximum" : 30,
@@ -2070,11 +2032,12 @@
             "type" : "integer"
           },
           "score" : {
+            "maximum" : 99,
             "minimum" : 1,
             "type" : "integer"
           }
         },
-        "required" : [ "hole", "id", "playerId", "score", "scoreCardId" ],
+        "required" : [ "hole", "id", "score" ],
         "type" : "object"
       }
     }
