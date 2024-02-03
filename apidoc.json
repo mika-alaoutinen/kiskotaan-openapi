@@ -2021,15 +2021,12 @@
         "required" : [ "course", "id", "players", "results", "scores" ]
       },
       "Score_1" : {
-        "description" : "A score entry embedded in PlayerScore object.",
+        "description" : "A score entry in a score card.",
         "properties" : {
           "id" : {
             "type" : "number"
           },
           "playerId" : {
-            "type" : "integer"
-          },
-          "scoreCardId" : {
             "type" : "integer"
           },
           "hole" : {
@@ -2043,7 +2040,7 @@
             "type" : "integer"
           }
         },
-        "required" : [ "hole", "id", "playerId", "score", "scoreCardId" ],
+        "required" : [ "hole", "id", "playerId", "score" ],
         "type" : "object"
       }
     }
