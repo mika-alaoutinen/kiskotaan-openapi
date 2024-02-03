@@ -131,19 +131,16 @@ NewScore:
 
 Score:
   type: object
-  description: A score entry embedded in PlayerScore object.
+  description: A score entry in a score card.
   required:
     - id
     - playerId
-    - scoreCardId
     - hole
     - score
   properties:
     id:
       type: number
     playerId:
-      type: integer
-    scoreCardId:
       type: integer
     hole:
       type: integer
