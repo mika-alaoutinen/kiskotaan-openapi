@@ -34,25 +34,14 @@ ScoreCard:
         $ref: "#/Player"
       minItems: 1
       maxItems: 5
-    results:
-      description: |
-        Map of players' round scores. Key is playerId and value is summary of player's round score.
-        Keys are strings due to OpenAPI spec limitations.
-      type: object
-      additionalProperties:
-        $ref: "#/Result"
     scores:
-      description: |
-        Map of players' scores. Key is playerId and value is list of scores.
-        Keys are strings due to OpenAPI spec limitations.
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          $ref: "#/Score"
+      description: List of players' scores.
+      type: array
+      items:
+        $ref: "#/Score"
 
-ScoreCardSummary:
-  description: A summarized view of a score card with scores condensed.
+RoundResult:
+  description: Results for a round.
   required:
     - id
     - course
@@ -70,11 +59,9 @@ ScoreCardSummary:
       minItems: 1
       maxItems: 5
     results:
-      description: |
-        Map of players' round scores. Key is playerId and value is summary of player's round score.
-        Keys are strings due to OpenAPI spec limitations.
-      type: object
-      additionalProperties:
+      description: Results for a round.
+      type: array
+      items:
         $ref: "#/Result"
 
 Course:

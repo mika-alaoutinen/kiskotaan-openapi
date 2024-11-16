@@ -1,10 +1,10 @@
-ScoreCards:
+RoundResults:
   get:
-    summary: Get all score cards.
-    description: Returns a summarized list of all score cards.
-    operationId: getScoreCards
+    summary: Get all round results.
+    description: Returns a list of all round results.
+    operationId: getRoundResults
     tags:
-      - ScoreCards
+      - RoundResults
     responses:
       200:
         description: OK.
@@ -13,10 +13,38 @@ ScoreCards:
             schema:
               type: array
               items:
-                $ref: "./schemas.yaml#/ScoreCardSummary"
+                $ref: "./schemas.yaml#/RoundResult"
       500:
         $ref: "../errors/responses.yaml#/500ServerError"
 
+RoundResult:
+  parameters:
+    - in: path
+      name: id
+      description: Score card ID.
+      required: true
+      schema:
+        type: integer
+
+  get:
+    summary: Get a single round result.
+    description: Get a single round result by score card ID.
+    operationId: getRoundResult
+    tags:
+      - RoundResults
+    responses:
+      200:
+        description: OK.
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas.yaml#/RoundResult"
+      404:
+        $ref: "../errors/responses.yaml#/404NotFound"
+      500:
+        $ref: "../errors/responses.yaml#/500ServerError"
+
+ScoreCards:
   post:
     summary: Add new score card.
     description: Add a new score card. Give course and players as request body, wrapped in a NewScoreCard resource.

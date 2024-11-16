@@ -6,6 +6,8 @@ info:
   description: API definition for Kiskotaan score cards service.
 
 tags:
+  - name: RoundResults
+    description: Get round results.
   - name: ScoreCards
     description: CRUD operations for handling score cards.
   - name: AddNewScore
@@ -17,6 +19,10 @@ servers:
   - url: http://localhost:8083
 
 paths:
+  /results:
+    $ref: "./paths.yaml#/RoundResults"
+  /results/{id}:
+    $ref: "./paths.yaml#/RoundResult"
   /scorecards:
     $ref: "./paths.yaml#/ScoreCards"
   /scorecards/{id}:
@@ -36,8 +42,8 @@ components:
       $ref: "./schemas.yaml#/NewScoreCard"
     ScoreCard:
       $ref: "./schemas.yaml#/ScoreCard"
-    ScoreCardSummary:
-      $ref: "./schemas.yaml#/ScoreCardSummary"
+    RoundResult:
+      $ref: "./schemas.yaml#/RoundResult"
     NewScore:
       $ref: "./schemas.yaml#/NewScore"
     Result:
