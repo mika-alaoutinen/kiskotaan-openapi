@@ -1,17 +1,11 @@
-openapi: 3.0.3
+openapi: 3.1.0
 
 info:
   title: Kiskotaan OpenAPI
-  version: 0.2.0
+  version: 0.3.0
   description: API definition for Kiskotaan disc golf score card application.
 
 tags:
-  - name: QueryCourses
-    description: Fetch courses. API not used currently.
-  - name: QueryPlayers
-    description: Fetch players. API not used currently.
-  - name: QueryScoreCards
-    description: Fetch score cards. API not used currently.
   - name: Courses
     description: CRUD operations for handling courses.
   - name: Holes
