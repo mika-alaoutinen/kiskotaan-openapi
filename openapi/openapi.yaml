@@ -23,19 +23,6 @@ servers:
   - url: http://localhost:8080
 
 paths:
-  /query/courses:
-    $ref: "queries/courses/paths.yaml#/Courses"
-  /query/courses/{id}:
-    $ref: "queries/courses/paths.yaml#/Course"
-  /query/players:
-    $ref: "queries/players/paths.yaml#/Players"
-  /query/players/{id}:
-    $ref: "queries/players/paths.yaml#/Player"
-  /query/scorecards:
-    $ref: "queries/scorecards/paths.yaml#/ScoreCards"
-  /query/scorecards/{id}:
-    $ref: "queries/scorecards/paths.yaml#/ScoreCard"
-
   /courses:
     $ref: "./courses/paths.yaml#/Courses"
   /courses/{id}:
@@ -82,12 +69,12 @@ components:
     Player:
       $ref: "./players/schemas.yaml#/Player"
 
+    RoundResult:
+      $ref: "./scoreCards/schemas.yaml#/RoundResult"
     NewScoreCard:
       $ref: "./scoreCards/schemas.yaml#/NewScoreCard"
     ScoreCard:
       $ref: "./scoreCards/schemas.yaml#/ScoreCard"
-    ScoreCardSummary:
-      $ref: "./scoreCards/schemas.yaml#/ScoreCardSummary"
     NewScore:
       $ref: "./scoreCards/schemas.yaml#/NewScore"
     Score:
