@@ -9,27 +9,27 @@
     "url" : "http://localhost:8083"
   } ],
   "tags" : [ {
+    "description" : "Get round results.",
+    "name" : "RoundResults"
+  }, {
     "description" : "CRUD operations for handling score cards.",
     "name" : "ScoreCards"
-  }, {
-    "description" : "Adding a new score to a score card. This is it's own API to make Quarkus code generation work correctly.",
-    "name" : "AddNewScore"
   }, {
     "description" : "CRUD operations for handling score rows in a score card.",
     "name" : "Scores"
   } ],
   "paths" : {
-    "/scorecards" : {
+    "/results" : {
       "get" : {
-        "description" : "Returns a summarized list of all score cards.",
-        "operationId" : "getScoreCards",
+        "description" : "Returns a list of all round results.",
+        "operationId" : "getRoundResults",
         "responses" : {
           "200" : {
             "content" : {
               "application/json" : {
                 "schema" : {
                   "items" : {
-                    "$ref" : "#/components/schemas/ScoreCardSummary"
+                    "$ref" : "#/components/schemas/RoundResult"
                   },
                   "type" : "array"
                 }
@@ -48,9 +48,60 @@
             "description" : "Unknown server error."
           }
         },
-        "summary" : "Get all score cards.",
-        "tags" : [ "ScoreCards" ]
-      },
+        "summary" : "Get all round results.",
+        "tags" : [ "RoundResults" ]
+      }
+    },
+    "/results/{id}" : {
+      "get" : {
+        "description" : "Get a single round result by score card ID.",
+        "operationId" : "getRoundResult",
+        "parameters" : [ {
+          "description" : "Score card ID.",
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RoundResult"
+                }
+              }
+            },
+            "description" : "OK."
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Resource not found."
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description" : "Unknown server error."
+          }
+        },
+        "summary" : "Get a single round result.",
+        "tags" : [ "RoundResults" ]
+      }
+    },
+    "/scorecards" : {
       "post" : {
         "description" : "Add a new score card. Give course and players as request body, wrapped in a NewScoreCard resource.",
         "operationId" : "addScoreCard",
@@ -255,7 +306,7 @@
           }
         },
         "summary" : "Add single score.",
-        "tags" : [ "AddNewScore" ]
+        "tags" : [ "ScoreCards" ]
       }
     },
     "/scores/{id}" : {
@@ -350,6 +401,16 @@
         },
         "description" : "Unknown server error."
       },
+      "404NotFound" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorBody"
+            }
+          }
+        },
+        "description" : "Resource not found."
+      },
       "ScoreCardResponse" : {
         "content" : {
           "application/json" : {
@@ -369,16 +430,6 @@
           }
         },
         "description" : "Bad request."
-      },
-      "404NotFound" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/ErrorBody"
-            }
-          }
-        },
-        "description" : "Resource not found."
       }
     },
     "schemas" : {
@@ -453,28 +504,18 @@
             "minItems" : 1,
             "type" : "array"
           },
-          "results" : {
-            "additionalProperties" : {
-              "$ref" : "#/components/schemas/Result"
-            },
-            "description" : "Map of players' round scores. Key is playerId and value is summary of player's round score.\nKeys are strings due to OpenAPI spec limitations.\n",
-            "type" : "object"
-          },
           "scores" : {
-            "additionalProperties" : {
-              "items" : {
-                "$ref" : "#/components/schemas/Score"
-              },
-              "type" : "array"
+            "description" : "List of players' scores.",
+            "items" : {
+              "$ref" : "#/components/schemas/Score"
             },
-            "description" : "Map of players' scores. Key is playerId and value is list of scores.\nKeys are strings due to OpenAPI spec limitations.\n",
-            "type" : "object"
+            "type" : "array"
           }
         },
         "required" : [ "course", "id", "players", "results", "scores" ]
       },
-      "ScoreCardSummary" : {
-        "description" : "A summarized view of a score card with scores condensed.",
+      "RoundResult" : {
+        "description" : "Results for a round.",
         "properties" : {
           "id" : {
             "type" : "number"
@@ -491,11 +532,11 @@
             "type" : "array"
           },
           "results" : {
-            "additionalProperties" : {
+            "description" : "Results for a round.",
+            "items" : {
               "$ref" : "#/components/schemas/Result"
             },
-            "description" : "Map of players' round scores. Key is playerId and value is summary of player's round score.\nKeys are strings due to OpenAPI spec limitations.\n",
-            "type" : "object"
+            "type" : "array"
           }
         },
         "required" : [ "course", "id", "players", "results" ]
