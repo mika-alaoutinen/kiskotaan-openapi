@@ -6,10 +6,10 @@ info:
   description: API definition for Kiskotaan score cards service.
 
 tags:
+  - name: RoundResults
+    description: Get round results.
   - name: ScoreCards
     description: CRUD operations for handling score cards.
-  - name: AddNewScore
-    description: Adding a new score to a score card. This is it's own API to make Quarkus code generation work correctly.
   - name: Scores
     description: CRUD operations for handling score rows in a score card.
 
@@ -17,12 +17,16 @@ servers:
   - url: http://localhost:8083
 
 paths:
+  /results:
+    $ref: "./paths.yaml#/RoundResults"
+  /results/{id}:
+    $ref: "./paths.yaml#/RoundResult"
   /scorecards:
     $ref: "./paths.yaml#/ScoreCards"
   /scorecards/{id}:
     $ref: "./paths.yaml#/ScoreCard"
   /scorecards/{id}/scores:
-    $ref: "./paths_add_score.yaml#/AddNewScore"
+    $ref: "./paths.yaml#/AddNewScore"
   /scores/{id}:
     $ref: "./paths_scores.yaml#/Scores"
 
@@ -36,8 +40,8 @@ components:
       $ref: "./schemas.yaml#/NewScoreCard"
     ScoreCard:
       $ref: "./schemas.yaml#/ScoreCard"
-    ScoreCardSummary:
-      $ref: "./schemas.yaml#/ScoreCardSummary"
+    RoundResult:
+      $ref: "./schemas.yaml#/RoundResult"
     NewScore:
       $ref: "./schemas.yaml#/NewScore"
     Result:
