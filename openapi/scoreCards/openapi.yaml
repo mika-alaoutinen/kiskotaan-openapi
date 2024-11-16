@@ -10,8 +10,6 @@ tags:
     description: Get round results.
   - name: ScoreCards
     description: CRUD operations for handling score cards.
-  - name: AddNewScore
-    description: Adding a new score to a score card. This is it's own API to make Quarkus code generation work correctly.
   - name: Scores
     description: CRUD operations for handling score rows in a score card.
 
@@ -28,7 +26,7 @@ paths:
   /scorecards/{id}:
     $ref: "./paths.yaml#/ScoreCard"
   /scorecards/{id}/scores:
-    $ref: "./paths_add_score.yaml#/AddNewScore"
+    $ref: "./paths.yaml#/AddNewScore"
   /scores/{id}:
     $ref: "./paths_scores.yaml#/Scores"
 
